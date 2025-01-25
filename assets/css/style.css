@@ -28,44 +28,38 @@ title {
     padding-bottom: .5em;
 }  
 
-/* Navigation Bar Styling */
-.navbar {
-    background-color: #333;
-    padding: 10px 20px;
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #07132d;
+    overflow: hidden;
 }
 
-.nav-list {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-}
-
-.nav-item {
-    margin: 0 10px;
-}
-
-.nav-item a {
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    padding: 10px 15px;
-    display: inline-block;
-    border-radius: 5px;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #aab4c5;
+    color: #07132d;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #48597e;
     color: white;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
 }
 
-/* Alternating Colors for Items */
-.nav-item:nth-child(odd) a {
-    background-color: #007bff; /* Blue */
-}
-
-.nav-item:nth-child(even) a {
-    background-color: #28a745; /* Green */
-}
-
-/* Hover Effect */
-.nav-item a:hover {
-    opacity: 0.8;
-}
+.topnav li:nth-child(even) a {
+    background-color: #48597e;
+  }
+  
+.topnav li:nth-child(odd) a {
+    background-color: #172c5a;
+  }
