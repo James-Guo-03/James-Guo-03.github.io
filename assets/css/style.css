@@ -1,0 +1,57 @@
+body {
+    font-family: "Palatino", serif;
+    font-size: 12pt;
+}
+
+code {
+    font-family: "Monaco", monospace;
+}
+
+h1 {
+    color: #25385d;
+    /* border-top: 3px solid; */
+    border-bottom: 3px solid;
+    border-color: #1f386b;
+    margin-top: 1em;
+}  
+
+title {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-size: 160%;
+    font-weight: bold;
+    background-color: #90bbde;
+    border: 2px solid #1f386b;
+    border-radius: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}  
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #07132d;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #aab4c5;
+    color: #07132d;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #48597e;
+    color: white;
+}
