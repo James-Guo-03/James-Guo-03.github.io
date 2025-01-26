@@ -26,3 +26,10 @@ Back in high school, I was a competitor of Science Olympiad at Connecticut. Now 
 - [Optics Question Set](/files/2024_MSO-Regional_Optics.pdf)
 - [Bridges Exam](/files/2023_JHSOI_Sound_of_Music_Exam.pdf)
 
+## Mathematics Enrichment for High School Students
+
+Remembering those "old days" learning high school mathematics, I always remember myself lost for what mathematics looks like in college. In 2024, with a chance revisiting my high school during the Intercessions weeks at Hopkins, I have prepared some small lectures in some topics that high school students could comprehend. Eventually, I have developed some notes and slides about Cryptography and Rigor in Mathematics.
+- Cryptography Introduction [Notes](/files/crypto-notes.pdf), [Activity Sheet](/files/crypto-activity.pdf), [Slides](/files/crypto-slides.pdf)
+- Rigor in Mathematics [Notes](/files/breif_analysis-notes.pdf), [Slides](/files/breif_analysis-lecture_slides.pdf)
+
+## I have decided to include the above selected projects. From some older high school projects, I have decided to keep them still [here](https://sites.google.com/view/jamesguo/past-projects).
