@@ -3,6 +3,7 @@ layout: default
 title: "Contact"
 ---
 
-<h1>Hello rtWorld</h1>
+## I will be available through emails.
 
-Hello Wo343rld.
+- School Email: [sguo45@jhu.edu](mailto:sguo45@jhu.edu)
+- Personal Email: [jamesgsy03@gmail.com](mailto:jamesgsy03@gmail.com)

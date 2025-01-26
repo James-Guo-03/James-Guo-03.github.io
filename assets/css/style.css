@@ -10,8 +10,8 @@ code {
 h1 {
     color: #1f386b;
     /* border-top: 3px solid; */
-    border-bottom: 3px solid;
-    border-color: #1f386b;
+    /* border-bottom: 3px solid;
+    border-color: #1f386b; */
     margin-top: 1em;
 }  
 
@@ -27,47 +27,29 @@ largertitle {
     margin-top: 1em;
     margin-bottom: 0.5em;
     text-align: center;
-    font-size: 160%;
+    font-size: 200%;
     font-weight: bold;
-    background-color: #90bbde;
-    border: 2px solid #1f386b;
-    border-radius: 1em;
+    border-bottom: 3px solid;
+    border-color: #000000;
     padding-top: .5em;
     padding-bottom: .5em;
 }  
 
-/* Add a black background color to the top navigation */
+
 .topnav {
     background-color: #07132d;
+    color: #ffffff;
     overflow: hidden;
 }
-
-/* Style the links inside the navigation bar */
 .topnav a {
     float: center;
-    color: #f2f2f2;
+    color: #bdd5e0;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
-
-/* Change the color of links on hover */
 .topnav a:hover {
-    background-color: #aab4c5;
+    background-color: #bdd5e0;
     color: #07132d;
 }
-
-/* Add a color to the active/current link */
-/* .topnav a.active {
-    background-color: #48597e;
-    color: white;
-} */
-
-.topnav li:nth-child(even) a {
-    background-color: #48597e;
-  }
-  
-.topnav li:nth-child(odd) a {
-    background-color: #172c5a;
-  }
