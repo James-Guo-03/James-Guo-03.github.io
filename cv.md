@@ -15,3 +15,10 @@ Johns Hopkins University: Baltimore, MD
 </p>
 Major: Mathematics and Computer Science
 Expected Graduation Time: May 2026
+
+Cheshire Academy: Cheshire, CT
+<p align="right">
+    September 2018 – June 2022
+</p>
+Selected as the Valedictorian and gave a public speech during Commencement
+Awarded Advanced Placement Scholar with Distinction and International Baccalaureate Diploma
