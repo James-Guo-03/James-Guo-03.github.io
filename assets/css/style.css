@@ -50,3 +50,11 @@ largertitle {
     background-color: #bdd5e0;
     color: #07132d;
 }
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
