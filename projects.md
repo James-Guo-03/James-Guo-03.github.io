@@ -24,7 +24,7 @@ This essay investigates machine imagination is a new field within machine learni
 
 Back in high school, I was a competitor of Science Olympiad at Connecticut. Now in college, I have become an organizer. In the past year I have made problems and organized the JHSOI for *Sound of Music (B)*, and Maryland State competition for *Bridges (C)* and *Optics (B&C)*.
 - [Optics Question Set](/files/2024_MSO-Regional_Optics.pdf)
-- [Bridges Exam](/files/2023_JHSOI_Sound_of_Music_Exam.pdf)
+- [Sound of Music Exam](/files/2023_JHSOI_Sound_of_Music_Exam.pdf)
 
 ## Mathematics Enrichment for High School Students
 
