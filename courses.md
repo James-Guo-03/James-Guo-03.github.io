@@ -1,7 +1,9 @@
 ---
 layout: default
-title: "Selected Courses and Texts"
+title: "Selected Courses"
 ---
+
+Here, I have compiled lists of selected courses (and texts) in which I take during college.
 
 ## Selected Courses in Mathematics
 
@@ -20,7 +22,7 @@ title: "Selected Courses and Texts"
 |`407` Honors Complex Analysis| Elias M. Stein and Rami Shakarichi, *Complex Analysis* |
 |`304` Number Theory| George E. Andrews, *Number Theory*|
 |`302` Ordinary Differential Equations| William E. Boyce, *Elementary Differential Equations and Boundary Value Problems*|
-|`240` Cryptography Through the Ages| *No textbook* |
+|`240` (Intercession) Cryptography Through the Ages| *No textbook* |
 |`212` Honors Linear Algebra| Sheldon Axler, *Linear Algebra Done Right*|
 |`AMS211` Probability and Statistics for Life Sciences| David Diez, *Open IntroStatistics*|
 |`202` Vector Calculus| Jerrold E. Marsden, *Vector Calculus* |
