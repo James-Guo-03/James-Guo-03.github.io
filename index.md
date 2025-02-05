@@ -3,7 +3,9 @@ layout: default
 title: "Home"
 ---
 
-<img src="/files/image.jpg" width="100" height="100">
+<p align="center">
+    <img src="/files/image.jpg" width="300">
+</p>
 
 ## Hello. This is James “Siyuan” Guo, and I am a junior at Johns Hopkins University. I major in Mathematics and Computer Science.
 
