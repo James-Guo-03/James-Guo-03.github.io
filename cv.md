@@ -12,3 +12,5 @@ Student familiar with academic materials, passionate with learning, and interest
 ## [Projects](/projects.html)
 
 ## [Related Courses](/courses.html)
+
+## [Transcript (updated February 2025)](/files/Transcript.pdf)

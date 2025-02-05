@@ -13,6 +13,12 @@ While using these notes, keep in mind that there could be *errors*.
 - I could have certain typos or errors while taking notes, so use at your own risks.
 - If you have noticed any error, please email me by [Contact](/contact.html) tab.
 
+## Stochastic Differential Equations
+Introduction to stochastic processes, stochastic differential equations, and their applications in Machine learning models and mathematical finance. Discusses the solutions to stochastic differential equations and how it can help to find numerical results for PDEs.
+- Class in progress, so the notes will be updated throughout the semester.
+- [Link to Notebook](/files/sdes.pdf)
+
+
 ## Numerical Linear Algebra
 The course aims to deal with matrices with complex entries over finite dimensional vector space, with decomposition and computation of eigenvalues and eigenvectors. A motivation of the course is that the computation of determinants is costly and not necessarily tractable. Thus, we want computability and closeness of the computation of eigenvalues. Computational-wise, we are aiming to analyze the accuracy and complexity of each methodology.
 - [Link to Notebook](/files/numerical_linear_algebra.pdf)
