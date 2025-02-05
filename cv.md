@@ -3,11 +3,15 @@ layout: default
 title: "CV"
 ---
 
-<h1>Hello World2</h1>
+## About myself
 
-![photo](/files/image.jpg)
+A student familiar with academic materials, passionate with learning and researching, and interested in guiding students to comprehend materials.
 
-Hello. This is James “Siyuan” Guo, and I am a junior at Johns Hopkins University. I major in Mathematics and Computer Science.
+## Education 
 
-I am currently working as a Teaching Assistant for an introductory computing class (`AS.250.205` Introduction to Computing) and the head PILOT (peer-led-team learning) leader for an introductory ODEs class (`AS.110.302` Differential Equations and Applications).
-
+Johns Hopkins University: Baltimore, MD
+<p align="right">
+    August 2022 – present
+</p>
+Major: Mathematics and Computer Science
+Expected Graduation Time: May 2026
