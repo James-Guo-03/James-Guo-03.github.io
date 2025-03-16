@@ -3,6 +3,12 @@ layout: default
 title: "Projects"
 ---
 
+## [Johns Hopkins Math Tournament](https://www.johnshopkinsmathtournament.com/jhmt-2025)
+
+JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I will be giving a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
+- Proof Round Problem and Solutions: *Hidden until the competition date.*
+- Reintroduction to Probability: [Presentation](/files/Reintro-Prob.pdf)
+
 ## Machine Learning: Distance Norm and Weights in Clustering Methods
 
 According to a new article in 2024, Baltimore has been ranked as the "deadliest large city in the nation." This project aims to determine the more efficient implementation of police stations in Baltimore through clustering. Certain innovations that we have tried to include are introducing weights to different crime occurrences and train the model with respect to different distance norms.
