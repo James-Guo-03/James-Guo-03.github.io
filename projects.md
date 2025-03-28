@@ -9,6 +9,11 @@ JHMT is an annual math competition for high school students at Johns Hopkins Uni
 - Proof Round Problem and Solutions: *Hidden until the competition date.*
 - Reintroduction to Probability: [Presentation](/files/Reintro-Prob.pdf)
 
+## [MATRX 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
+
+MATRX (Mid-Atlantic Research Exchange) is an annual celebration of undergraduate research in mathematics, a forum at which students from the greater Baltimore-DC region may share their recent work either via presentation or poster. In this conference, I presented a report about the improvements on QR factorization in terms of fractional representation.
+- Improvement on the QR Factorization: [Presentation](/files/matrx-slide.pdf)
+
 ## Machine Learning: Distance Norm and Weights in Clustering Methods
 
 According to a new article in 2024, Baltimore has been ranked as the "deadliest large city in the nation." This project aims to determine the more efficient implementation of police stations in Baltimore through clustering. Certain innovations that we have tried to include are introducing weights to different crime occurrences and train the model with respect to different distance norms.
