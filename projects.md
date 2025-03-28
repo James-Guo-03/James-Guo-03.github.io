@@ -7,12 +7,13 @@ title: "Projects"
 
 JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I will be giving a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
 - Proof Round Problem and Solutions: *Hidden until the competition date.*
-- Reintroduction to Probability: [Presentation](/files/Reintro-Prob.pdf)
+- Reintroduction to Probability: [Presentation Deck](/files/Reintro-Prob.pdf)
 
 ## [MATRX 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
 
 MATRX (Mid-Atlantic Research Exchange) is an annual celebration of undergraduate research in mathematics, a forum at which students from the greater Baltimore-DC region may share their recent work either via presentation or poster. In this conference, I presented a report about the improvements on QR factorization in terms of fractional representation.
-- Improvement on the QR Factorization: [Presentation](/files/matrx-slide.pdf)
+- [Presentation Deck](/files/matrx-slide.pdf)
+- [Poster](/files/matrx-poster.pdf)
 
 ## Machine Learning: Distance Norm and Weights in Clustering Methods
 
