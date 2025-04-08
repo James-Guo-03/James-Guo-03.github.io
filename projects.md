@@ -6,8 +6,14 @@ title: "Projects"
 ## [Johns Hopkins Math Tournament](https://www.johnshopkinsmathtournament.com/jhmt-2025)
 
 JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I will be giving a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
-- Proof Round Problem and Solutions: *Hidden until the competition date.*
+- Power Round Problem and Solutions: *Hidden until the competition date.*
 - Reintroduction to Probability: [Presentation Deck](/files/Reintro-Prob.pdf)
+
+## [JHU Undergraduate Math Club](https://sites.google.com/view/jhu-mathclub/seminar#h.s4zw0qfokek4) Talk
+
+**Title**: Hausdorff Measure and Fractal Geometry
+**Abstract**: In this talk, we will explore the motivations and step-by-step construction of Hausdorff measure and Hausdorff dimension for the sets that would have been interpreted as a null set in the Lebesgue measure. Examples with fractal geometry will be discussed. Audiences are expected to know basic calculus and middle school geometry, will be helpful to know basic measure theory.
+- [Notes](/files/math-club-talk.pdf)
 
 ## [MATRX 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
 
