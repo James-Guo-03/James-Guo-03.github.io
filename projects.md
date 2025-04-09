@@ -11,8 +11,9 @@ JHMT is an annual math competition for high school students at Johns Hopkins Uni
 
 ## [JHU Undergraduate Math Club](https://sites.google.com/view/jhu-mathclub/seminar#h.s4zw0qfokek4) Talk
 
-**Title**: Hausdorff Measure and Fractal Geometry
-**Abstract**: In this talk, we will explore the motivations and step-by-step construction of Hausdorff measure and Hausdorff dimension for the sets that would have been interpreted as a null set in the Lebesgue measure. Examples with fractal geometry will be discussed. Audiences are expected to know basic calculus and middle school geometry, will be helpful to know basic measure theory.
+**Title**: Hausdorff Measure and Fractal Geometry.
+
+**Abstract**: In this talk, we will explore the motivations and step-by-step construction of Hausdorff measure and Hausdorff dimension for the sets that would have been interpreted as a null set in the Lebesgue measure. Examples with some fractal geometry will be discussed. Audiences are expected to know basic calculus and middle school geometry, but it would be helpful if the audiences are exposed to basic measure theory ideas.
 - [Notes](/files/math-club-talk.pdf)
 
 ## [MATRX 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
