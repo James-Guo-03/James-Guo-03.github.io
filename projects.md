@@ -3,11 +3,16 @@ layout: default
 title: "Projects"
 ---
 
+## Stochastic Differential Equations: Applying Stochastic Differential Equation on the Analysis of Stochastic Gradient Descent
+
+This project investigates the connection between Stochastic Gradient Descent (SGD) method in machine learning and deep learning and connects to the Stochastic Differential Equations (SDEs). By reviewing various published paper, this report builds up upon how SGD process can be modeled and justified by SDEs.
+- [Essay Report](/files/SGD-and-SDE.pdf)
+
 ## [Johns Hopkins Math Tournament](https://www.johnshopkinsmathtournament.com/jhmt-2025)
 
 JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I will be giving a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
-- Power Round Problem and Solutions: *Hidden until the competition date.*
-- Reintroduction to Probability: [Presentation Deck](/files/Reintro-Prob.pdf)
+- Power Round Problem and Solutions: [Problem Set](/files/jhmt-hs-power-25.pdf), [Solutions](/files/jhmt-hs-power-25-soln.pdf)
+- Reintroduction to Probability: [Presentation Deck](/files/Reintro-Prob.pdf), [Notes](/files/Reintro-Prob-Notes.pdf)
 
 ## [JHU Undergraduate Math Club](https://sites.google.com/view/jhu-mathclub/seminar#h.s4zw0qfokek4) Talk
 
