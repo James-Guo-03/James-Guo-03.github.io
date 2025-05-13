@@ -18,6 +18,10 @@ Introduction to stochastic processes, stochastic differential equations, and the
 - [Link to Notebook](/files/sdes-notes.pdf)
 - [Link to Problem Set](/files/sdes-hw.pdf)
 
+## Machine Learning: Deep Learning
+A brief introduction to the basic theoretical and methodological underpinnings of machine learning, commonly used architectures for DL, DL optimization methods, DL programming systems, and specialized applications to computer vision, speech understanding, and robotics.
+- [Link to Notebook](/files/mldl-notes.pdf)
+
 ## Numerical Linear Algebra
 The course aims to deal with matrices with complex entries over finite dimensional vector space, with decomposition and computation of eigenvalues and eigenvectors. A motivation of the course is that the computation of determinants is costly and not necessarily tractable. Thus, we want computability and closeness of the computation of eigenvalues. Computational-wise, we are aiming to analyze the accuracy and complexity of each methodology.
 - [Link to Notebook](/files/numerical_linear_algebra.pdf)
