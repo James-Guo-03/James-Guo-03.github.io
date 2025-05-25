@@ -8,7 +8,7 @@ code {
 }
 
 h1 {
-    color: #1f386b;
+    color: #162a52;
     margin-top: 1em;
     font-size: 16pt;
 }  
@@ -20,11 +20,11 @@ h2 {
 }  
 
 a {
-    color: #1f386b;
+    color: #162a52;
   }
   
   a:visited{
-    color: #1f386b;
+    color: #162a52;
   }
   
 largertitle {
@@ -43,16 +43,26 @@ largertitle {
 .topnav {
     background-color: #07132d;
     color: #ffffff;
-    overflow: hidden;
 }
+
 .topnav a {
-    float: center;
     color: #bdd5e0;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 24px;
     text-decoration: none;
     font-size: 17px;
+    display: inline-block;
 }
+
+.topnav a:visited {
+    color: #bdd5e0;
+    text-align: center;
+    padding: 14px 24px;
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-block;
+}
+
 .topnav a:hover {
     background-color: #bdd5e0;
     color: #07132d;
@@ -69,3 +79,8 @@ largertitle {
     display: table;
     clear: both;
   }
+
+  #content {
+	margin: 0 auto;
+	max-width: 64em;
+}
