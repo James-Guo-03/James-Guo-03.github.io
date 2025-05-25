@@ -30,7 +30,11 @@
 <script>
   document.querySelectorAll('a').forEach(link => {
     if (link.closest('.topnav')) return;
-    link.setAttribute('target', '_blank');
+
+    const href = link.getAttribute('href');
+    if (href && href.toLowerCase().endsWith('.pdf')) {
+      link.setAttribute('target', '_blank');
+    }
   });
 </script>
 </html>
