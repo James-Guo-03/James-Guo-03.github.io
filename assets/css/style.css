@@ -71,16 +71,16 @@ largertitle {
 .column {
     float: left;
     width: 50%;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
+}
+
+/* Clear floats after the columns */
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
 
-  #content {
-	margin: 0 auto;
-	max-width: 64em;
+#content {
+margin: 0 auto;
+max-width: 64em;
 }
