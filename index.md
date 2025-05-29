@@ -8,7 +8,7 @@ title: "Home"
 </p>
 
 <script>
-  const photos = ["/photos/photo_1.jpg", "/photos/photo_2.jpg", "/photos/photo_3.jpg"];
+  const photos = ["/photos/photo_1.jpg", "/photos/photo_2.jpg", "/photos/photo_3.jpg", "/photos/photo_4.jpg", "/photos/photo_5.jpg"];
   let index = 0;
 
   function rotateImage() {
