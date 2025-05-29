@@ -8,7 +8,7 @@ title: "Home"
 </p>
 
 <script>
-  const photos = ["/photos/photo_1.jpg", "/photos/photo2.jpg", "/photos/photo3.jpg"];
+  const photos = ["/photos/photo_1.jpg", "/photos/photo_2.jpg", "/photos/photo_3.jpg"];
   let index = 0;
 
   function rotateImage() {
@@ -16,7 +16,7 @@ title: "Home"
     document.getElementById("rotatingImage").src = photos[index];
   }
 
-  setInterval(rotateImage, 10000);
+  setInterval(rotateImage, 5000);
 </script>
 
 ## Hello. This is James “Siyuan” Guo, and I am a junior at Johns Hopkins University. I major in Mathematics and Computer Science.
