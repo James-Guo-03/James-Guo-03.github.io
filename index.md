@@ -4,8 +4,20 @@ title: "Home"
 ---
 
 <p align="center">
-    <img src="/files/image.jpg" width="300">
+    <img id="rotatingImage" src="/photos/photo_1.jpg" width="300">
 </p>
+
+<script>
+  const photos = ["/photos/photo_1.jpg", "/photos/photo2.jpg", "/photos/photo3.jpg"];
+  let index = 0;
+
+  function rotateImage() {
+    index = (index + 1) % photos.length;
+    document.getElementById("rotatingImage").src = photos[index];
+  }
+
+  setInterval(rotateImage, 10000);
+</script>
 
 ## Hello. This is James “Siyuan” Guo, and I am a junior at Johns Hopkins University. I major in Mathematics and Computer Science.
 
