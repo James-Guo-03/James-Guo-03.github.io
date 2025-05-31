@@ -18,7 +18,7 @@ PILOT program at Johns Hopkins University is a "recitation"-like seminar for stu
     - [Link to archived semester](https://jhu-ode-pilot.github.io/)
 - If you happen to be interested in some questions or have any questions, feel free to contact me via [Contact](/contact.html) tab.
 
-# Teaching Assistant for `AS.250.205` Introduction to Computing
+## Teaching Assistant for `AS.250.205` Introduction to Computing
 
 I have been the teaching assistant for this introductory computing course since Spring 2023 semester. Throughout the semester, I have had various responsibilities as a teaching assistance.
 - Grading and annotating in-class and homework assignments with professor and other Teaching Assistants.
