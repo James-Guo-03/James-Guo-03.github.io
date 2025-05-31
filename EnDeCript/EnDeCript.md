@@ -19,5 +19,5 @@ The EnDeCript (online version) helps you to encode/decode a message using the st
 </div>
 
 <script src="CC.js"></script>
-    <script src="EC.js"></script>
-    <script src="main.js"></script>
+<script src="EC.js"></script>
+<script src="main.js"></script>
