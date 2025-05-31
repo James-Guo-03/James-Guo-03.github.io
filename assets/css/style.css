@@ -84,3 +84,27 @@ largertitle {
 margin: 0 auto;
 max-width: 64em;
 }
+
+button {
+    font-size: 17px;
+    padding: 12px 24px;
+    background-color: #bdd5e0; 
+    color: #162a52;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #162a52;
+    color: #bdd5e0;
+}
+
+textarea {
+    width: 75%;
+    margin: 0 auto 10px auto;  
+    display: block; 
+    resize: none;
+    height: auto;
+}
