@@ -33,6 +33,17 @@
           link.setAttribute('target', '_blank');
         }
       });
-    </script>
+      const textarea = document.getElementById('inputBox');
+
+      function adjustHeight() {
+          textarea.style.height = 'auto';
+          textarea.style.height = textarea.scrollHeight + 'px';
+      }
+
+      // Event listener
+      textarea.addEventListener('input', adjustHeight);
+
+      adjustHeight();
+</script>
   </body>
 </html>
