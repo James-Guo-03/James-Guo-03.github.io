@@ -13,9 +13,16 @@ The EnDeCript (online version) helps you to encode/decode a message using the st
     <button onclick="handleDecrypt()">Decrypt</button>
     <br>
     <br>
-    <div id="output"></div>
+    <h2 id="output"></h2>
+    <br>
     <div id="result"></div>
-    <button onclick="copyToClipboard()">Copy Result</button>
+    <br>
+    <br>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button> &nbsp; &nbsp;  
+    <button onclick="getClipboardText()">Paste from Clipboard</button>
+    <br>
+    <br>
+    <div id="status"></div>
 </div>
 
 <script src="CC.js"></script>
