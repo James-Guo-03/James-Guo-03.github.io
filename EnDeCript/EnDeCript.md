@@ -9,8 +9,8 @@ The EnDeCript (online version) helps you to encode/decode a message using the st
 
 <div style="text-align: center">
     <textarea id="inputBox" placeholder="Enter text here..."></textarea><br>
-    <button onclick="handleEncrypt()">Encrypt</button> &nbsp; &nbsp;  
-    <button onclick="handleDecrypt()">Decrypt</button>
+    <button onclick="handleEncrypt()" id="enc">Encrypt</button> &nbsp; &nbsp;  
+    <button onclick="handleDecrypt()" id="dec">Decrypt</button>
     <br>
     <br>
     <h2 id="output"></h2>
@@ -18,8 +18,8 @@ The EnDeCript (online version) helps you to encode/decode a message using the st
     <div id="result"></div>
     <br>
     <br>
-    <button onclick="copyToClipboard()">Copy to Clipboard</button> &nbsp; &nbsp;  
-    <button onclick="getClipboardText()">Paste from Clipboard</button>
+    <button onclick="copyToClipboard()" id="copy">Copy to Clipboard</button> &nbsp; &nbsp;  
+    <button onclick="getClipboardText()" id="get">Paste from Clipboard</button>
     <br>
     <br>
     <div id="status"></div>
