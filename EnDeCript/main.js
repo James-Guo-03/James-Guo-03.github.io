@@ -3,6 +3,7 @@ function handleEncrypt() {
     const encrypted = EC.encrypt(input);
     document.getElementById('output').textContent = "Encrypted Message:";
     document.getElementById('result').textContent = encrypted;
+    checkStatus()
 }
 
 function handleDecrypt() {
@@ -10,6 +11,7 @@ function handleDecrypt() {
     const decrypted = EC.decrypt(input);
     document.getElementById('output').textContent = "Decrypted Message:";
     document.getElementById('result').textContent = decrypted;
+    checkStatus()
 }
 
 async function copyToClipboard() {
@@ -22,6 +24,7 @@ async function copyToClipboard() {
     } catch (err) {
         alert("Failed to copy: " + err);
     }
+    checkStatus()
 }
 
 async function getClipboardText() {
@@ -34,32 +37,28 @@ async function getClipboardText() {
     } catch (err) {
         alert("Failed to read clipboard contents: " + err);
     }
+    checkStatus()
 }
 
 function checkStatus() {
     const input = document.getElementById('inputBox').value.toLowerCase();
-    document.getElementById('status').textContent = "test2";
     if (input.trim() === "") {
         document.getElementById("enc").disabled = true;
         document.getElementById("dec").disabled = true;
-        document.getElementById('status').textContent = "test21";
     } else {
         document.getElementById("enc").disabled = false;
         document.getElementById("dec").disabled = false;
-        document.getElementById('status').textContent = "test22";
     }
     const text = document.getElementById('result').textContent;
-    document.getElementById('status').textContent = "test4";
     if (text.trim() === "") {
         document.getElementById("copy").disabled = true;
-        document.getElementById('status').textContent = "test21";
     } else {
         document.getElementById("copy").disabled = false;
-        document.getElementById('status').textContent = "test32";
     }
-    document.getElementById('status').textContent = "test5";
 }
 
 document.getElementById("inputBox").addEventListener("input", function() {
     checkStatus();
 });
+
+checkStatus()
