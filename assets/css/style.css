@@ -103,6 +103,13 @@ button:hover {
     color: #bdd5e0;
 }
 
+button:disabled {
+    font-family: "Palatino", serif;
+    background-color: #647176;
+    color: #bdd5e0;
+}
+
+
 textarea {
     font-family: "Palatino", serif;
     font-size: 12px;

@@ -25,16 +25,15 @@
         <br><br>
     {{ content }}
     </div>
-</body>
+    <script>
+      document.querySelectorAll('a').forEach(link => {
+        if (link.closest('.topnav')) return;
 
-<script>
-  document.querySelectorAll('a').forEach(link => {
-    if (link.closest('.topnav')) return;
-
-    const href = link.getAttribute('href');
-    if (href && href.toLowerCase().endsWith('.pdf')) {
-      link.setAttribute('target', '_blank');
-    }
-  });
-</script>
+        const href = link.getAttribute('href');
+        if (href && href.toLowerCase().endsWith('.pdf')) {
+          link.setAttribute('target', '_blank');
+        }
+      });
+    </script>
+  </body>
 </html>
