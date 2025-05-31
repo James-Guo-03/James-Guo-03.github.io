@@ -67,13 +67,13 @@ a {
 }
 
 .topnav a.logo:hover {
-    background-color: #07132d !important; /* match nav background */
-    color: #bdd5e0 !important; /* match link color */
+    background-color: #07132d !important; 
+    color: #bdd5e0 !important; 
     cursor: default;
 }
 
 .topnav a.logo {
-    padding: 0; /* tighter padding for image */
+    padding: 0;
 }
 
 .topnav a.logo img {
@@ -121,6 +121,7 @@ button:disabled {
     font-family: "Palatino", serif;
     background-color: #647176;
     color: #383f42;
+    cursor: default;
 }
 
 
