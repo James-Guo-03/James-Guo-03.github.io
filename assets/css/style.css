@@ -29,13 +29,13 @@ a {
   }
   
 .largertitle {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
     text-align: center;
     font-size: 200%;
     font-weight: bold;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: .25em;
+    padding-bottom: .25em;
 }  
 
 .topnav {
