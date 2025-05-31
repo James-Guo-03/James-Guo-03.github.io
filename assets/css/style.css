@@ -42,12 +42,18 @@ a {
     color: #ffffff;
 }
 
+.topnav a.no-hover {
+    padding: 14px 24px;
+    display: inline-block;
+}
+
 .topnav a.no-hover:hover {
     background-color: #07132d !important;
     color: #ffffff !important;
+    text-decoration: none;
     filter: none;
     opacity: 1;
-    text-decoration: none;
+    cursor: default;
 }
 
 .topnav a {
