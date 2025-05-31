@@ -12,15 +12,16 @@ function handleDecrypt() {
     document.getElementById('result').textContent = decrypted;
 }
 
-function copyToClipboard() {
-    const text = document.getElementById('result').textContent;
-    navigator.clipboard.writeText(text).then(() => {
+async function copyToClipboard() {
+    try {
+        const text = document.getElementById('result').textContent;
+        navigator.clipboard.writeText(text);
         document.getElementById('status').textContent = "Copied to clipboard!";
-        setInterval(rotateImage, 3000);
+        await new Promise(resolve => setTimeout(resolve, 3000));
         document.getElementById('status').textContent = "";
-    }).catch(err => {
+    } catch (err) {
         alert("Failed to copy: " + err);
-    });
+    }
 }
 
 async function getClipboardText() {
@@ -28,7 +29,7 @@ async function getClipboardText() {
         const text = await navigator.clipboard.readText();
         document.getElementById('inputBox').textContent = text;
         document.getElementById('status').textContent = "Pasted from clipboard!";
-        setInterval(rotateImage, 3000);
+        await new Promise(resolve => setTimeout(resolve, 3000));
         document.getElementById('status').textContent = "";
     } catch (err) {
         alert("Failed to read clipboard contents: " + err);
