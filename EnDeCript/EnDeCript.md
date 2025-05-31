@@ -8,7 +8,7 @@ title: "EnDeCript Online"
 The EnDeCript (online version) helps you to encode/decode a message using the standard that have been developed by me using a cipher. (ver 1.0)
 
 <div style="text-align: center">
-    <textarea id="inputBox" placeholder="Enter text here..."></textarea><br>
+    <textarea id="inputBox" placeholder="Enter text here..." style="font-size: 16px"></textarea><br>
     <button onclick="handleEncrypt()" id="enc">Encrypt</button> &nbsp; &nbsp;  
     <button onclick="handleDecrypt()" id="dec">Decrypt</button>
     <br>
