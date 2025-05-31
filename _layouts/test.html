@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navbar Test</title>
+  <style>
+    .topnav {
+      background-color: #07132d;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .topnav a {
+      color: #bdd5e0;
+      text-decoration: none;
+      font-size: 17px;
+      padding: 14px 24px;
+      display: inline-block;
+    }
+
+    .topnav a:hover {
+      background-color: #bdd5e0;
+      color: #07132d;
+    }
+
+    /* ✅ OVERRIDE hover for logo link ONLY */
+    .topnav a.logo:hover {
+      background-color: #07132d !important; /* match nav background */
+      color: #bdd5e0 !important; /* match link color */
+      cursor: default;
+    }
+
+    .topnav a.logo {
+      padding: 0; /* tighter padding for image */
+    }
+
+    .topnav a.logo img {
+      vertical-align: middle;
+      height: 25px;
+      width: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a href="https://www.google.com" class="logo">
+      <img src="https://via.placeholder.com/25" alt="logo">
+    </a>
+    James "Siyuan" Guo &nbsp; &nbsp;
+    <a href="https://www.google.com">Home</a> |
+    <a href="/cv.html">CV</a> |
+    <a href="/notes.html">Notes</a> |
+    <a href="/projects.html">Projects</a> |
+    <a href="/teaching.html">Teaching</a> |
+    <a href="/contact.html">Contact</a>
+  </div>
+
+</body>
+</html>

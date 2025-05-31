@@ -42,20 +42,6 @@ a {
     color: #ffffff;
 }
 
-.topnav a.no-hover {
-    padding: 14px 24px;
-    display: inline-block;
-}
-
-.topnav a.no-hover:hover {
-    background-color: #07132d !important;
-    color: #ffffff !important;
-    text-decoration: none;
-    filter: none;
-    opacity: 1;
-    cursor: default;
-}
-
 .topnav a {
     color: #bdd5e0;
     text-align: center;
@@ -77,6 +63,22 @@ a {
 .topnav a:hover {
     background-color: #bdd5e0;
     color: #07132d;
+}
+
+.topnav a.logo:hover {
+    background-color: #07132d !important; /* match nav background */
+    color: #bdd5e0 !important; /* match link color */
+    cursor: default;
+}
+
+.topnav a.logo {
+    padding: 0; /* tighter padding for image */
+}
+
+.topnav a.logo img {
+    vertical-align: middle;
+    height: 25px;
+    width: 25px;
 }
 
 .column {
