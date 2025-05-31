@@ -118,7 +118,9 @@ textarea {
 }
 
 .no-hover:hover {
-  opacity: 1;
-  filter: none;
-  cursor: default;
+    background-color: #07132d;
+    color: #ffffff;
+    opacity: 1;
+    filter: none;
+    cursor: default;
 }
