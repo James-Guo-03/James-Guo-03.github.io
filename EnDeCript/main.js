@@ -37,6 +37,7 @@ async function getClipboardText() {
 }
 
 function checkStatus() {
+    document.getElementById('status').textContent = "test1";
     document.getElementById('inputBox').textContent = text;
     if (text.trim() === "") {
         document.getElementById("enc").disabled = true;
@@ -44,13 +45,16 @@ function checkStatus() {
     } else {
         document.getElementById("enc").disabled = false;
         document.getElementById("dec").disabled = false;
+        document.getElementById('status').textContent = "test221";
     }
     document.getElementById('result').textContent = text;
     if (text.trim() === "") {
         document.getElementById("copy").disabled = true;
     } else {
         document.getElementById("copy").disabled = false;
+        document.getElementById('status').textContent = "test122";
     }
+    document.getElementById('status').textContent = "test2";
 }
 
 setInterval(checkStatus, 500);
