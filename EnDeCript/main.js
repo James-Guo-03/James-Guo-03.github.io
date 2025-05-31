@@ -36,7 +36,7 @@ async function getClipboardText() {
     }
 }
 
-async function checkStatus() {
+function checkStatus() {
     document.getElementById('inputBox').textContent = text;
     if (text.trim() === "") {
         document.getElementById("enc").disabled = true;
