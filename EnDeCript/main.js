@@ -57,4 +57,6 @@ function checkStatus() {
     document.getElementById('status').textContent = "test2";
 }
 
-setInterval(checkStatus, 500);
+document.getElementById("inputBox").addEventListener("input", function() {
+    checkStatus();
+});
