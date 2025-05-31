@@ -37,8 +37,7 @@ async function getClipboardText() {
 }
 
 function checkStatus() {
-    document.getElementById('status').textContent = "test1";
-    const text = document.getElementById('inputBox').textContent;
+    const input = document.getElementById('inputBox').value.toLowerCase();
     document.getElementById('status').textContent = "test2";
     if (text.trim() === "") {
         document.getElementById("enc").disabled = true;
