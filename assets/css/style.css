@@ -42,6 +42,14 @@ a {
     color: #ffffff;
 }
 
+.topnav a.no-hover:hover {
+    background-color: #07132d !important;
+    color: #ffffff !important;
+    filter: none;
+    opacity: 1;
+    text-decoration: none;
+}
+
 .topnav a {
     color: #bdd5e0;
     text-align: center;
@@ -115,12 +123,4 @@ textarea {
     display: block; 
     resize: none;
     height: auto;
-}
-
-.topnav a.no-hover:hover {
-    background-color: #07132d !important;
-    color: #ffffff !important;
-    filter: none;
-    opacity: 1;
-    text-decoration: none;
 }
