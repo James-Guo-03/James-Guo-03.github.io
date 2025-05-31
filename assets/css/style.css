@@ -124,6 +124,10 @@ button:disabled {
     cursor: default;
 }
 
+button:disabled a {
+    cursor: default;
+}
+
 
 textarea {
     font-family: "Palatino", serif;
