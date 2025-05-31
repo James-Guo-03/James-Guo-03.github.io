@@ -39,7 +39,7 @@ async function getClipboardText() {
 function checkStatus() {
     const input = document.getElementById('inputBox').value.toLowerCase();
     document.getElementById('status').textContent = "test2";
-    if (text.trim() === "") {
+    if (input.trim() === "") {
         document.getElementById("enc").disabled = true;
         document.getElementById("dec").disabled = true;
         document.getElementById('status').textContent = "test21";
@@ -48,7 +48,7 @@ function checkStatus() {
         document.getElementById("dec").disabled = false;
         document.getElementById('status').textContent = "test22";
     }
-    text = document.getElementById('result').textContent;
+    const text = document.getElementById('result').textContent;
     document.getElementById('status').textContent = "test4";
     if (text.trim() === "") {
         document.getElementById("copy").disabled = true;
