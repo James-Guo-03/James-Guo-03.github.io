@@ -117,10 +117,10 @@ textarea {
     height: auto;
 }
 
-.no-hover:hover {
-    background-color: #07132d;
-    color: #ffffff;
-    opacity: 1;
+.topnav a.no-hover:hover {
+    background-color: #07132d !important;
+    color: #ffffff !important;
     filter: none;
-    cursor: default;
+    opacity: 1;
+    text-decoration: none;
 }
