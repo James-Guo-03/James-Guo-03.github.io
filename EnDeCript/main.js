@@ -30,7 +30,8 @@ async function copyToClipboard() {
 async function getClipboardText() {
     try {
         const text = await navigator.clipboard.readText();
-        document.getElementById('inputBox').textContent = text;
+        const inputBox = document.getElementById('inputBox');
+        inputBox.value = text;
         document.getElementById('status').textContent = "Pasted from clipboard!";
         await new Promise(resolve => setTimeout(resolve, 3000));
         document.getElementById('status').textContent = "";
