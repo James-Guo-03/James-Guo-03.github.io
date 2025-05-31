@@ -10,7 +10,7 @@
 <body>
     <div id="content" style="text-align: left;">
         <div class="topnav" style="text-align: center;">
-            <a href="personal.html"><img src="/photos/thumbernail.png" width="25" height="25" style="vertical-align: middle;"></a> &nbsp; James "Siyuan" Guo &nbsp; &nbsp;  
+            <a href="/personal.html" class="no-hover"><img src="/photos/thumbernail.png" width="25" height="25" style="vertical-align: middle;"></a> James "Siyuan" Guo &nbsp; &nbsp;  
             <a href="/index.html">Home</a> | 
             <a href="/cv.html">CV</a> |
             <a href="/notes.html">Notes</a> |
@@ -35,6 +35,12 @@
           link.setAttribute('target', '_blank');
         }
       });
+
+      document.querySelectorAll('.no-hover').forEach(el => {
+        el.style.pointerEvents = 'none';
+        el.style.cursor = 'default';
+      });
+
     </script>
   </body>
 </html>
