@@ -39,22 +39,27 @@ async function getClipboardText() {
 function checkStatus() {
     document.getElementById('status').textContent = "test1";
     document.getElementById('inputBox').textContent = text;
+    document.getElementById('status').textContent = "test2";
     if (text.trim() === "") {
         document.getElementById("enc").disabled = true;
         document.getElementById("dec").disabled = true;
+        document.getElementById('status').textContent = "test21";
     } else {
         document.getElementById("enc").disabled = false;
         document.getElementById("dec").disabled = false;
-        document.getElementById('status').textContent = "test221";
+        document.getElementById('status').textContent = "test22";
     }
+    document.getElementById('status').textContent = "test3";
     document.getElementById('result').textContent = text;
+    document.getElementById('status').textContent = "test4";
     if (text.trim() === "") {
         document.getElementById("copy").disabled = true;
+        document.getElementById('status').textContent = "test21";
     } else {
         document.getElementById("copy").disabled = false;
-        document.getElementById('status').textContent = "test122";
+        document.getElementById('status').textContent = "test32";
     }
-    document.getElementById('status').textContent = "test2";
+    document.getElementById('status').textContent = "test5";
 }
 
 document.getElementById("inputBox").addEventListener("input", function() {
