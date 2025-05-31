@@ -27,7 +27,7 @@ a {
     color: #162a52;
   }
   
-largertitle {
+.largertitle {
     margin-top: 1em;
     margin-bottom: 0.5em;
     text-align: center;
@@ -38,7 +38,6 @@ largertitle {
     padding-top: .5em;
     padding-bottom: .5em;
 }  
-
 
 .topnav {
     background-color: #07132d;

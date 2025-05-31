@@ -19,12 +19,12 @@ async function copyToClipboard() {
         const text = document.getElementById('result').textContent;
         navigator.clipboard.writeText(text);
         document.getElementById('status').textContent = "Copied to clipboard!";
+        checkStatus()
         await new Promise(resolve => setTimeout(resolve, 3000));
         document.getElementById('status').textContent = "";
     } catch (err) {
         alert("Failed to copy: " + err);
     }
-    checkStatus()
 }
 
 async function getClipboardText() {
@@ -33,12 +33,12 @@ async function getClipboardText() {
         const inputBox = document.getElementById('inputBox');
         inputBox.value = text;
         document.getElementById('status').textContent = "Pasted from clipboard!";
+        checkStatus()
         await new Promise(resolve => setTimeout(resolve, 3000));
         document.getElementById('status').textContent = "";
     } catch (err) {
         alert("Failed to read clipboard contents: " + err);
     }
-    checkStatus()
 }
 
 function checkStatus() {
@@ -58,8 +58,14 @@ function checkStatus() {
     }
 }
 
+function clearOutput() {
+    document.getElementById('output').textContent = "";
+    document.getElementById('result').textContent = "";
+    checkStatus()
+}
+
 document.getElementById("inputBox").addEventListener("input", function() {
-    checkStatus();
+    clearOutput()
 });
 
 checkStatus()
