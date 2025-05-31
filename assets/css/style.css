@@ -116,3 +116,9 @@ textarea {
     resize: none;
     height: auto;
 }
+
+.no-hover:hover {
+  opacity: 1;
+  filter: none;
+  cursor: default;
+}
