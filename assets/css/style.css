@@ -137,4 +137,5 @@ textarea {
     display: block; 
     resize: none;
     height: auto;
+    overflow: hidden;
 }
