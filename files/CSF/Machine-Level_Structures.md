@@ -845,7 +845,7 @@ $$
 		- The virtual address will be separated into more pieces, in 32 bit x86:
 
 $$
-\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}
+\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\ \ index \ \ }\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\ \ index \ \ }\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\ \ offset \ \ }\\\text{ bit }\end{matrix}}}_{12\text{ bits}}
 $$
 
 ### Linux Virtual Memory
