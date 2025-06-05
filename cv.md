@@ -21,7 +21,7 @@ Here, I have compiled lists of selected courses (and texts) in which I take duri
 
 |Class Name|Textbook|
 |:---------|:-------|
-|`653` Stochastic Differential Equations ([*Notes*](/files/sdes-notes.pdf))| Bernt Øksendal, *Stochastic Differential Equations: An Introduction with Applications* |
+|`653` Stochastic Differential Equations ([*Notes*](/files/sdes-notes.pdf), [*Problem Sets*](/files/sdes-hw.pdf))| Bernt Øksendal, *Stochastic Differential Equations: An Introduction with Applications* |
 |`637` Functional Analysis ([*Course Notes from Instructor*](https://drive.google.com/file/d/1sI9jontuA8ot1_1FR-FzIHFih-FBkIw4/view?usp=drive_link)) | Martin Schechter, *Principles of Functional Analysis* |
 |`633` Harmonic Analysis ([*Course Notes from Instructor*](https://drive.google.com/file/d/1iIpOlnQAJEEXRKj5bL9Xng9rpOawK1SZ/view?usp=sharing)) | Christopher D. Sogge, *Fourier Integral in Classical Analysis* |
 |`AMS480` Numerical Linear Algebra ([*Notes*](/files/numerical_linear_algebra.pdf)) | Lloyd N. Trefethen and David Bau, *Numerical Linear Algebra*|
@@ -44,7 +44,7 @@ Here, I have compiled lists of selected courses (and texts) in which I take duri
 |:---------|
 |`482` Machine Learning: Deep Learning ([*Notes*](/files/mldl-notes.pdf)) |
 |`475` Machine Learning ([*Notes*](/files/machine_learning.pdf)) |
-|`433` Introduction to Algorithms|
+|`433` Introduction to Algorithms ([*Problem Sets*](/files/algo-ps.pdf)) |
 |`230` Mathematical Foundation for Computer Science|
 |`229` Computer System Fundamentals ([*Notes*](/files/CSF/CSF.html)) |
 |`226` Data Structures|

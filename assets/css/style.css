@@ -87,19 +87,6 @@ a {
   display: none;
 }
 
-@media print {
-  .topnav {
-    display: none !important;
-  }
-
-  .navbar-print {
-    background-color: #07132d !important;
-    color: #ffffff !important;
-    display: block !important;
-    margin-bottom: 20px;
-  }
-}
-
 .column {
     float: left;
     width: 50%;
@@ -166,7 +153,13 @@ table, th, td {
     border: 0.5px solid #162a52;
 }
 
-th, td {
+th {
+    background-color: #162a52;
+    color: #bdd5e0;
+    padding: 8px;
+}
+
+td {
     padding: 8px;
 }
 
@@ -180,4 +173,23 @@ tr:nth-child(odd) {
 
 .mjx-chtml, .mjx-chtml * {
   font-family: 'EB Garamond', 'Palatino Linotype', 'Palatino', 'Book Antiqua', serif !important;
+}
+
+@media print {
+  .topnav {
+    display: none !important;
+  }
+
+  .navbar-print {
+    background-color: #ffffff !important;
+    color: #07132d !important;
+    display: block !important;
+    margin-bottom: 20px;
+  }
+
+  th {
+    background-color: #ffffff !important;
+    color: #07132d !important;
+    padding: 8px;
+}
 }
