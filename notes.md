@@ -38,3 +38,10 @@ This reading is an extension to Real Variables and Measure Theory, where concept
 ## Partial Differential Equations
 This undergraduate course in partial differential equations covers the heat equations, the wave equations, and the Laplace equations. While the course also explores Fourier series as a way of solving partial differential equations and various models.
 - [Link to Notebook](/files/partial_differential_equations.pdf)
+
+## Computer Science Languages
+Here is a compilation of some notes for the basic computer science courses, such as basic languages and systems.
+- [Java](/files/Java.html)
+- [C](/files/C.html)
+- [C++](/files/CPP.html)
+- [Computer System Fundamentals](/files/CSF/CSF.html)
