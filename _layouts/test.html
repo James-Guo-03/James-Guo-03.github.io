@@ -50,13 +50,15 @@
       // Event listener
       textarea.addEventListener('input', adjustHeight);
 
-      adjustHeight();</script>
+      adjustHeight();
+      </script>
 <script type="text/javascript"
   async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
-<script> window.MathJax = {
+<script>
+    window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']]
@@ -73,6 +75,13 @@
       }
     };
 </script>
+Test $$ad$$ $$\int_1^2s$$
 
 </body>
+
+<style>
+  .mjx-chtml, .mjx-chtml * {
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif !important;
+}
+</style>
 </html>
