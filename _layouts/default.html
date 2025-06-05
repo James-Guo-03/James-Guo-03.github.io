@@ -48,6 +48,15 @@
       textarea.addEventListener('input', adjustHeight);
 
       adjustHeight();
+      
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        }
+      };
 </script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   </body>
 </html>
