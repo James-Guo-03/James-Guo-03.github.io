@@ -3,9 +3,9 @@ layout: default
 title: "Home"
 ---
 
-<p align="center">
-    <img id="rotatingImage" src="/photos/photo_1.jpg" width="300">
-</p>
+<div align="center">
+    <img id="rotatingImage" src="/photos/photo_1.jpg" width="300" alt="photo">
+</div>
 
 <script>
   const photos = ["/photos/photo_1.jpg", "/photos/photo_2.jpg", "/photos/photo_3.jpg", "/photos/photo_4.jpg", "/photos/photo_5.jpg"];
