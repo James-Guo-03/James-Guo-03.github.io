@@ -3,7 +3,7 @@ layout: default
 title: "Home"
 ---
 
-<div align="center">
+<div style="text-align: center;">
     <img id="rotatingImage" src="/photos/photo_1.jpg" width="300" alt="photo">
 </div>
 
