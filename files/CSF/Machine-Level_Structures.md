@@ -64,11 +64,13 @@ long mul_eg(long a, long b, long c) {
 ```
 - In executing the above function, the multiplications can be arranged into the below three blocks: 
 
+
 | &nbsp;  | 1     | 2     | 3     | 4     | 5       | 6       | 7       |
 | ------- | :---: | :---: | :---: | :---: | :-----: | :-----: | :-----: |
 | Stage 1 | `a*b` | `a*c` |       |       | `p1*p2` |         |         |
 | Stage 2 |       | `a*b` | `a*c` |       |         | `p1*p2` |         |
 | Stage 3 |       |       | `a*b` | `a*c` |         |         | `p1*p2` |
+
 - For Haswell CPU, there are 8 total functional units, with multiple instructions can be executed in parallel:
 	- 2 load, with address computation,
 	- 1 store, with address computation,
@@ -93,12 +95,12 @@ long mul_eg(long a, long b, long c) {
 - The bounds for the operations are as follows, in general, they define the lower bound of the best operation:
 
 
-
 | &nbsp;     | Integer | Integer | Floating Point | Floating Point |
 | ---------- | :-----: | :-----: | :------------: | :------------: |
 | Bound      |   `+`   |   `*`   | `+`            | `*`            |
 | Latency    |  1.00   |  3.00   | 3.00           | 5.00           |
 | Throughput |  0.50   |  1.00   | 1.00           | 0.50           |
+
 - **Loop Unrolling**, the unrolling means to make loop increment by 2 instead of 1 so it performs double of useful work per iteration.
 - The re-association of `x = x OP a OP b` to `x = x OP (a OP b)` would allow better efficiency as there will be more parallelism (as there are less dependency):
 	- Even further, for addition, we can have `x1 = x1 OP a`, `x2 = x2 OP b` in each iteration and eventually allow `x = x1 + x2` to construct two *streams* of operations.
