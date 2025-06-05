@@ -45,6 +45,7 @@ for (size_t i = 0; i < len; i++) /* manupulations on s */;
 	- The *cycle per element* (CPE) is a convenient way to express performance of program that operates on *vectors or lists*, with parameters:
 		- Length = $$n$$,
 		- CPE = $$\text{cycles per OP}$$:
+
 		$$
 		T = n\times \operatorname{CPE} + \operatorname{Overhead}.
 		$$
@@ -227,9 +228,11 @@ for (int i = 0; i < size; i++) {
 	- Flash memory is EEPROM (electrically erasable programmable read-only memory), which allows reading multiple bytes and write require erase of a block (so write can ear out the memory).
 	- Hard drives are magnetic charge on spinning disk, and the read/write requires head at the right place. The access is slow but it store bulk of data storage.
 - Typically, the 2 Level Memory involves the follows:
+
 $$
 \text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}.
 $$
+
 	- Here, the memory is requested from CPU, if data is found in cache, it is sent directly to CPU, which is a **cache hit**.
 	- If data is not found in cache, the memory is requested from cache to main memory (which is slow) and then sending data from memory to cache, storing it, and eventually send to processor. This is a **cache miss**.
 - The memory embodies the following concepts:
@@ -252,9 +255,11 @@ $$
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
+
 	$$
 	\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}.
 	$$
+
 	- If blocks with same index are used, older one is overwritten.
 	- Moreover, the block size incurs tradeoffs:
 		- Larger block size implies fewer cache misses, but longer time to transfer and fewer blocks in cache.
@@ -263,22 +268,28 @@ $$
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- There is no **index**.
 	- **tag to identify position** in main memory is the remaining of address.
+
 	$$
 	\underbrace{\boxed{\big|\qquad\qquad \text{tag}\qquad\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}.
 	$$
+
 	- The fully associative cache eliminates the issue with replacing the old tags, however, finding block in cache is expensive.
 - **Set Associative Cache** introduces the intermediate, where we use a part of address to determine a subset of cache, but there are more than one slot for each index part of cache:
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
+
 	$$
 	\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}.
 	$$
+
 	- Note that for a $$n$$-way set-associate ($$n$$ has to be an integer power of $$2$$), there will be $$n$$ sets in for each index.
 	- The total capacity of the cache (or total amount of data is) has the following relationship:
+
 	$$
 	\text{Capacity} = \#\text{Sets} \times \#\text{Block Size}\times\text{Associative Factor}.
 	$$
+
 	- For set associative cache, there will be caching strategies, the blocks are read in when needed.
 	- When the cache is full, the blocks are discarded based on:
 		- Random discard.
@@ -510,6 +521,7 @@ struct Image *transform_image(struct Image *source, void *arg_data);
 	- **Traps and system calls**: intentional calls, and are triggered by instruction ("`syscall`").
 	- **Faults**: maybe recoverable, e.g., swapped out memory ("page fault"), and if it is recovered, the program return to regular control flow.
 	- **Aborts**: unrecoverable fatal error, e.g., memory corrupted, and the application process is terminated.
+	
 	$$
 	\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix}.
 	$$
@@ -563,7 +575,8 @@ main:
     movq $0, %rdi                       ; put in the exit status
     syscall                             ; make system call
 ```
-- The system call control process might could be handle, which would follow the below structure:
+- The system call control process might could be handled, which would follow the below structure:
+
 $$
 \begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix}.
 $$
@@ -783,9 +796,11 @@ for (int i = 0; i < NCOUNT; i++) {
 
 ### Address Translation
 - The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:
+
 $$
 \operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases}.
 $$
+
 	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).
 	![Screenshot 2024-04-02 at 8.39.01 PM.png](Screenshot 2024-04-02 at 8.39.01 PM.png)
 	- The virtual address has page offset as $$\log_2(\text{Page size})$$ and the virtual page number can be converted only if it is valid.
@@ -827,6 +842,7 @@ $$
 	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:
 	![Screenshot 2024-04-02 at 8.54.52 PM.png](Screenshot 2024-04-02 at 8.54.52 PM.png)
 		- The virtual address will be separated into more pieces, in 32 bit x86:
+		
 		$$
 		\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}
 		$$

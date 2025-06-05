@@ -129,7 +129,7 @@ where $$a,b,c$$ are digits from $$0$$ to $$n-1$$ and the places are powers of $$
 |Exponent|Fraction|Object|
 |:-:|:-:|:-:|
 |0|0|zero|
-|0|>0|denormalized number, which is $$0.x\times 2^{-126}$$
+|0|>0|denormalized number, which is $$0.x\times 2^{-126}$$ |
 |1-254| anything| floating point number|
 |255|0|infinity|
 |255| >0| NaN (not a number)|
