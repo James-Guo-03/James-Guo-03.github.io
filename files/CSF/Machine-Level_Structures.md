@@ -212,6 +212,9 @@ for (int i = 0; i < size; i++) {
 	- **Hit time** is the time to process a cache hit.
 	- **Miss penalty** is the time to process a cache miss, typically $100\times$.
 - The memory hierarchy allows many levels, where the transfer between memory in level $i$ and $i+1$ follows the same principle, and moreover, if an item is in level $i$, then it appear in level $i+1$.
+
+{% raw %}
+
 ### Caching Strategies
 - All data is in large main memory, but data for processing has to moved to cache:
 	- The main concern is on the mapping between cache and main memory, with which data to read / keep / write.
@@ -253,6 +256,9 @@ for (int i = 0; i < size; i++) {
 		- **Write-allocate**: we load the value of the address to the cache and update the line in cache, it is good when there are more writes to the location locality.
 		- **No-write-allocate**: we write straightly to the memory and load nothing to the cache.
 	- Typically, we have *write-through + no-write-allocate* or *write-back + write-allocate*, and *write-back + no-write-allocate* is not allowed.
+
+{% endraw %}
+
 ### Cache Performances
 - The Intel Core i7 Cache has 3 level of caches, which respectively:
 	- L1 i-cache and d-cache: 32KB, 8-way, with 4 cycles to access;
