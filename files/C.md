@@ -188,14 +188,14 @@ struct rectangle { // structure
 	- Replacing the complicated recompile code for different files.
 - With the name of `Makefile` or `makefile`, the compiling uses only `make`.
 - `Makefile` uses the `bash` syntax:
-	- Lines in a makefile that begin with `
-#` are comments.
-	- `$$` expands the variables being predefined.
+	- Lines in a makefile that begin with `#` are comments.
+	- `$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.
 	- Disambiguate `Tab` with spaces in the file.
 	- Multiple targets can be triggered by making a single target.
 - Sample `Makefile` file:
+
 ```bash
 
 # Makefile:
@@ -204,13 +204,13 @@ CC=gcc
 CFLAGS=-std=c99 -pedantic -Wall -Wextra
 
 main: mainFile.o functions.o  
-	$$(CC) -o main mainFile.o functions.o
+	$(CC) -o main mainFile.o functions.o
 
 mainFile.o: mainFile.c functions.h
-	$$(CC) $$(CFLAGS) -c mainFile.c
+	$(CC) $(CFLAGS) -c mainFile.c
 
 functions.o: functions.c functions.h
-	$$(CC) $$(CFLAGS) -c functions.c
+	$(CC) $(CFLAGS) -c functions.c
 
 clean:  
 	rm -f *.o main
@@ -582,7 +582,7 @@ int main(int argc, char* argv[]) {
 | rand() | `0` to `RAND_MAX` |
 | rand() % x | `0` to `x-1` |
 | (rand() % x) + y | `y` to `y+x-1` |
-| ((rand() % x) / (double) x | `0.0` to $$1.0-\frac{1}x$$|
+| (rand() % x) / (double) x | `0.0` to $$1.0-\frac{1}x$$|
 | rand() / (double)(RAND_MAX) | `0.0` to `1.0` |
 
 - To generate a Normally Distributed Pseudo-random, use sum of many generations:

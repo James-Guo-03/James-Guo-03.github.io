@@ -124,17 +124,17 @@ long mul_eg(long a, long b, long c) {
 
 |   Entry    |  Register   | Specialized Usage / Convention                              |
 | :--------: | :---------: | :---------------------------------------------------------- |
-|     0      |   `$$zero`   | always has the value $$0$$.                                   |
-|     1      |    `$$at`    | conventionally reserved for pseudo-instructions             |
-|    2-3     | `$$v0`-`$$v1` | conventionally return values of a function call             |
-|    4-7     | `$$a0`-`$$a3` | conventionally arguments for a function call                |
-| 8-15,24,25 | `$$t0`-`$$t9` | conventionally temporaries, can be overwritten by functions |
-|   16-23    | `$$s0`-`$$s7` | conventionally saved, have to be preserved by functions     |
-|   26-27    | `$$k0`-`$$k1` | conventionally reserved for kernel                          |
-|     28     |    `$$gp`    | conventionally global area pointer                          |
-|     29     |    `$$sp`    | conventionally stack pointer                                |
-|     30     |    `$$fp`    | conventionally frame pointer                                |
-|     31     |    `$$ra`    | always contains the return address                          |
+|     0      |   `$zero`   | always has the value $$0$$.                                   |
+|     1      |    `$at`    | conventionally reserved for pseudo-instructions             |
+|    2-3     | `$v0`-`$v1` | conventionally return values of a function call             |
+|    4-7     | `$a0`-`$a3` | conventionally arguments for a function call                |
+| 8-15,24,25 | `$t0`-`$t9` | conventionally temporaries, can be overwritten by functions |
+|   16-23    | `$s0`-`$s7` | conventionally saved, have to be preserved by functions     |
+|   26-27    | `$k0`-`$k1` | conventionally reserved for kernel                          |
+|     28     |    `$gp`    | conventionally global area pointer                          |
+|     29     |    `$sp`    | conventionally stack pointer                                |
+|     30     |    `$fp`    | conventionally frame pointer                                |
+|     31     |    `$ra`    | always contains the return address                          |
 
 ### MIPS Pipelines
 - The MIPS Structure separates the procedures into pipelines:

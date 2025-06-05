@@ -92,7 +92,7 @@ class Rectangle { // structure
 - With the name of `Makefile` or `makefile`, the compiling uses only `make`.
 - `Makefile` uses the `bash` syntax:
 	- Lines in a makefile that begin with `#` are comments.
-	- `$$` expands the variables being predefined.
+	- `$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.
 	- Disambiguate `Tab` with spaces in the file.
@@ -106,13 +106,13 @@ CC=g++
 CFLAGS=-std=c++11 -pedantic -Wall -Wextra
 
 main: mainFile.o functions.o  
-	$$(CC) -o main mainFile.o functions.o
+	$(CC) -o main mainFile.o functions.o
 
 mainFile.o: mainFile.cpp functions.h
-	$$(CC) $$(CFLAGS) -c mainFile.cpp
+	$(CC) $(CFLAGS) -c mainFile.cpp
 
 functions.o: functions.cpp functions.h
-	$$(CC) $$(CFLAGS) -c functions.cpp
+	$(CC) $(CFLAGS) -c functions.cpp
 
 clean:  
 	rm -f *.o main
