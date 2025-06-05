@@ -94,6 +94,7 @@ class Rectangle { // structure
 	- Disambiguate `Tab` with spaces in the file.
 	- Multiple targets can be triggered by making a single target.
 - Sample `Makefile` file:
+
 ```bash
 
 # Makefile:
