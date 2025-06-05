@@ -476,9 +476,13 @@ An array can be declared with two dimensions. `Object[][] myArray = new Object[R
 
 Or the initialization can be:
 
+{% raw %}
+
 ```
 	dataType[][] arrayName = {{a, ..., b}, ..., {c, ..., d}};
 ```
+
+{% endraw %}
 
 The definition, access, and intiialization works the same for higher dimensions.
 
