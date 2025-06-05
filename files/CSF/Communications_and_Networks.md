@@ -651,7 +651,7 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 ### Parallel Computation: Mandelbrot Set
 - Parallel computation can be used to solve the problem of Mandelbrot set, namely the question that:
 	- Assume $$C$$ is a complex number and $$Z_0 = 0 + 0i$$. The recursive definition is as follows:
-	\[ Z_{n+1} = Z_n^2 + C, \]
+	\\[ Z_{n+1} = Z_n^2 + C, \\]
 	- and if the magnitude never reach $$2$$ after finite number of iterations, it is in the Mandelbrot set, otherwise, it is not.
 - The problem is *embarrassingly parallel* problem. We can create `functions` doing complex operations and visualize the points on the plane.
 - During the process, we can speed up the computation by doing the computation for different points in parallel on multiple CPU cores, namely:
@@ -1015,22 +1015,22 @@ void bqueue_enqueue(BoundedQueue *bq, void *item) {
 - During parallelizing a computation: the goal is to make the computation complete as fast as possible.
 - Suppose that $$t_s$$ is the sequential running time, and $$t_p$$ is the parallel running time, the speedup (denoted $$S$$) is $$t_s/t_p$$.
 - Let $$P$$ be the number of processor cores. In theory, speedup $$S$$ cannot be greater than $$P$$. So, in the ideal case:
-	\[ S = P = \frac{t_s}{t_p}, \]
+	\\[ S = P = \frac{t_s}{t_p}, \\]
 	implying that: 
-	\[ t_p = \frac{t_s}P. \]
+	\\[ t_p = \frac{t_s}P. \\]
 	- Note that: 
-	\[ \lim_{p\to\infty}t_p = \lim_{p\to\infty}\frac{t_s}P = 0, \]
+	\\[ \lim_{p\to\infty}t_p = \lim_{p\to\infty}\frac{t_s}P = 0, \\]
 	meaning that throwing an arbitrary number of cores at a computation should improve performance by an arbitrary factor, which is ideal.
 - When speedup $$S = P$$, we have perfect scalability, but in reality, this is difficult to achieve because parallel computations generally have some sequential overhead which cannot be (easily) parallelized, such as:
 	- Divide up work,
 	- Synchronization overhead,
 	- Combining solutions to subproblems, etc.
 - Say that, for some computational problem, the proportions of inherently sequential and parallelizable computation are $$w_s$$ and $$w_p$$, respectively, such that $$w_s+w_p=1$$. If we normalize the sequential execution time $$t_s$$. Parallel execution time using $$P$$ cores is: 
-\[t_p = w_s + \frac{w_p}P = w_s+\frac{1-w_s}P, \]
+\\[t_p = w_s + \frac{w_p}P = w_s+\frac{1-w_s}P, \\]
 thus speeding up $$P$$ cores gives: 
-\[S = \frac{t_s}{t_p}=\dfrac{1}{w_s + \frac{1-w_s}{P}}.\]
+\\[S = \frac{t_s}{t_p}=\dfrac{1}{w_s + \frac{1-w_s}{P}}.\\]
 - Now, as $$P\to\infty$$, $$\frac{1-w_s}P\to 0$$, so:
-\[S\to \frac{1}{w_s}. \]
+\\[S\to \frac{1}{w_s}. \\]
 Thus, this is regardless of how many cores we use.
 - Amdahl’s Law: Suppose the proportion of inherently sequential computation ($$w_s$$) is independent of the problem size.
 - Gustafson-Barsis’s Law: for some important computations, the proportion of parallelizable computation scales with the problem size:

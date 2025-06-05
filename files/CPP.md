@@ -479,6 +479,7 @@ string s5 = s2;        // deep copy of s2 to s5
 		- Memories are *freed* when the string goes out of scope.
 - Operators works in string:
 
+
 | Operator | Usage |
 |:--------:|-------|
 | `=` | assigning literal to string|

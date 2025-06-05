@@ -45,7 +45,7 @@ for (size_t i = 0; i < len; i++) /* manupulations on s */;
 	- The *cycle per element* (CPE) is a convenient way to express performance of program that operates on *vectors or lists*, with parameters:
 		- Length = $$n$$,
 		- CPE = $$\text{cycles per OP}$$:
-		\[T = n\times \operatorname{CPE} + \operatorname{Overhead}.\]
+		\\[T = n\times \operatorname{CPE} + \operatorname{Overhead}.\\]
 
 ### Superscalar Processor
 - A superscalar processor can issue and execute *multiple instructions in one cycle*. The instructions are retrieved from a sequential instruction stream and are usually scheduled dynamically:
@@ -62,7 +62,7 @@ long mul_eg(long a, long b, long c) {
 ```
 - In executing the above function, the multiplications can be arranged into the below three blocks: 
 
-|         | 1     | 2     | 3     | 4     | 5       | 6       | 7       |
+| &nbsp;  | 1     | 2     | 3     | 4     | 5       | 6       | 7       |
 | ------- | :---: | :---: | :---: | :---: | :-----: | :-----: | :-----: |
 | Stage 1 | `a*b` | `a*c` |       |       | `p1*p2` |         |         |
 | Stage 2 |       | `a*b` | `a*c` |       |         | `p1*p2` |         |
@@ -90,7 +90,7 @@ long mul_eg(long a, long b, long c) {
 - The **throughput bound** gives a minimum bound for the CPE based on the maximum rate at which the functional units can produce results. (How much the CPU functionalities are saturated.)
 - The bounds for the operations are as follows, in general, they define the lower bound of the best operation:
 
-|            | Integer | Integer | Floating Point | Floating Point |
+| &nbsp;     | Integer | Integer | Floating Point | Floating Point |
 | ---------- | :-----: | :-----: | :------------: | :------------: |
 | Bound      |   `+`   |   `*`   | `+`            | `*`            |
 | Latency    |  1.00   |  3.00   | 3.00           | 5.00           |
@@ -98,7 +98,7 @@ long mul_eg(long a, long b, long c) {
 - **Loop Unrolling**, the unrolling means to make loop increment by 2 instead of 1 so it performs double of useful work per iteration.
 - The re-association of `x = x OP a OP b` to `x = x OP (a OP b)` would allow better efficiency as there will be more parallelism (as there are less dependency):
 	- Even further, for addition, we can have `x1 = x1 OP a`, `x2 = x2 OP b` in each iteration and eventually allow `x = x1 + x2` to construct two *streams* of operations.
-- In particular, the unroll factor ($$L$$) means how many operations must be made in an iteration and the accumulator ($$K$$) indicates how many results are in parallel, their relationship is $$K \;\big|\; L$$.
+- In particular, the unroll factor ($$L$$) means how many operations must be made in an iteration and the accumulator ($$K$$) indicates how many results are in parallel, their relationship is $$K \mid L$$.
 - For double FP, the best operation would have a certain unrolling factor and the accumulators.
 
 ### AVX2
@@ -175,8 +175,8 @@ long mul_eg(long a, long b, long c) {
 		- In particular, the *execution* of the previous step can be pushed to the *execution* of the next step, no need to wait for write back to instruction decode.
 	- For instance, there are memory access conflicts at the following example of data dependence (sometimes, a reorder would work):
 ```
-add $$s0, $$t0, $$t1
-sub $$t0, $$s0, $$t3    // Here, $$s0 will be write by the previous step.
+add $s0, $t0, $t1
+sub $t0, $s0, $t3    // Here, $s0 will be write by the previous step.
 ```
 - **Control hazard** happens when *selection of next instruction depends on outcome of previous*:
 	- In terms of a control hazard, the following instructions cannot start until branch condition result is known.
@@ -184,10 +184,10 @@ sub $$t0, $$s0, $$t3    // Here, $$s0 will be write by the previous step.
 		- In particular, we can keep record of branch taken or not and make prediction based on the history.
 	- An example would be having a comparison before prior steps:
 ```
-add $$s0, $$t0, $$t1
-beq $$s0, $$s1, ff40  // The comparison involves data hazard from add
+add $s0, $t0, $t1
+beq $s0, $s1, ff40  // The comparison involves data hazard from add
                     // Jump to address ff40 if they are equal
-sub $$t0, $$s0, $$t3   // Executes only if previous has non-zero-flag
+sub $t0, $s0, $t3   // Executes only if previous has non-zero-flag
 ```
 - The control or branch hazard is has instruction control unit that work well ahead of execution unit to generate enough operations to keep the EU busy:
 	- At the conditions, when it cannot be determined, the execution would begin the next one as prediction, but it do not actually modify register or memory data for the predicted position.
@@ -220,7 +220,7 @@ for (int i = 0; i < size; i++) {
 	- Flash memory is EEPROM (electrically erasable programmable read-only memory), which allows reading multiple bytes and write require erase of a block (so write can ear out the memory).
 	- Hard drives are magnetic charge on spinning disk, and the read/write requires head at the right place. The access is slow but it store bulk of data storage.
 - Typically, the 2 Level Memory involves the follows:
-\[ \text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}. \]
+\\[ \text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}. \\]
 	- Here, the memory is requested from CPU, if data is found in cache, it is sent directly to CPU, which is a **cache hit**.
 	- If data is not found in cache, the memory is requested from cache to main memory (which is slow) and then sending data from memory to cache, storing it, and eventually send to processor. This is a **cache miss**.
 - The memory embodies the following concepts:
@@ -243,7 +243,7 @@ for (int i = 0; i < size; i++) {
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[ \underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})} \]
+	\\[ \underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})} \\]
 	- If blocks with same index are used, older one is overwritten.
 	- Moreover, the block size incurs tradeoffs:
 		- Larger block size implies fewer cache misses, but longer time to transfer and fewer blocks in cache.
@@ -252,16 +252,16 @@ for (int i = 0; i < size; i++) {
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- There is no **index**.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[ \underbrace{\boxed{\big|\qquad\qquad \text{tag}\qquad\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}.\]
+	\\[ \underbrace{\boxed{\big|\qquad\qquad \text{tag}\qquad\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}.\\]
 	- The fully associative cache eliminates the issue with replacing the old tags, however, finding block in cache is expensive.
 - **Set Associative Cache** introduces the intermediate, where we use a part of address to determine a subset of cache, but there are more than one slot for each index part of cache:
 	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[ \underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
+	\\[ \underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\\]
 	- Note that for a $$n$$-way set-associate ($$n$$ has to be an integer power of $$2$$), there will be $$n$$ sets in for each index.
 	- The total capacity of the cache (or total amount of data is) has the following relationship:
-	\[\text{Capacity} = \#\text{Sets} \times \#\text{Block Size}\times\text{Associative Factor}.\]
+	\\[\text{Capacity} = \#\text{Sets} \times \#\text{Block Size}\times\text{Associative Factor}.\\]
 	- For set associative cache, there will be caching strategies, the blocks are read in when needed.
 	- When the cache is full, the blocks are discarded based on:
 		- Random discard.
@@ -354,7 +354,7 @@ for (k = 0; k < n; k++) {
 	- It combine object files `printf.o`, `scanf.o`, ... into archive `libc.a`,
 	- It let the linker pick out the ones that are needed:
 		- The code execution is `gcc main.c /usr/lib/libc.a`.
-		- To create one, use `$$ar rcs libmy.a my1.o my2.0 my3.o`
+		- To create one, use `$ar rcs libmy.a my1.o my2.0 my3.o`
 
 ### Relocation Process
 - During relocation the assemblers generate object files that starts at address 0:
@@ -387,7 +387,7 @@ for (k = 0; k < n; k++) {
 	- e.g.: For incrementing a global variable `b`, the distance between code line and `GOT` is `0x2008b9` bytes, so the assembly code looks like:
 ```
 mov 0x2008b9(%rip), %rax    // load the address of symbol
-addl $$1, (%rax)             // increment the value
+addl $1, (%rax)             // increment the value
 ```
 - The `GOT` entry must be later filled in, and it is the reference to data:
 	- When an executable object is loaded, the dynamic linker eagerly determines *run-time addresses for all referenced global variables*, and stores them in the appropriate `GOT` entries.
@@ -491,7 +491,7 @@ struct Image *transform_image(struct Image *source, void *arg_data);
 	- **Traps and system calls**: intentional calls, and are triggered by instruction ("`syscall`").
 	- **Faults**: maybe recoverable, e.g., swapped out memory ("page fault"), and if it is recovered, the program return to regular control flow.
 	- **Aborts**: unrecoverable fatal error, e.g., memory corrupted, and the application process is terminated.
-	\[\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix} \]
+	\\[\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix} \\]
 
 ### User and Kernel Mode
 - There is a mode bit in the control register.
@@ -543,7 +543,7 @@ main:
     syscall                             ; make system call
 ```
 - The system call control process might could be handle, which would follow the below structure: 
-\[ \begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix} \]
+\\[ \begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix} \\]
 
 ### Child and Parent Process
 - In `C` programs, the code can spawn child process:
@@ -606,6 +606,7 @@ int main() {
 		- When received, the other process can ignore, terminate or catch the signal.
 	- The signals are handled by kernel.
 - Below are some examples of signals:
+
 
 | Number |   Name    |        Default        | Corresponding Event                  |
 | :----: | :-------: | :-------------------: | ------------------------------------ |
@@ -753,7 +754,7 @@ for (int i = 0; i < NCOUNT; i++) {
 
 ### Address Translation
 - The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:
-\[ \operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases} \]
+\\[ \operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases} \\]
 	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).![[Screenshot 2024-04-02 at 8.39.01 PM.png]]
 	- The virtual address has page offset as $$\log_2(\text{Page size})$$ and the virtual page number can be converted only if it is valid.
 - During a **Page Hit**, the process is as follows:![[Screenshot 2024-04-02 at 8.40.56 PM.png]]
@@ -788,7 +789,7 @@ for (int i = 0; i < NCOUNT; i++) {
 - For the huge address space, we introduce multi-level page table:
 	- E.g., the 32 bit address space of 4GB with page size 4KB and size of page table entry being 4 bytes, the number of pages is 1M and size of page table is 4MB, if there is one page table per process, most of the address space is not used.
 	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:![[Screenshot 2024-04-02 at 8.54.52 PM.png]]
-		- The virtual address will be separated into more pieces, in 32 bit x86: \[ \underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}} \]
+		- The virtual address will be separated into more pieces, in 32 bit x86: \\[ \underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}} \\]
 
 
 ### Linux Virtual Memory
