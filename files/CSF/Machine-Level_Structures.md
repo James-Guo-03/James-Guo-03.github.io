@@ -93,6 +93,7 @@ long mul_eg(long a, long b, long c) {
 - The bounds for the operations are as follows, in general, they define the lower bound of the best operation:
 
 
+
 | &nbsp;     | Integer | Integer | Floating Point | Floating Point |
 | ---------- | :-----: | :-----: | :------------: | :------------: |
 | Bound      |   `+`   |   `*`   | `+`            | `*`            |
