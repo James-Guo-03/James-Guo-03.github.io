@@ -751,6 +751,9 @@ private:
 ```
 - When having an array of instances of a `class` type, this requires the class to have a default constructor:
 	- Alternatively, one can use list-initialization to initialize the array or use `STL` such as `vector`.
+
+{% raw %}
+
 ```cpp
 // myThing4.cpp:
 #include <iostream>
@@ -777,6 +780,9 @@ int main() {
 	return 0;
 }
 ```
+
+{% endraw %}
+
 #### Destructors:
 - Since `new` in `C++` also calls the constructors, it is common for a constructor to obtain a resource (allocate memory, open a file, etc) that should be released when the object is destroyed.
 - A class destructor is a method called by `C++` when the object’s lifetime ends or it is otherwise deallocated (with `delete`).
