@@ -160,6 +160,6 @@ tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-.mjx-chtml {
-    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif !important;
+.mjx-chtml, .mjx-chtml * {
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif !important;
 }

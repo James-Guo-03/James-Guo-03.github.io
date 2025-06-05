@@ -51,21 +51,22 @@
       textarea.addEventListener('input', adjustHeight);
 
       adjustHeight();
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  },
-  options: {
-    renderActions: {
-      addMenu: []
-    }
-  },
-  chtml: {
-    scale: 1.0,
-    matchFontHeight: true
-  }
-};
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      },
+      chtml: {
+        scale: 1.0,
+        matchFontHeight: false,
+        fontURL: ''
+      }
+    };
 </script>
 <script type="text/javascript"
   async
