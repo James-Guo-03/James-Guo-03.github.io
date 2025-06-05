@@ -1390,4 +1390,10 @@ for (int fd = 0; fd <= maxfd; fd++) {
     margin-left: auto;
     margin-right: auto;
   }
+  img.logo {
+	height: 25px;
+	width: auto;
+	display: inline;
+	vertical-align: middle;
+  }
 </style>
