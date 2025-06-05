@@ -1381,3 +1381,13 @@ for (int fd = 0; fd <= maxfd; fd++) {
 	- Client coroutine will do I/O, and then yield back to the main routine.
 - We use `conn->state` to help the main routine know when to schedule the coroutine (based on the readiness of its file descriptor for reading or writing), and
 - The `co_readline` and `co_write_fully` functions are “coroutine-aware” I/O functions which yield back to the main routine if a call to read or write would block.
+
+<style>
+  img {
+    max-width: 75%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

@@ -855,3 +855,14 @@ $$
 - For user-level memory mapping, the process can create virtual memory areas with `mmap` (*which can be loaded from file*):
 	- The mapping has protection options (from the kernel/hardware), which includes:
 		- executable code, read, write, and inaccessible.
+
+
+<style>
+  img {
+    max-width: 75%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
