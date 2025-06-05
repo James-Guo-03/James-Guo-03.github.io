@@ -10,9 +10,11 @@ title: "Representation Notes"
 - Digital computers use a **discrete representation** for all data, which allow the number to have one set of possible values where the set of possible values is *enumerable*:
 	- The discrete data representation corresponds to the high voltage (1) and low voltage (0).
 - There are multiple base representations, for base $$n$$, we have integers represented by:
+
 $$
 abc_n = a\cdot n^2 + b\cdot n^1 + c\cdot n^0,
 $$
+
 where $$a,b,c$$ are digits from $$0$$ to $$n-1$$ and the places are powers of $$n$$.
 - Base $$10$$ is the arbitrary, but this applies for all bases.
 - Binary is the base $$2$$ representation, where each digit is $$0$$ or $$1$$ and the places are powers of $$2$$. The computer hardware fundamentally operates on binary data:
