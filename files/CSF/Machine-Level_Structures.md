@@ -92,6 +92,7 @@ long mul_eg(long a, long b, long c) {
 - The **throughput bound** gives a minimum bound for the CPE based on the maximum rate at which the functional units can produce results. (How much the CPU functionalities are saturated.)
 - The bounds for the operations are as follows, in general, they define the lower bound of the best operation:
 
+
 | &nbsp;     | Integer | Integer | Floating Point | Floating Point |
 | ---------- | :-----: | :-----: | :------------: | :------------: |
 | Bound      |   `+`   |   `*`   | `+`            | `*`            |
