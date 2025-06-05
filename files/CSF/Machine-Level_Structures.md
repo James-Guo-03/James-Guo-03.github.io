@@ -233,7 +233,7 @@ $$
 \text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}.
 $$
 
-	- Here, the memory is requested from CPU, if data is found in cache, it is sent directly to CPU, which is a **cache hit**.
+- Here, the memory is requested from CPU, if data is found in cache, it is sent directly to CPU, which is a **cache hit**.
 	- If data is not found in cache, the memory is requested from cache to main memory (which is slow) and then sending data from memory to cache, storing it, and eventually send to processor. This is a **cache miss**.
 - The memory embodies the following concepts:
 	- **Cache** is the small memory connected to processor.
@@ -801,7 +801,7 @@ $$
 \operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases}.
 $$
 
-	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).
+- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).
 	![Screenshot 2024-04-02 at 8.39.01 PM.png](Screenshot 2024-04-02 at 8.39.01 PM.png)
 	- The virtual address has page offset as $$\log_2(\text{Page size})$$ and the virtual page number can be converted only if it is valid.
 - During a **Page Hit**, the process is as follows:
@@ -842,10 +842,10 @@ $$
 	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:
 	![Screenshot 2024-04-02 at 8.54.52 PM.png](Screenshot 2024-04-02 at 8.54.52 PM.png)
 		- The virtual address will be separated into more pieces, in 32 bit x86:
-		
-		$$
-		\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}
-		$$
+
+$$
+\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}
+$$
 
 ### Linux Virtual Memory
 - Each process has its own virtual address space, page table, and translation look-up buffer:
