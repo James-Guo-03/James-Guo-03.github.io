@@ -8,8 +8,8 @@ title: "CV"
 Student familiar with academic materials, passionate with learning, and interested in researching topics intersecting mathematics and computer science. Motivated in guiding students comprehend materials through their education.<br>
 
 <div style="text-align: center">
-	<button onclick="location.href='/files/Resume.pdf'"> Resume (Updated Feb 2025) </button> &nbsp; &nbsp;
-	<button onclick="location.href='/files/Transcript.pdf'"> Transcript (Updated May 2025)  </button>
+	<button onclick="window.open('/files/Resume.pdf', '_blank')"> Resume (Updated Feb 2025) </button> &nbsp; &nbsp;
+    <button onclick="window.open('/files/Transcript.pdf', '_blank')"> Transcript (Updated May 2025) </button>
 </div>
 
 
