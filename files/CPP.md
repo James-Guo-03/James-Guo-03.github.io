@@ -28,11 +28,8 @@
 	- `struct` (with minor differences):
 		- including new concept of `class`.
 - `C++` can use any `C` headers, such as `assert.h`, `math.h`, `ctype.h`, `stdlib.h`, ...
-	- when using `
-#include` drop the `.h` and add `c` in the beginning:
-		- e.g.: `
-#include <assert.h>` in `C` becomes `
-#include <cassert>`.
+	- when using `#include` drop the `.h` and add `c` in the beginning:
+		- e.g.: `#include <assert.h>` in `C` becomes `#include <cassert>`.
 
 ### `C++` Compiler:
 
@@ -74,8 +71,7 @@ class Rectangle { // structure
 ```
 - Inclusion files `<filename>.inc` or `<filename>.inl`:
 	- The inclusion file serves as the extra lines for a templated class.
-	- The templated files needs to be included by `
-#include <filename>.inc`.
+	- The templated files needs to be included by `#include <filename>.inc`.
 - Intermediate object files `<filename>.o`:
 	- Translated from source files (`.c` files).
 	- Needed to be *linked* to executable file.
@@ -465,8 +461,7 @@ using std::endl;
 
 #### `string` in `C++`:
 - `C++` strings have similar user-friendliness of `java`/`python` strings, it had less details like null terminators.
-- To include, we should have `
-#include <string>` at the top:
+- To include, we should have `#include <string>` at the top:
 	- The full name is `std::string`.
 	- One can have `using std::string` at the top of the `.cpp` file so one does not need to include `std` namespace every time.
 - A string can be initialized in multiple ways:
@@ -548,15 +543,13 @@ int sum_every_other(const T& ls) {
 
 #### `array` – fixed-length array  
 - `array` is a array with a fixed length.
-	- Use `
-#include <array>` to use it.
+	- Use `#include <array>` to use it.
 	- Use `[ ]` to access elements.
 	- Declare by `std::array<int, 3> a = {1, 2, 3};` for use.
 
 #### `vector` – dynamically-sized array:
 - `vector` is an array that automatically grows/shrinks as you need more/less room.
-	- Use `
-#include <vector>` to use it.
+	- Use `#include <vector>` to use it.
 	- Use `[ ]` to access elements, like arrays.
 	- Allocation, resizing, deallocation handled by `C++`.
 	- Like Java’s `java.util.ArrayList` or Python’s `list` type.
@@ -583,8 +576,7 @@ for (vector<string>::iterator it = names.begin();
 #### `map` – associative list, or dictionary:
 - Collection of `keys`, each with an associated `value`:
 	- Like Java’s `java.util.HashMap` or `TreeMap` or Python’s `dict` (dictionary) type.
-	- Use `
-#include <map>` to use it.
+	- Use `#include <map>` to use it.
 	- Use `[ ]` to access values by keys.
 - To use a map, we have:
 	- For namespaces, use `using std::map`.
@@ -600,14 +592,12 @@ for (vector<string>::iterator it = names.begin();
 #### `pair` – quick pair for output:
 - For functions returning multiple values, use `pair`, it allows returning two things of different type:
 	- `iterator` is a `pair`.
-	- use pair by defining `
-#include <utility>;`
+	- use pair by defining `#include <utility>;`
 	- declare `pair` by `std::pair<int, string> = std::make_pair(1, "2");`
 
 #### `tuple` – pair with unlimited amount of elements:
 - tuple is like pair but with as many fields as you like:
-	- Define by `
-#include <tuple>`.
+	- Define by `#include <tuple>`.
 	- Using namespace of `using std::tuple` and `using std::make_tuple`.
 	- Declare by `tuple<int, int, float> = make_tuple(1, 2 3.0f)`.
 
@@ -623,8 +613,7 @@ for (vector<string>::iterator it = names.begin();
 
 #### `algorithm` – algorithms for functions:
 - `algorithm` includes certain algorithms that can help quick coding.
-	- Include algorithms header by `
-#include <algorithm>`.
+	- Include algorithms header by `#include <algorithm>`.
 	- `std::sort(begin_iterator, end_iterator, order_function)` sorts the arrays though the ascending order or the order specified by a `bool` comparison function.
 	- `std::find(begin_iterator, end_iterator, value)` looks for the `value` through iterators, and will return the  `end_iterator` if nothing is found.
 	- `std::count(begin_iterator, end_iterator, value)` counts how many times `value` appears through iterators, and will return the number of occurrence.
@@ -675,8 +664,7 @@ int main() {
 	- It might be possible to continue from somewhere else, but not from the point of the error.
 	- Exceptions are more flexible; often less error prone, more concise than manually propagating errors back through the chain of callers.
 - When an exception is thrown, a `std::exception` object is created.
-	- Could be included as `
-#include <stdexcept>`
+	- Could be included as `#include <stdexcept>`
 	- Exception types ultimately derive from `std::exception` base class.
 	- Exception's type and contents (accessed via `.what()`) describe what went wrong.
 - The `exception` class derives into:
@@ -998,9 +986,7 @@ private:
 	Node<T> *next;
 };
 ```
-- The main file must include `
-#include "ll_temp.h"` and `
-#include "ll_temp.h"`.
+- The main file must include `#include "ll_temp.h"` and `#include "ll_temp.h"`.
 	- This is not a `.cpp` file as compiler does not instantiate the type until first use, thus will cause a compiler issue.
 - For `friend` function, it must use a different `typename` variables (such as `<typename U>`), since it must be separable with the definition of the `typename` in the templated class.
 

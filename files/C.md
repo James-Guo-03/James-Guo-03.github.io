@@ -133,12 +133,10 @@
 - Source files `<filename>.c`:
 	- The program code.
 	- Contains definitions for *functions* declared in a `.h` file.
-	- Use `
-#include` into include corresponded `.h` files.
+	- Use `#include` into include corresponded `.h` files.
 - Header files `<filename>.h`:
 	- Group together declarations.
-	- Included using `
-#include` in appropriate files.
+	- Included using `#include` in appropriate files.
 - Intermediate object files `<filename>.o`:
 	- Translated from source files (`.c` files).
 	- Needed to be *linked* to executable file.
@@ -149,15 +147,12 @@
 	- Producing linking and compiling with less repetition.
 
 #### `.h` file in `C`:
-- `.h` header file group together declarations, and are then `
-#include` into appropriate files.
+- `.h` header file group together declarations, and are then `#include` into appropriate files.
 - A separate `.c` source file will contain definitions for those functions declared in a `.h` header file:
 	- Typically, functions defined in `file.c` are declared in a function named `file.h`.
 - To include the header files:
-	- For imported libraries, use `
-#include <stdio.h>`.
-	- For user defined headers, use `
-#include "myHeader.h"`.
+	- For imported libraries, use `#include <stdio.h>`.
+	- For user defined headers, use `#include "myHeader.h"`.
 	- Header files typically contains `function` declaration and `struct`.
 - Header files often has *header guards* when it contains definitions.
 	- *Header guards* prevents definition duplications (giving *compiler errors*) when multiple `.c` files include the same `.h` file.
@@ -223,9 +218,7 @@ clean:
 - Step 1. Preprocessor:
 	- Bring together all the code that belongs together.
 	- Process the directives that start with 
-#, such as `
-#include` and `
-#define`.
+#, such as `#include` and `#define`.
 - Step 2. Compiler:
 	- Turn human-readable source code into object code.
 	- Yield *warnings* and *errors* if code has compiler mistakes.
@@ -291,8 +284,7 @@ clean:
 
 #### `stdio` Library:
 - `stdio.h` header mainly contains functions that involves opening files, reading, and writing:
-	- Should be included by `
-#include stdio.h`.
+	- Should be included by `#include stdio.h`.
 - Variables in `stdio.h`:
 	- `size_t`: Unsigned integral type and is the result of the `sizeof` keyword.
 	- `FILE`: Object type suitable for storing information for a file stream.
@@ -314,8 +306,7 @@ clean:
 
 #### `math` Library:
 - `math.h` header mainly contains functions in mathematics:
-	- Should be included by `
-#include math.h`.
+	- Should be included by `#include math.h`.
 	- When compiling, it requires the flag `-lm` for link math.
 - Functions in `math.h`:
 	- `sqrt(x)`: $$\sqrt{x}$$.
@@ -330,8 +321,7 @@ clean:
 
 #### `assert` Library:
 - `assert.h` header contains the `assert` function:
-	- Should be included by `
-#include <assert.h>`.
+	- Should be included by `#include <assert.h>`.
 - Assertion statements help *catch bugs* as close to the source as possible:
 	- The structure is: `assert(boolean expression);`
 		- `boolean` expression is an expression that should be `true` if everything is fine.
@@ -343,8 +333,7 @@ clean:
 
 #### `string` Library:
 - `string.h` header contains the `string` functions:
-	- Should be included by `
-#include <string.h>`.
+	- Should be included by `#include <string.h>`.
 - Variables in `stdio.h`:
 	- `size_t`: Unsigned integral type and is the result of the `sizeof` keyword.
 - Functions in `stdio.h`:
@@ -365,8 +354,7 @@ clean:
 
 #### `ctype` Library:
 - `ctype.h` contains a bunch of useful functions we can apply to character:
-	- Should be included by `
-#include <ctype.h>`.
+	- Should be included by `#include <ctype.h>`.
 - Functions in `ctype.h`:
 	- `int isalpha(int c)`: Checks whether the passed character is alphabetic.
 	- `int isdigit(int c)`: Checks whether the passed character is decimal digit.
@@ -406,8 +394,7 @@ clean:
 	- For ASCII Table, `0` (or numbers) from `48`, `A` or (capitalized letters) from `65`, and `a` or (lowercase letters) from `97`.
 - Boolean type:
 	- Integer types are `bools`, where `0` means `false`, non-`0` or `1` means `true`.
-	- Otherwise, have `
-#include <stdbool.h>` to include `true` and `false`.
+	- Otherwise, have `#include <stdbool.h>` to include `true` and `false`.
 
 #### Variable Type Conversion:
 - `C` can automatically convert between types “behind the scenes”
@@ -775,8 +762,7 @@ int main() {
 
 #### `printf` for output:
 - `printf` is limited to directing output to `stdout`:
-	- `printf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `printf` depends on the `stdio` header, by `#include <stdio.h>`.
 - `printf` allows for formatted printing of values, using placeholders in the format string:
 	- `printf` syntax is: `printf("...%<specifier>...", <var>);`
 	- `printf` does not have a new line, so a newline character `\n` should be added.
@@ -797,8 +783,7 @@ int main() {
 
 #### `fprintf` for output:
 - `fprintf` allows printing to a location not limited to `stdout`:
-	- `fprintf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `fprintf` depends on the `stdio` header, by `#include <stdio.h>`.
 	- Directing to standard output: `fprintf(stdout, "message");`
 	- Directing to standard error: `fprintf(stderr, "message");`
 	- Directing to file pointer: `fprintf(fileptr, "message");` (must allow writing)
@@ -807,8 +792,7 @@ int main() {
 
 #### `sprintf` for output:
 - `sprintf` allows sending the print output to a string:
-	- `sprintf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `sprintf` depends on the `stdio` header, by `#include <stdio.h>`.
 	- Directing output: `fprintf(<char-array>, "message");`
 - If successful, the total number of characters written is returned.
 	- On failure, a negative number is returned.
@@ -823,8 +807,7 @@ int main() {
 
 #### `scanf` for input:
 - `scanf` is limited to taking input from `stdin`:
-	- `scanf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `scanf` depends on the `stdio` header, by `#include <stdio.h>`.
 - `scanf` reading formatted input:
 	- `scanf` uses a format string followed by the memory location(s) to read into.
 	- `scanf` syntax is: `scanf("...%<specifier>...", <var-address>);`
@@ -857,8 +840,7 @@ while (dummy != '\n') {
 
 #### `fscanf` for input:
 - `fscanf` allows reading from a location not limited to `stdin` (command line input):
-	- `fscanf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `fscanf` depends on the `stdio` header, by `#include <stdio.h>`.
 	- Reading from standard input: `fscanf(stdin, "input-formatting", <var-address>);`
 	- Reading from file pointer: `fscanf(fileptr, "input-formatting", <var-address>);` (must also reading).
 - `fscanf` also returns a value that indicates how many successful read is made:
@@ -866,8 +848,7 @@ while (dummy != '\n') {
 
 #### `sscanf` for input:
 - `sscanf` allows reading from a string (or array of characters):
-	- `sscanf` depends on the `stdio` header, by `
-#include <stdio.h>`.
+	- `sscanf` depends on the `stdio` header, by `#include <stdio.h>`.
 	- Reading: `sscanf(<input_string>, "input-formatting", <var-address>);`
 - `sscanf` also returns a value that indicates how many successful read is made:
 	- Specifically, for `EOF` (end of file) or `ctrl-D` (break), `scanf` returns `-1`.
@@ -981,8 +962,7 @@ for(int i = 0; i < sizeof(str); i++) {
 	- Dynamically-allocated memory lives long until entire program ends.
 - Dynamically-allocated memory is not subject to size limitations based on stack frame size, since it’s not part of the stack:
 	- The size of a dynamically-allocated block of memory can be decided at run time.
-- To use dynamic allocation, it is needed to include `
-#include <stdlib.h>`.
+- To use dynamic allocation, it is needed to include `#include <stdlib.h>`.
 - `malloc` does not initialize the variables:
 
 ```c

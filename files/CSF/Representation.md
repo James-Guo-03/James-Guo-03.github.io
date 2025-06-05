@@ -10,7 +10,7 @@ title: "Representation Notes"
 - Digital computers use a **discrete representation** for all data, which allow the number to have one set of possible values where the set of possible values is *enumerable*:
 	- The discrete data representation corresponds to the high voltage (1) and low voltage (0).
 - There are multiple base representations, for base $$n$$, we have integers represented by:
-$$$$abc_n = a\cdot n^2 + b\cdot n^1 + c\cdot n^0,$$$$
+ \[ abc_n = a\cdot n^2 + b\cdot n^1 + c\cdot n^0,\]
 where $$a,b,c$$ are digits from $$0$$ to $$n-1$$ and the places are powers of $$n$$.
 - Base $$10$$ is the arbitrary, but this applies for all bases.
 - Binary is the base $$2$$ representation, where each digit is $$0$$ or $$1$$ and the places are powers of $$2$$. The computer hardware fundamentally operates on binary data:
@@ -94,8 +94,7 @@ where $$a,b,c$$ are digits from $$0$$ to $$n-1$$ and the places are powers of $$
 
 ### Integer Arithmetics
 - Addition of unsigned values starts at the least significant digit and carry excess into next-most-significant digit:
-	- If the sum of $$w$$-bit (unsigned) integer value is too large to represent using a $$w$$-bit word, *overflow* occurs, in which the effective sum of integers $$a$$ and $$b$$ is:
-$$$$a+b\pmod{2}.$$$$
+	- If the sum of $$w$$-bit (unsigned) integer value is too large to represent using a $$w$$-bit word, *overflow* occurs, in which the effective sum of integers $$a$$ and $$b$$ is $$a+b\pmod{2}$$.
 - The addition of signed values takes the exact same procedures, the signed overflow implies that if the sum exceeds $$2^{w-1}-1$$ or is less than $$-2^{w-1}$$, it will become negative/positive correspondingly.
 - The subtraction of two's complement is by inverting all bits then adding one, which is equivalent to subtracting from a bit-string consisting of all 1 bits.
 - Shifts move the bits in a value some number of positions left or right. The bit shifted could be 0 or 1 depending on operand type:
