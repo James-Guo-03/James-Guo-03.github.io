@@ -12,6 +12,7 @@ title: "Communications and Networks Notes"
 	- There are the *standard file handles*: `stdin`, `stdout`, and `stderr`.
 	- The named files and devices can be opened using `fopen`.
 	- In particular, the `fprint`, `fread`, etc. functions can take `FILE*` data.
+
 ```c
 printf("Hello world\n");                   // print to stdout
 fprintf(stdout, "Hello world\n");          // explicitly print to stdout
@@ -58,10 +59,12 @@ fprintf(stdout, "Hello world\n");          // explicitly print to stdout
 - `open` opens a named file, and returns the file descriptor:
 	- The flags are one of `O_RDONLY` (read only), `O_WRONLY` (write only), or `O_RDWR` (read and write mode), `O_CREAT` (create file if not exist), `O_EXCL` (precent creating file if it exists), `O_APPEND` (open file and put curser at the end).
 	- With `O_CREAT` flag, mode specify the access permission bits.
+
 ```c
 int open(const char *pathname, int flags, mode_t mode);
 ```
 - `close` closed the system call from the file descriptor, returns `0` for success and `-1` for failure.
+
 ```c
 int close(int fd);
 ```
@@ -70,10 +73,12 @@ int close(int fd);
 		- it reaches end of file (`EOF`),
 		- some data is not available yet (especially in network connection), or
 		- line buffering by terminal.
+
 ```c
 ssize_t read(int fd, void *buf, size_t n);
 ```
 - To deal with short read, one can implement a function that read `n` bytes from `fd` and read until `n` bytes read, reach `EOF`, or `-1` for error:
+
 ```c
 ssize_t read_fully(int fd, void *buf, size_t n) {
 	char *p = buf;
@@ -95,6 +100,7 @@ ssize_t read_fully(int fd, void *buf, size_t n) {
 ```
 - `write` writes `n` bytes from `buf` to specified file descriptor, it returns the number of bytes written, or `-1` on error:
 	- Akin to `read`, `write` can also return a short write (fewer than `n` bytes are written). Then a `write_fully` can be implemented.
+
 ```c
 ssize_t write(int fd, const void *buf, size_t n);
 ```
@@ -106,6 +112,7 @@ ssize_t write(int fd, const void *buf, size_t n);
 		- carrying out the system call (I/O, data transfer to/from program buffer).
 	- Thus, first reading/writing into the buffer in memory and flush to the file when buffer is full or before closing the file is a more efficient choice.
 - In `C` library, the `FILE *` objects have internal budder, so `fgetc` and `fputc` does not have system call every time. One needs to `close` the file pointer when there are writing.
+
 ```c
 FILE *in = fopen("input.txt", "r");       // open for input
 FILE *out = fopen("output.txt", "w");     // open for output
@@ -194,6 +201,7 @@ fclose(out);                              // close out, necessary
 		- It has a `type` field is at beginning of struct to distinguish variants, for example, if `type` field contains `AF_INET`, it’s an IP address.
 		- `struct sockaddr_in` is the *subtype* for IP addresses.
 - The first main function for a server socket is to `create_server_socket`:
+
 ```c
 int create_server_socket(int port) {
 	// initilize the IP address
@@ -229,6 +237,7 @@ int create_server_socket(int port) {
 }
 ```
 - Then, we also need to have function waiting for incoming connections:
+
 ```c
 int accept_connection(int ssock_fd, struct sockaddr_in clientaddr) {
 	// get the length of the client address
@@ -249,6 +258,7 @@ int accept_connection(int ssock_fd, struct sockaddr_in clientaddr) {
 }
 ```
 - Eventually, we have the main server loop as:
+
 ```c
 int main(int argc, char **argv) {
 	// parameters of the buffer, port number
@@ -283,6 +293,7 @@ int main(int argc, char **argv) {
 }
 ```
 - Reading from the server sometimes results in short read and write. In the `csapp.h` and `csapp.c`, there are implementation for loops to `read` and some code for convience:
+
 ```c
 // data type wrapping a file descriptor and allowing buffered input
 typedef struct {
@@ -333,6 +344,7 @@ ssize_t	rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
 		- Also, each peer must be able to determine the meaning of each received message.
 	- *Text-based protocols* are common because they are easy to debug and reason about.
 - An example server can be the following addition server. It's server loop is:
+
 ```c
 int main(int argc, char *argv[]) {
 	// check the input argument
@@ -364,6 +376,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 - Note that here, a `chat_with_client` function is implemented:
+
 ```c
 int chat_with_client(int client_fd) {
 	// fields of data and numericals
@@ -397,6 +410,7 @@ int chat_with_client(int client_fd) {
 }
 ```
 - Correspondingly, below is an example of a client implementation:
+
 ```c
 int main(int argc, char *argv[]) {
 	if (argc != 4) { // check the number of arguments
@@ -460,6 +474,7 @@ Accept: */*
 curl -v http://placekitten.com/1920/1080 -o kitten.jpg
 ```
 - The server and client for the HTTP data is similar to the previous implementation, what is notable is that it should have the following structures to hold the information:
+
 ```c
 /* data type for message headers */
 struct Header {
@@ -476,6 +491,7 @@ struct Message {
 };
 ```
 - Then, the server would check the message and access validity. In particular, a sending text response is necessary.
+
 ```c
 void server_generate_text_response(int clientfd, const char *response_code, const char *reason, const char *msg) {
 	writestr(clientfd, "HTTP/1.1 ");    // HTTP Version
@@ -534,6 +550,7 @@ void server_generate_text_response(int clientfd, const char *response_code, cons
 - `pthread_create` creates a new thread, the thread id is stored in variable pointed-to by `thread` parameter. The `attr` parameter specifies attributes (`NULL` for default attributes):
 	- The created thread executes the `start_routine` function, which passed `arg` as its parameter.
 	- Returns `0` if successful.
+
 ```c
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
                    void *(*start_routine) (void *), void *arg);
@@ -541,16 +558,19 @@ int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
 - `pthread_join` waits for specified thread to finish. Only *attached* threads can be waited for:
 	- Value returned by exited thread is stored in the variable pointed-to by `retval`:
 	- Returns `0` if successful.
+
 ```c
 int pthread_join(pthread_t thread, void **retval);
 ```
 - `pthread_self` allows a thread to find out its own thread id.
+
 ```c
 pthread_t pthread_self(void);
 ```
 - `pthread_detach` changes the specified thread to be detached, so that its resources can be freed without another thread explicitly calling `pthread_join`:
 	- Returns `0` if successful.
 	- When a detached thread terminates, its resources are automatically released back to the system without the need for another thread to join with the terminated thread.
+
 ```c
 int pthread_detach(pthread_t thread);
 ```
@@ -563,6 +583,7 @@ int pthread_detach(pthread_t thread);
 	- only the main function is different than previous versions.
 - First, we need to have `struct ConnInfo` to represents a client connection:
 	- It’s useful to pass an object containing data about the task the thread has been assigned to the thread’s start function.
+
 ```c
 struct ConnInfo {
 	int clientfd;                // client file descriptor
@@ -571,6 +592,7 @@ struct ConnInfo {
 ```
 - There, we will also have a worker function, executed by client connection threads:
 	- Here, a created thread detaches itself, handles the client request, closes the client socket, frees its `ConnInfo` object, then returns.
+
 ```c
 void *worker(void *arg) {
 	struct ConnInfo *info = arg;
@@ -582,6 +604,7 @@ void *worker(void *arg) {
 }
 ```
 - Moreover, the main loop shall be modified
+
 ```c
 while (1) {
 	// create the client file descriptor
@@ -615,6 +638,7 @@ while (1) {
 	- Memory used by a reentrant function should be limited to local variables (on stack), or heap buffers not being used by other threads, and
 	- it is a good idea to have functions receive explicit pointers to memory they should use.
 - For example `strtok` splits a string into tokens, and reentrant `strtok_r` function makes the progress variable explicit by taking a pointer to it as a parameter.
+
 ```c
 char *strtok(char *_str_, const char *_delims_);
 char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
@@ -626,8 +650,8 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 
 ### Parallel Computation: Mandelbrot Set
 - Parallel computation can be used to solve the problem of Mandelbrot set, namely the question that:
-	- Assume $C$ is a complex number and $Z_0 = 0 + 0i$. The recursive definition is as follows: $$Z_{n+1} = Z_n^2 + C,$$
-	- and if the magnitude never reach $2$ after finite number of iterations, it is in the Mandelbrot set, otherwise, it is not.
+	- Assume $$C$$ is a complex number and $$Z_0 = 0 + 0i$$. The recursive definition is as follows: $$$$Z_{n+1} = Z_n^2 + C,$$$$
+	- and if the magnitude never reach $$2$$ after finite number of iterations, it is in the Mandelbrot set, otherwise, it is not.
 - The problem is *embarrassingly parallel* problem. We can create `functions` doing complex operations and visualize the points on the plane.
 - During the process, we can speed up the computation by doing the computation for different points in parallel on multiple CPU cores, namely:
 	- Use an array to store iteration counts (one per complex number),
@@ -639,6 +663,7 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 ### Thread Synchronization
 - *Atomicity* guarantees that either all operations occur, or no operations occur at all.
 - Incrementing the counter (`obj->count++`) is not atomic, as we should think of `var++` as meaning:
+
 ```c
 reg = var;
 reg = reg + 1;
@@ -676,6 +701,7 @@ var = reg;
 	- Each critical section is protected with calls to `pthread_mutex_lock` and `pthread_mutex_unlock`.
 	- Destroy mutex with pthread_mutex_destroy when data structure is deallocated.
 - Hence, when attempting to modify the worker function, we must first modify the data structure:
+
 ```c
 typedef struct {
 	volatile int count;
@@ -683,6 +709,7 @@ typedef struct {
 } Shared;
 ```
 - Correspondingly, we change the worker function:
+
 ```c
 void *worker(void *arg) {
 	// create the shared object as pointer
@@ -700,6 +727,7 @@ void *worker(void *arg) {
 }
 ```
 - Eventually, we modify the main loop as:
+
 ```c
 int main(void) {
 	Shared *obj = calloc(1, sizeof(Shared));
@@ -730,6 +758,7 @@ int main(void) {
 	- The constructor locks the mutex, and the destructor unlocks the mutex.
 	- The lifetime of the guard object is the extent of the critical section, which guarantees that the mutex will be released.
 	- This avoids deadlocks due to mutex not being released (e.g., because of control flow, an exception, etc.)
+
 ```cpp
 class Guard {
 	public:
@@ -752,6 +781,7 @@ class Guard {
 ```
 - When using a `Guard`, we have it constructed in the braces:
 	- braces are important, because they define the scope (and lifetime) of the guard object.
+
 ```cpp
 // Assume m_lock is a mutex
 {  
@@ -764,17 +794,17 @@ class Guard {
 ### Semaphores
 - A semaphore is a more general synchronization construct. When created, semaphore is initialized with a nonnegative integer count value.
 - There are two operations:
-	- $P$ (proberen): waits until the semaphore has a non-zero value, then decrements the count by one.
-	- $V$ (verhogen): increments the count by one, waking up a thread waiting to perform a $P$ operation if appropriate.
-	- In particular, a mutex can be modeled as a semaphore whose initial value is $1$.
+	- $$P$$ (proberen): waits until the semaphore has a non-zero value, then decrements the count by one.
+	- $$V$$ (verhogen): increments the count by one, waking up a thread waiting to perform a $$P$$ operation if appropriate.
+	- In particular, a mutex can be modeled as a semaphore whose initial value is $$1$$.
 - On the implementation level, we have:
 	- Semaphore data type as `sem_t`.
 	- `sem_init`: initialize a semaphore with specified initial count.
 	- `sem_destroy`: destroy a semaphore when no longer needed.
-	- `sem_wait`: wait and decrement ($P$).
-	- `sem_post`: increment and wake up waiting thread ($V$).
+	- `sem_wait`: wait and decrement ($$P$$).
+	- `sem_post`: increment and wake up waiting thread ($$V$$).
 - Semaphores are useful for managing access to a limited resource:
-	- For example we can limit maximum number of threads in a server application, here we initialize semaphore with desired maximum number of threads, and use $P$ operation before creating a client thread, and use $V$ operation when client thread finishes.
+	- For example we can limit maximum number of threads in a server application, here we initialize semaphore with desired maximum number of threads, and use $$P$$ operation before creating a client thread, and use $$V$$ operation when client thread finishes.
 - An application is on the bounded queue:
 	- Initially, the queue is initially empty, and can have up to a fixed maximum number of elements.
 	- When enqueuing an item, thread waits until queue is not full.
@@ -784,6 +814,7 @@ class Guard {
 		- items semaphore: tracks how many elements are present, and
 		- Mutex is used for critical sections accessing queue data structure.
 - For the data type, it must contain the `struct` as:
+
 ```c
 typedef struct {
 	void **data;
@@ -793,6 +824,7 @@ typedef struct {
 } BoundedQueue;
 ```
 - For the operations, we shall modify as follows:
+
 ```c
 BoundedQueue *bqueue_create(unsigned max_items) {
 	BoundedQueue *bq = malloc(sizeof(BoundedQueue));
@@ -866,18 +898,19 @@ void bqueue_destroy(BoundedQueue *bq) {
 	- Dead cells with 3 live neighbors become alive.
 	- Otherwise, cell dies (or stays dead).
 - Over many generations, complex patterns can emerge.
-- Conway’s game of life is not quite an *embarrassingly parallel computation*, *i.e.*, Computation of generation $n$ must finish before computation of generation $n + 1$ can start:
+- Conway’s game of life is not quite an *embarrassingly parallel computation*, *i.e.*, Computation of generation $$n$$ must finish before computation of generation $$n + 1$$ can start:
 	- We could start a new batch of worker threads each generation, but we’ll repeatedly pay the thread startup and teardown costs
 - We develop the prethreading approach, where we:
 	- Create fixed set of worker threads,
 	- “Command queue” allows supervisor thread to send tasks to the workers, and
 	- “Done queue” allows workers to notify supervisor thread when tasks are finished.
-- With the actual implementation, we got about a $2\times$ speedup using four threads Relatively large chunks of work were assigned:
+- With the actual implementation, we got about a $$2\times$$ speedup using four threads Relatively large chunks of work were assigned:
 	- The costs of synchronization amortized over relatively large amounts of sequential computation done by worker threads,
 - Hence, queues are an effective mechanism for communication between threads.
 
 ### Concurrency Issue: Dead Locks
 - Use of blocking synchronization constructs such as semaphores and mutexes can lead to *deadlock*, where the program hangs indefinitely.
+
 ```c
 // Data structure
 typedef struct {
@@ -927,6 +960,7 @@ pthread_mutex_unlock(&obj->lock2);
 	- `pthread_cond_wait`: wait on a condition variable, unlocking mutex (so other threads can enter critical sections),
 	- `pthread_cond_broadcast`: wake up waiting threads because condition may have been enabled.
 - In the BoundedQueue data type, the data structure would become:
+
 ```c
 typedef struct {
 	void **data;
@@ -936,6 +970,7 @@ typedef struct {
 } BoundedQueue;
 ```
 - Then, the member functions would also change, correspondingly:
+
 ```c
 BoundedQueue *bqueue_create(unsigned max_items) {
 	BoundedQueue *bq = malloc(sizeof(BoundedQueue));
@@ -977,19 +1012,19 @@ void bqueue_enqueue(BoundedQueue *bq, void *item) {
 
 ### Amdahl’s Law
 - During parallelizing a computation: the goal is to make the computation complete as fast as possible.
-- Suppose that $t_s$ is the sequential running time, and $t_p$ is the parallel running time, the speedup (denoted $S$) is $t_s/t_p$.
-- Let $P$ be the number of processor cores. In theory, speedup $S$ cannot be greater than $P$. So, in the ideal case: $$S = P = \frac{t_s}{t_p},$$implying that: $$t_p = \frac{t_s}P.$$
-	- Note that: $$\lim_{p\to\infty}t_p = \lim_{p\to\infty}\frac{t_s}P = 0,$$meaning that throwing an arbitrary number of cores at a computation should improve performance by an arbitrary factor, which is ideal.
-- When speedup $S = P$, we have perfect scalability, but in reality, this is difficult to achieve because parallel computations generally have some sequential overhead which cannot be (easily) parallelized, such as:
+- Suppose that $$t_s$$ is the sequential running time, and $$t_p$$ is the parallel running time, the speedup (denoted $$S$$) is $$t_s/t_p$$.
+- Let $$P$$ be the number of processor cores. In theory, speedup $$S$$ cannot be greater than $$P$$. So, in the ideal case: $$$$S = P = \frac{t_s}{t_p},$$$$implying that: $$$$t_p = \frac{t_s}P.$$$$
+	- Note that: $$$$\lim_{p\to\infty}t_p = \lim_{p\to\infty}\frac{t_s}P = 0,$$$$meaning that throwing an arbitrary number of cores at a computation should improve performance by an arbitrary factor, which is ideal.
+- When speedup $$S = P$$, we have perfect scalability, but in reality, this is difficult to achieve because parallel computations generally have some sequential overhead which cannot be (easily) parallelized, such as:
 	- Divide up work,
 	- Synchronization overhead,
 	- Combining solutions to subproblems, etc.
-- Say that, for some computational problem, the proportions of inherently sequential and parallelizable computation are $w_s$ and $w_p$, respectively, such that $w_s+w_p=1$. If we normalize the sequential execution time $t_s$. Parallel execution time using $P$ cores is: $$t_p = w_s + \frac{w_p}P = w_s+\frac{1-w_s}P,$$thus speeding up $P$ cores gives: $$S = \frac{t_s}{t_p}=\dfrac{1}{w_s + \frac{1-w_s}{P}}.$$
-- Now, as $P\to\infty$, $\frac{1-w_s}P\to 0$, so: $$S\to \frac{1}{w_s}.$$Thus, this is regardless of how many cores we use.
-- Amdahl’s Law: Suppose the proportion of inherently sequential computation ($w_s$) is independent of the problem size.
+- Say that, for some computational problem, the proportions of inherently sequential and parallelizable computation are $$w_s$$ and $$w_p$$, respectively, such that $$w_s+w_p=1$$. If we normalize the sequential execution time $$t_s$$. Parallel execution time using $$P$$ cores is: $$$$t_p = w_s + \frac{w_p}P = w_s+\frac{1-w_s}P,$$$$thus speeding up $$P$$ cores gives: $$$$S = \frac{t_s}{t_p}=\dfrac{1}{w_s + \frac{1-w_s}{P}}.$$$$
+- Now, as $$P\to\infty$$, $$\frac{1-w_s}P\to 0$$, so: $$$$S\to \frac{1}{w_s}.$$$$Thus, this is regardless of how many cores we use.
+- Amdahl’s Law: Suppose the proportion of inherently sequential computation ($$w_s$$) is independent of the problem size.
 - Gustafson-Barsis’s Law: for some important computations, the proportion of parallelizable computation scales with the problem size:
 	- These are called *scalable* computations, and
-	- Such computations can realize speedups proportional to $P$ for a large number of processors.
+	- Such computations can realize speedups proportional to $$P$$ for a large number of processors.
 
 ### Atomic Machine Instructions
 - Modern processors typically support atomic machine instructions, these are atomic even when used on shared variables by multiple threads.
@@ -1010,16 +1045,19 @@ atomic_increment:
 	ret
 ```
 - Some `C` functions are atomic:
+
 ```c
 void atomic_increment(volatile int *p);
 //...
 atomic_increment(&obj->count);
 ```
 - `gcc` has a number of intrinsic functions for atomic operations E.g., atomic increment:
+
 ```c
 __atomic_fetch_add(&obj->count, 1, __ATOMIC_ACQ_REL);
 ```
 - The `C11` standard introduces the `_Atomic` type qualifier:
+
 ```c
 typedef struct {
 	_Atomic int count; // protected with atomic type
@@ -1037,9 +1075,9 @@ typedef struct {
 	- Here *concurrency* implies processing involving multiple tasks that can execute asynchronously with respect to each other, some examples are multiple server/client conversations could be ongoing at the same time.
 - The web server could serve multiple clients concurrently.
 - Concurrency is different from parallelism:
-	- Consider two tasks $A$ and $B$, consisted of a sequence of instructions.
-	- In concurrency, $A$ and $B$ can happen at any order, *i.e.*, $A$ can happen before or after $B$ happens.
-	- In parallelism, $A$ and $B$ are executed at the same time. In particular, parallel execution requires multiple processors or cores.
+	- Consider two tasks $$A$$ and $$B$$, consisted of a sequence of instructions.
+	- In concurrency, $$A$$ and $$B$$ can happen at any order, *i.e.*, $$A$$ can happen before or after $$B$$ happens.
+	- In parallelism, $$A$$ and $$B$$ are executed at the same time. In particular, parallel execution requires multiple processors or cores.
 	- Parallelism implies concurrency, but the converse is not necessarily true.
 
 ### Concurrency with Processes
@@ -1054,6 +1092,7 @@ typedef struct {
 	- A parent process can handle the `SIGCHLD` signal in order to be notified when a child process exits.
 - Implementation-wise, the parent should keep a count of how many child processes are running, and use `wait` system call and `SIGCHLD` signal handler to detect which child processes are completed.
 - Here, we first need to implement `sigchld_handler` function in the parent process:
+
 ```c
 /* current number of child processes running */
 int g_num_procs;
@@ -1072,6 +1111,7 @@ void sigchld_handler(int signo) {
 - At the same time, we register the sigchld_handler function as a handler for the SIGCHLD signal:
 	- When a child process terminates, the OS kernel will deliver a `SIGCHLD` signal, and the `sigchld_handler` function will be called.
 
+
 ```c
 struct sigaction sa;
 sigemptyset(&sa.sa_mask);
@@ -1082,6 +1122,7 @@ sigaction(SIGCHLD, &sa, NULL);
 - During the implementation, we need to consider about *data-race* conditions:
 - In the following case, the number of process could decrease before the `wait` (the other process could exit at any time):
 	- In this case, we would have `wait` waiting for nothing when `MAX_PROCESSES = 1`, and potentially leading to deadlocks. 
+
 ```c
  while (g_num_procs >= MAX_PROCESSES) {
 	int wstatus;
@@ -1091,6 +1132,7 @@ sigaction(SIGCHLD, &sa, NULL);
 ```
 - In another case, we also need to mind the decrements, they are not atomic, so there could be data loss so we no longer keep track of the total number of processes:
 	- If a `SIGCHLD` signal is received after the initial value of `g_num_procs` is read, but before the updated value of tmp is stored back to `g_num_procs`, data race occurs.
+
 ```c
 g_num_procs--;
 ----------------------
@@ -1108,6 +1150,7 @@ g_num_procs = tmp;
 	- `sigprocmask`: allows program to block and unblock a specific signal or signals.
 	- The idea is to block `SIGCHLD` whenever `g_num_procs` is being accessed by program code to prevent `sigchld_handler` from unexpectedly modifying `g_num_procs`.
 - First, we have the `toggle_sigchld` function:
+
 ```c
 void toggle_sigchld(int how) {
 	sigset_t sigs;
@@ -1118,6 +1161,7 @@ void toggle_sigchld(int how) {
 }
 ```
 - There, we use to protect accesses to `g_num_procs`:
+
 ```c
 while (1) {  
 	wait_for_avail_proc();  
@@ -1142,6 +1186,7 @@ while (1) {
 	- OS kernel should imposes limit on number of open files per process,
 	- When too many file descriptors open, it shouldn’t open any more files or sockets.
 - Before calling fork, web server should call `wait_for_avail_proc`, it calls wait if too many processes are currently running:
+
 ```c
 void wait_for_avail_proc(void) {
 	// block SIGCHLD in advance
@@ -1161,6 +1206,7 @@ void wait_for_avail_proc(void) {
 ```
 - When a program receives a signal, it can interrupt the currently-executing system call. Special handling is required for accept system call to wait for connection from client:
 	- When errno is `EINTR`, it indicates that the system call was interrupted.
+
 ```c
 int clientfd;
 do {
@@ -1187,6 +1233,7 @@ if (clientfd < 0) {
 - When a `C` library or system call function fails, errno is set to an integer error code to indicate the reason for the failure, which is available using `
 #include <errno.h>`.
 - This is actually not a global variable (because that wouldn’t work in a multithreaded program), its actual definition in the Linux C library (`glibc`) is:
+
 ```c
 extern int *__errno_location (void) __THROW __attribute_const__;
 
@@ -1205,6 +1252,7 @@ extern int *__errno_location (void) __THROW __attribute_const__;
 	- `select` waits until at least one file descriptor has become ready for reading or writing, or has an exceptional condition.
 	- `readfds`, `writefds`, and/or `exceptfds` are modified to indicate the specific file descriptors that are ready
 	- `timeout` specifies maximum amount of time to wait, `NULL` means indefinitely
+
 ```c
 int select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout);
@@ -1236,6 +1284,7 @@ while (1) {
 	- Similar issue when sending data to client: data might need to be sent in chunks,
 	- Maintaining and updating state of client connections is more complicated compared to code for process- or thread-based concurrency, we can just use normal loops and control flow.
 - The protocol is to read one line of text from client, send same line back, repeat until quit is received, with the following data structure:
+
 ```c
 
 #define CONN_READING  0
@@ -1255,6 +1304,7 @@ struct Connection {
 	- In a protocol implementation using threads or processes for concurrency, state is implicit.
 	- When implementing a protocol with I/O multiplexing, state must be explicit.![[state_machine.png]]
 - In particular, it is still suggested to use non-blocking for `select` or `poll` to determine when file descriptors are ready.
+
 ```c
 void make_nonblocking(int fd) {
 	int flags = fcntl(fd, F_GETFL, 0);
@@ -1275,6 +1325,7 @@ void make_nonblocking(int fd) {
 - Each call to select determines which file descriptors in `readfds` are ready for reading, and which file descriptors in `writefds` are ready for writing, and:
 	- if the server socket file descriptor is ready for reading, it means that a connection request has arrived (and a call to accept will not block).
 - In particular, the service client connections would have the `client_do_write` and `client_do_read`, which is complicated and determine if the complete message is received.
+
 ```c
 for (int fd = 0; fd <= maxfd; fd++) {
 	if (client_conn[fd] != NULL) {

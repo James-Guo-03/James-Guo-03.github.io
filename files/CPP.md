@@ -50,6 +50,7 @@
 #include` in appropriate files.
 	- When having templated `class`, the definition shall go into a `.inc` or `.inl` file.
 	- Header files often has *header guards* when it contains definitions, which prevents definition duplications (giving *compiler errors*) when multiple `.cpp` files include the same `.h` file, as follows:
+
 ```cpp
 // rectangle.h:  
 // include lines like this at the top; change the all-caps
@@ -94,7 +95,7 @@ class Rectangle { // structure
 - `Makefile` uses the `bash` syntax:
 	- Lines in a makefile that begin with `
 #` are comments.
-	- `$` expands the variables being predefined.
+	- `$$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.
 	- Disambiguate `Tab` with spaces in the file.
@@ -108,13 +109,13 @@ CC=g++
 CFLAGS=-std=c++11 -pedantic -Wall -Wextra
 
 main: mainFile.o functions.o  
-	$(CC) -o main mainFile.o functions.o
+	$$(CC) -o main mainFile.o functions.o
 
 mainFile.o: mainFile.cpp functions.h
-	$(CC) $(CFLAGS) -c mainFile.cpp
+	$$(CC) $$(CFLAGS) -c mainFile.cpp
 
 functions.o: functions.cpp functions.h
-	$(CC) $(CFLAGS) -c functions.cpp
+	$$(CC) $$(CFLAGS) -c functions.cpp
 
 clean:  
 	rm -f *.o main
@@ -127,6 +128,7 @@ clean:
 - Unscoped `enum` has each enumerator is associated with a value of the underlying type:
 	- the values can be converted to their underlying type.
 	- and the underlying type can be explicit.
+
 ```cpp
 enum Foo { a, b, c = 10, d, e = 1, f, g = f + c };
 //a = 0, b = 1, c = 10, d = 11, e = 1, f = 2, g = 12
@@ -136,6 +138,7 @@ char n = blue; // n == 21
 ```
 - Scoped `enum` does not allow comparison of different `class`:
 	- the keywords `class` and `struct` are exactly equivalent.
+
 ```cpp
 enum class Color { red, yellow, blue };  
 enum class MyColor { myblue, myyellow, myred };  
@@ -148,6 +151,7 @@ if (col == MyColor::myred) { // Compiler will give an error.
 #### `lambdas` functions:
 - A function can be passed into a function as a `functor`:
 	- The `functor` has definition of `return_type (*cmp)(const void *, const void *)` of comparing void pointers
+
 ```cpp
 
 #include <iostream>
@@ -192,6 +196,7 @@ int main( void ) {
 - By using the `auto` keyword, the compiler could determine the type for certain variables:
 	- `auto` acts the same as the definition of the type.
 - For inputting `functor` in functions, use of `auto` keyword and `typename` of `T_cmp` allows us to not give the full `functor type`, that is:
+
 ```cpp
 
 #include <iostream>
@@ -225,6 +230,7 @@ int main( void ) {
 }
 ```
 - The `auto` keyword can also be used for iterators with:
+
 ```cpp
 auto it = c.cbegin();
 ```
@@ -300,6 +306,7 @@ auto it = c.cbegin();
 - References provide pointer-like functionality while hiding the raw pointers themselves.
 - Function parameters with *reference type* are passed *by reference*:
 	- it is like passing *by pointer* but without the extra syntax inside the function.
+
 ```cpp
 void swap(int& a, int& b) { // Swaps two ints by reference.
     int tmp = a;
@@ -348,6 +355,7 @@ void swap(int& a, int& b) { // Swaps two ints by reference.
 #### `<fstream>` header in `C++`:
 - `fstream` header handles the I/O for files:
 - `ofstream` is for writing to a file:
+
 ```cpp
 
 #include <iostream>
@@ -360,6 +368,7 @@ int main() {
 }
 ```
 - `ifstream` is for reading from a file:
+
 ```cpp
 
 #include <iostream>
@@ -387,6 +396,7 @@ int main() {
 
 #### `stringstream` as buffer:
 - `stringstream` is a temporary string (“buffer”) that stores the data instead of reading or writing to a file or console.
+
 ```cpp
 
 #include <iostream>
@@ -440,12 +450,14 @@ int main(){
 	- This is a catch-all way to include everything in the `std` namespace, whether needed or not.
 	- This causes confusion due to *accidental name conflicts*.
 - The standard use of `using` should be in `.cpp` file, at the top as:
+
 ```cpp
 using std::cout;
 using std::endl;
 // More to be added if needed.
 ```
 - Likewise, `using` or `typedef` can help to reduce the clutter and bring related type declarations closer:
+
 ```cpp
 	typedef map<int, string> TMap;      // map type
 	typedef TMap::iterator TMapItr;     // map iterator type
@@ -461,6 +473,7 @@ using std::endl;
 	- The full name is `std::string`.
 	- One can have `using std::string` at the top of the `.cpp` file so one does not need to include `std` namespace every time.
 - A string can be initialized in multiple ways:
+
 ```cpp
 string s1 = "world";   // intialization directly
 string s2("hello");    // intialization directly
@@ -501,6 +514,7 @@ string s5 = s2;        // deep copy of s2 to s5
 - Templates are a way of writing an *object* or *function* so they can work with *any type*.
 	- Defining a template is simultaneously *defining a family of related objects/functions*.
 - In the following example, the `template<typename T>` allows almost all types of data.
+
 ```cpp
 template<typename T>
 struct Node {  
@@ -519,6 +533,7 @@ void print_list(Node *head) {
 }
 ```
 - One can use `class` to represent a `typename` and the typename shall be included everywhere when needed:
+
 ```cpp
 template<typename T>
 int sum_every_other(const T& ls) {
@@ -560,6 +575,7 @@ int sum_every_other(const T& ls) {
 	- `begin`/`end`/`rbegin`/`rend`/`cbegin`/`cend` are iterators for beginning/end respectively.
 - Allocations happen automatically and everything is deallocated when it goes out of scope.
 - To get through vector, we can use an `iterator`, which is a clever pointer to move around:
+
 ```cpp
 for (vector<string>::iterator it = names.begin();
 	 it != names.end(); ++it) {
@@ -628,6 +644,7 @@ for (vector<string>::iterator it = names.begin();
 -  `new` and `delete` are the `C++` versions of `malloc` and `free` in `C`.
 	- `new` not only allocates the memory, it also calls the appropriate constructor if used on a class type.
 	- `new` and `delete` are *keywords* rather than *functions*, so they are called without `(...)`.
+
 ```cpp
 int main() {  
 	int *iptr = new int;           // allocate a pointer to int.
@@ -641,6 +658,7 @@ int main() {
 -  `new` and `delete []` are for dynamically allocating/deallocating arrays.
 	- when allocating arrays, use `T *a = new T[n]` to allocate an array of `n` elements of type `T`.
 	- when deallocating, use `delete [] a` for deallocating anything created as above.
+
 ```cpp
 int main() {  
 	double *d_array = new double[10];          // allocating the array.
@@ -670,11 +688,13 @@ int main() {
 	- `runtime_error`: `range_error`, `overflow_error`, and `underflow_error`.
 	- `bad_cast`.
 - An exception can be thrown by:
+
 ```cpp
 throw std::exception("exception message");
 ```
 - One can use `try`-`catch` block to catch an exception:
 	- The order of `catch` should be from most to least specific.
+
 ```cpp
 int main() {  
 	vector<int> vec = {1, 2, 3};
@@ -699,6 +719,7 @@ int main() {
 #### Customized `Exceptions`:
 - One can define their own exception class, derived from exception:
 	- Since exceptions are related through inheritance, one can choose whether to catch a base class (thereby catching more different things) or a derived class.
+
 ```cpp
 
 #ifndef EXCEPTION_H
@@ -730,6 +751,7 @@ public:
 	- Once we define a class, we have one blueprint from which we can create 0 or more objects.
 	- Each of the objects is an instance of the class and has its own copies of all instance variables.
 - The use of `const` as modifier in method header indicates that this function will not modify any member fields:
+
 ```cpp
 void print() const { /* code in between */ }
 ```
@@ -738,6 +760,7 @@ void print() const { /* code in between */ }
 	- Everything is `private` by default.
 - A `public` field or member function can be accessed freely by any code with access to the class definition (code that includes the `.h` file)
 - A `private` field or member function can be accessed from other member functions in the `class`, but not by a user of the `class`.
+
 ```cpp
 class Rectangle {
 public:
@@ -766,6 +789,7 @@ int main() {
 	- Only define member function inside the `class` definition if it’s very short., known as the *in-lining* the function definition.
 - When the function definition is long, put a prototype in the class definition and define the member function in a `.cpp` file:
 	- One needs to qualify the function with the class scope as `Clasname::function(parameters) { code }` in the `.cpp` files.
+
 ```cpp
 // Rectangle.h
 
@@ -796,6 +820,7 @@ double Rectangle::area() const { // definition outside class
 	- If you define it, it should be `public`.
 	- The function name must match the `class` name exactly.
 	- Called a default constructor if it takes no arguments.
+
 ```cpp
 class Rectangle {
 public:
@@ -814,17 +839,20 @@ int main() {
 		- For built-in types (`int`, `doubles`,. . . ), the instance variables aren’t initialized (so they have *garbage values*).
 		- For instance variables of `class` types, their default constructor for that class type is called.
 - `C++` syntax allows initializer list, which saves wastes for initializing and then assigning:
+
 ```cpp
 IntAndString() : i(7), s("hello") { }
 ```
 - Constructors can also take arguments, allowing caller to “customize” the object:
 	- Here, strings can take a string argument as a parameter:
+
 ```cpp
 string s1("Hello");          // invoces a non-default constructor
 string s2 = "Hello";         // invoces a non-default constructor as well
 ```
 - When we supplied an alternate (that is, non-default) constructor, there is no implicitly-created default constructor.
 	- During the constructor parameter conflicts, the initializer list is fine, but definition required `this` pointer:
+
 ```cpp
 class MyThing {
 public:
@@ -840,6 +868,7 @@ private:
 	- Alternatively, one can use list-initialization to initialize the array or use `STL` such as `vector`.
 
 {% raw %}
+
 
 ```cpp
 // myThing4.cpp:
@@ -881,6 +910,7 @@ int main() {
 - The destructor is always automatically called when object’s lifetime ends, including when it is deallocated:
 	- It’s a convenient place to clean up, as it is automatic.
 	- No need to go hunting for all the places to put `object.clean_up()`.
+
 ```cpp
 // sequence.h:
 class Sequence {
@@ -923,6 +953,7 @@ private:
 		- Simply copies the contents of the fields
 		- Class fields will have their corresponding copy constructors or `operator=` functions called.
 		- Pointers to heap memory will simply be copied, without the heap memory itself being copied.
+
 ```cpp
 // Copy constructor
 Image(const Image& o) : nrow(o.nrow), ncol(o.ncol) {
@@ -948,6 +979,7 @@ Image& operator=(const Image& o) {
 
 #### Templated class
 - Just like templated `struct`, we can make `class` templated in `C++`:
+
 ```cpp
 // ll_temp.inc:
 
@@ -990,6 +1022,7 @@ private:
 	- The new meanings for operators should be intuitive.
 - To specify a new definition for an operator with symbol `S`, we define a method called `operatorS`.
 	- The compiler understands that expressions using the infix operator `+` applied to the types specified in the method should map to the above function.
+
 ```cpp
 // insertion_eg2.cpp:
 
@@ -1016,6 +1049,7 @@ int main() {
 	- Taking `const vector<int>&` as second parameter allows the `vector<int>` to appear as a right operand in a `operator<<` call.
 - Operator overloading can be between instances of classes:
 	- Between instances of the class, we can define overloaded operators inside the class with another instance of the class so it has access to the `private` fields.
+
 ```cpp
 // rational.h
 class Rational {
@@ -1047,6 +1081,7 @@ Rational::operator+(const Rational& right) const {
 - We can make use of the friend keyword to give the method “almost-member” status:
 	- during the operator overload involving private fields of a class, the `friend` keyword allows access to private member variables.
 	- the `friend` keyword method is not an actual member of the `class`.
+
 ```cpp
 // rational.h
 class Rational {
@@ -1086,6 +1121,7 @@ ostream& operator<<(ostream& os, const Rational& r) {
 	- Derived classes don’t inherit constructors, but (usually) need to call their base class constructor to initialize inherited data members:
 		- We do this with the base class name in `C++`.
 		- The base class constructor call must be the first thing in the derived class constructor.
+
 ```cpp
 // account.h:
 class Account {
@@ -1117,6 +1153,7 @@ private:
 - When the lifetime of a derived class object is about to end, two destructors are called: the one defined for the derived object and *then* the one defined for the base class:
 	- Either destructor may be explicitly defined, or just the provided default.
 - In `C++`, a class could inherit multiple base classes, via multiple arguments:
+
 ```cpp
 class A { ... };
 class B { ... };
@@ -1125,10 +1162,12 @@ class C: public A, public B { ... };
 
 #### Polymorphism:
 - A derived class pointer can be declared using a base class pointer but initialized as a derived class:
+
 ```cpp
 Account *acc = new SavingsAccount(100.0, 5.00);
 ```
 - A variable of a derived type can be passed into function by reference as though it has the base type:
+
 ```cpp
 void print_account_type(const Account& acct) {
     cout << acct.type() << endl;
@@ -1143,6 +1182,7 @@ int main() {
 ```
 - Without the `virtual` keyword, the function call will be on the class type that the reference is declared in the function definition, when needing to call the actual derived class method, one need to use *dynamic binding*:
 	- We need to define all the functions as `virtual` so the function of the actual class is called.
+
 ```cpp
 class Account {
 public:
@@ -1168,6 +1208,7 @@ public:
 - When the function has a `virtual` keyword, it indicates that a method may be overriden by a derived class.
 	- The virtual table (dynamic dispatch) uses the base class’s implementation by default *if the derived class doesn’t have one*.
 	- The keyword `override` defends the function override when there could potentially not be overriden function from the base class.
+
 ```cpp
 class Account {
 public:
@@ -1190,6 +1231,7 @@ public:
 		- We do not give it an implementation
 	        * Makes the class it’s declared in an abstract class
 	        * We cannot create a new object with the type,  though we might be able to create an object from a derived type.
+
 ```cpp
 class Shape {
 public:
@@ -1225,6 +1267,7 @@ public:
 		- Equality: `operator==`.
 		- Arrow (for class member access): `operator->`.
 	- Our enclosing (container) class should then also define methods named `begin` and end, `which` return iterators to the first item in the collection, and the just-past-last element in the collection, respectively.
+
 ```cpp
 // MyNode.h
 

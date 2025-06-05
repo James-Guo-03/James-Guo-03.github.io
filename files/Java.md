@@ -86,16 +86,16 @@ A primitive type variable directly stores the data for that variable type.
 `byte`, `short`, `int`, and `long`
 
 - Used for integers.
-- `byte`: 8-bit, range of $[-128,127]$.
-- `short`: 16-bit, range of $[-32768,32767]$.
-- `int`: 32-bit, range of $[-2^{31},2^{31}-1]$.
-- `long`: 64-bit, range of $[-2^{63},2^{63}-1]$.
+- `byte`: 8-bit, range of $$[-128,127]$$.
+- `short`: 16-bit, range of $$[-32768,32767]$$.
+- `int`: 32-bit, range of $$[-2^{31},2^{31}-1]$$.
+- `long`: 64-bit, range of $$[-2^{63},2^{63}-1]$$.
 
 `float` and `double`
 
 - Used for floating decimals.
-- `float`: 32-bit, range of $[-3.4\times10^{38},3.4\times10^{38}]$.
-- `double`: 64-bit, range of $[-1.7\times10^{308},1.7\times10^{308}]$.
+- `float`: 32-bit, range of $$[-3.4\times10^{38},3.4\times10^{38}]$$.
+- `double`: 64-bit, range of $$[-1.7\times10^{308},1.7\times10^{308}]$$.
 - For floating-point, the comparison should use `Math.abs(a - b) < 0.0001`.
 
 ***Wrapper Class***
@@ -125,8 +125,8 @@ From `java.lang.Math`, imported by defult.
 
 Fields:
 
-- `E`: $e$, the base of the natural logarithms.
-- `PI`: $\pi$, the ratio of the circumference of a circle to its diameter.
+- `E`: $$e$$, the base of the natural logarithms.
+- `PI`: $$\pi$$, the ratio of the circumference of a circle to its diameter.
 
 Methods:
 
@@ -472,7 +472,7 @@ To assign a new element to the array, the approach is:
 
 ### 2-D Array
 
-An array can be declared with two dimensions. `Object[][] myArray = new Object[R][C]` represents a table of int variables with `R` rows and `C` columns, so $R\times C$ elements total. 
+An array can be declared with two dimensions. `Object[][] myArray = new Object[R][C]` represents a table of int variables with `R` rows and `C` columns, so $$R\times C$$ elements total. 
 
 Or the initialization can be:
 
@@ -604,19 +604,19 @@ In Big O notation, all functions that have the same growth rate (as determined b
 
 ***Growth rate:***
 
-- $O(1) < O(N) < O(N\log N) < O(N^2) < O(N^3) < \cdots < O(e^N)$.
+- $$O(1) < O(N) < O(N\log N) < O(N^2) < O(N^3) < \cdots < O(e^N)$$.
 - Rules for determining Big O notation of composite functions:
 
-| Composite function | $C\cdot O(f(x))$ | $C+ O(f(x))$ | $g(x)\cdot O(f(x))$ |  $g(x)+O(f(x))$ | 
+| Composite function | $$C\cdot O(f(x))$$ | $$C+ O(f(x))$$ | $$g(x)\cdot O(f(x))$$ |  $$g(x)+O(f(x))$$ | 
 |:------------------:|:-----:|:------:|:--:|:--:|
-| Big O Notation     | $O(f(x))$ |  $O(f(x))$ | $O(g(x)\cdot O(f(x)))$ |  $O(g(x)+O(f(x)))$ |
+| Big O Notation     | $$O(f(x))$$ |  $$O(f(x))$$ | $$O(g(x)\cdot O(f(x)))$$ |  $$O(g(x)+O(f(x)))$$ |
 
 ### Sorting Algorithms
 
 ***Bubble Sort***
 
 - Bubble sort is a sorting algorithm repeatedly switches the two consecutive elements if they are out of order from left to right.
-- $O(N^2)$ Complexity.
+- $$O(N^2)$$ Complexity.
 
 ```
 	int temp;
@@ -636,7 +636,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 ***Selection Sort***
 
 - Selection sort is a sorting algorithm repeatedly selects the minimum value of the array from a certain index and switches the current index with the minimal value after it.
-- $O(N^2)$ Complexity.
+- $$O(N^2)$$ Complexity.
 
 ```
 	int temp;
@@ -660,7 +660,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 ***Insertion Sort***
 
 - Insertion sort is a sorting algorithm repeatedly inserts the next minimal value from an index into the that index.
-- $O(N^2)$ Complexity.
+- $$O(N^2)$$ Complexity.
 
 ```
 	for (i = 1; i < numbers.length; ++i) {
@@ -682,7 +682,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 
 - Merge sort is a sorting algorithm that divides a list into two halves, recursively sorts each half, and then merges the sorted halves to produce a sorted list.
 - The recursive partitioning continues until a list of 1 element is reached, as list of 1 element is already sorted.
-- $O(N\log N)$ Complexity.
+- $$O(N\log N)$$ Complexity.
 
 ```
 public static void merge(int [] numbers, int i, int j, int k) {
@@ -745,7 +745,7 @@ public static void mergeSort(int [] numbers, int i, int k) {
 ***Linear Search***
 
 - Linear search is a search algorithm that starts from the beginning of a list, and checks each element until the search key is found or the end of the list is reached.
-- $O(N)$ Complexity.
+- $$O(N)$$ Complexity.
 
 ```
    public static int linearSearch(int [] numbers, int key) {
@@ -764,7 +764,7 @@ public static void mergeSort(int [] numbers, int i, int k) {
 ***Binary Search***
 
 - If the desired contact comes alphabetically before the middle contact, binary search will then search the first half and otherwise the last half. Each step reduces the contacts that need to be searched by half.
-- $O(\log N)$ Complexity.
+- $$O(\log N)$$ Complexity.
 
 ```
    private static int search(String[] data, String target,

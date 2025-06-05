@@ -162,6 +162,7 @@
 - Header files often has *header guards* when it contains definitions.
 	- *Header guards* prevents definition duplications (giving *compiler errors*) when multiple `.c` files include the same `.h` file.
 - Sample header guard in `.h` file:
+
 ```c
 // rectangle.h:  
 // include lines like this at the top; change the all-caps
@@ -189,7 +190,7 @@ struct rectangle { // structure
 - `Makefile` uses the `bash` syntax:
 	- Lines in a makefile that begin with `
 #` are comments.
-	- `$` expands the variables being predefined.
+	- `$$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.
 	- Disambiguate `Tab` with spaces in the file.
@@ -203,13 +204,13 @@ CC=gcc
 CFLAGS=-std=c99 -pedantic -Wall -Wextra
 
 main: mainFile.o functions.o  
-	$(CC) -o main mainFile.o functions.o
+	$$(CC) -o main mainFile.o functions.o
 
 mainFile.o: mainFile.c functions.h
-	$(CC) $(CFLAGS) -c mainFile.c
+	$$(CC) $$(CFLAGS) -c mainFile.c
 
 functions.o: functions.c functions.h
-	$(CC) $(CFLAGS) -c functions.c
+	$$(CC) $$(CFLAGS) -c functions.c
 
 clean:  
 	rm -f *.o main
@@ -317,12 +318,12 @@ clean:
 #include math.h`.
 	- When compiling, it requires the flag `-lm` for link math.
 - Functions in `math.h`:
-	- `sqrt(x)`: $\sqrt{x}$.
-	- `pow(x, y)`: $x^y$.
-	- `exp(x)`: $e^x$.
-	- `log(x)`: $\log_{e}(x)$.
-	- `log10(x)`: $\log_{10}(x)$.
-	- `ceil(x)` / `floor(x)`: $\lceil x\rceil$ / $\lfloor x\rfloor$.
+	- `sqrt(x)`: $$\sqrt{x}$$.
+	- `pow(x, y)`: $$x^y$$.
+	- `exp(x)`: $$e^x$$.
+	- `log(x)`: $$\log_{e}(x)$$.
+	- `log10(x)`: $$\log_{10}(x)$$.
+	- `ceil(x)` / `floor(x)`: $$\lceil x\rceil$$ / $$\lfloor x\rfloor$$.
 	- `sin(x)` / `sinh(x)` / `asin(x)`: sine, hyperbolic sine, and arc sine (also other trigonometric function).
 - `x` and `y` arguments have type `double`, and the return type is also `double`:
 	- It’s allowed to pass another numeric type, like `int`, but with variable promotion.
@@ -390,8 +391,8 @@ clean:
 - Integer types:
 	- `int`: signed integer, usually stored in 32 bits.
 		- `int` has 32 bits, where 1 bit stores the sign and 31 bits store the number.
-		- The range of integer is $[-2147483648,2147483647]$.
-		- When overflow, the variables starts from $-2147483648$.
+		- The range of integer is $$[-2147483648,2147483647]$$.
+		- When overflow, the variables starts from $$-2147483648$$.
 	- `unsigned`: unsigned integer.
 	- `long`: signed integer with significantly greater capacity than a plain `int`.
 - Floating-point (decimal) types: 
@@ -508,6 +509,7 @@ clean:
 
 #### Function definitions:
 - A helper function include information about input and return type:
+
 ```c
 <retur_type> <function_name>(<input_type> <input_name>, ...) {
 	// Code in between.
@@ -522,6 +524,7 @@ clean:
 
 #### The `main` function:
 - The `main` function could take in some parameter and returns an integer for status:
+
 ```c
 int main() {
 	// Code in between.
@@ -530,6 +533,7 @@ int main() {
 }
 ```
 - The `main` function could take in parameters from the command line:
+
 ```c
 int main(int argc, char* argv[]) {
 	// Code in between.
@@ -578,10 +582,11 @@ int main(int argc, char* argv[]) {
 | rand() | `0` to `RAND_MAX` |
 | rand() % x | `0` to `x-1` |
 | (rand() % x) + y | `y` to `y+x-1` |
-| ((rand() % x) / (double) x | `0.0` to $1.0-\frac{1}x$|
+| ((rand() % x) / (double) x | `0.0` to $$1.0-\frac{1}x$$|
 | rand() / (double)(RAND_MAX) | `0.0` to `1.0` |
 
 - To generate a Normally Distributed Pseudo-random, use sum of many generations:
+
 ```c
 
 #include <math.h>
@@ -641,6 +646,7 @@ int randomNormal() {
 
 #### Conditional:
 - `if` conditional evaluates a represents some boolean expression for conducting code:
+
 ```c
 if (condition_1) {  
 	// Code for condition_1.
@@ -653,10 +659,12 @@ else {
 }
 ```
 - An `if-else` conditional can be represented by ternary conditions:
+
 ```c
 condition ? /* code for true */ : /* code for false */ ;
 ```
 - `C` also has switch statements on decimals (`int` or `char`):
+
 ```c
 switch (integer_expr) {
 case c1: stmt1; // execution starting point for c1
@@ -670,17 +678,20 @@ default: stmtlast; // if no case matches
 ```
 
 #### Loops:
-- `while` loop iterates $\geq 0$ times, as long as the expression is `true`:
+- `while` loop iterates $$\geq 0$$ times, as long as the expression is `true`:
+
 ```c
 while (boolean_expression) { /* statements */ }
 ```
 - `do-while` loop iterates at least 1 time, then more times as long as expression is `true`:
+
 ```c
 do { /* statements */ } while (boolean_expression);
 ```
-- `for` loop has initialize and iterates $\geq 0$ times, as long as the expression is `true`:
+- `for` loop has initialize and iterates $$\geq 0$$ times, as long as the expression is `true`:
 	- `for` loop initialize happens first; usually declares & assigns “index variable”.
 	- Right after statements, update is run; often it increments the index variable (`i++`).
+
 ```c
 for (initialize; boolean_expression; update) { /* statements */ }
 ```
@@ -727,6 +738,7 @@ for (initialize; boolean_expression; update) { /* statements */ }
 
 #### Standard Structure for `fopen`:
 - The complete code for read file is:
+
 ```c
 // file_io_loop_eg.c:
 
@@ -833,6 +845,7 @@ int main() {
 - `scanf` might need accommodation in skipping spaces / newlines in operations.
 	- To skip whitespaces, use: `scanf(" %<specifier>", <var-address>)"`.
 	- To move until a new line, use:
+
 ```c
 char dummy = '\0';
 while (dummy != '\n') {
@@ -903,6 +916,7 @@ while (dummy != '\n') {
 	- The string can also be defined expanded: `char day[] = {'t', 'e', 'x', 't', '\0'};`
 	- `char` in a string can be accessed by index.
 - In copying an array, it needs to be done by loops:
+
 ```c
 const char str[] = "text";
 char str_copy[sizeof(str)];  
@@ -915,7 +929,7 @@ for(int i = 0; i < sizeof(str); i++) {
 #### Multi-dimensional Arrays:
 - In declaring multi-dimension arrays, use: `<base_type> <name>[dim1_sz][dim2_sz]...;`
 - In defining 2D arrays, use `int table[2][4] = { {1,2,3,4},{5,6,7,8} };`:
-	- Physically in memory, the array is laid out as one contiguous block of $2\times4=8$ `int`-sized locations.
+	- Physically in memory, the array is laid out as one contiguous block of $$2\times4=8$$ `int`-sized locations.
 	- Array elements are stored in row-major order: all of `row1` comes first, then all of `row2`, ...
 - In 2D arrays, the variable holds address of first element.
 	- `var[i][j]` - refers to `j`th element in `i`th row.
@@ -970,6 +984,7 @@ for(int i = 0; i < sizeof(str); i++) {
 - To use dynamic allocation, it is needed to include `
 #include <stdlib.h>`.
 - `malloc` does not initialize the variables:
+
 ```c
 // Allocating space for size data_type on heap
 <data_type> *ptr = malloc(sizeof(<data_type>) * size);
@@ -979,6 +994,7 @@ if (ptr == NULL) { /*output error message*/ }
 free(ptr);
 ```
 - `calloc` initialize the variables with bits into `0`:
+
 ```c
 // Allocating space for size data_type on heap
 <data_type> *ptr = calloc(size, sizeof(<data_type>));
@@ -990,6 +1006,7 @@ free(ptr);
 - `realloc` reallocates the given area of memory, and can be used for both expanding and contracting. (The area must have been previously dynamically allocated.)
 	- This is achieved by expanding or contracting the existing area, if possible or allocating a new memory block of new size bytes.
 	- When success, it returns the pointer to the beginning of newly allocated memory, else, it returns a null pointer.
+
 ```c
 // reallocate to expand or contract
 ptr = realloc(ptr, sizeof(<data_type>) * new_size);
@@ -1000,6 +1017,7 @@ ptr = realloc(ptr, sizeof(<data_type>) * new_size);
 	- `<data_type> *array = malloc(sizeof(<data_type>) * num_rows * num_cols);`
 	- In this definition, it converts `[row][col]` indexing to `[row * num_cols + col]`.
 - A double (`**`) memory allocation allows non-rectangular shapes.
+
 ```c
 // Declaring and initializing the double pointer.
 <data_type> **ptr = malloc(sizeof(<data_type>*) * num_rows);
@@ -1035,6 +1053,7 @@ for (int i = 0; i < num_rows; i++) {
 #### Defining `struct`:
 - `struct` is a *collection of related variables*, bundled together into *one* variable:
 	- Variables in a struct are fields. Fields can be variable type, pointers, or other structures.
+
 ```c
 struct card {
 	// Fields
@@ -1043,6 +1062,7 @@ struct card {
 };
 ```
 - After definition, a variable of type `struct` can be declared as initialize by:
+
 ```c
 struct <struct_name> <var_name>;  // Declaring a struct
 <var_name> = { ... }; // Initialize struct as arrays.
@@ -1050,6 +1070,7 @@ struct <struct_name> <var_name>;  // Declaring a struct
 - In `struct`, there are ways of accessing data:
 	- Fields in a `struct` can be accessed via `variable.field` or `ptr->field`.
 	- When defining `struct` in `struct`, there is a simplified declare for nested define:
+
 ```c
 typedef struct {
 	struct {   // Unnamed structure.
@@ -1083,6 +1104,7 @@ typedef struct {
 		- In an empty linked list, the head pointer points to `NULL`.
 	- The last node’s next pointer points to `NULL`.
 - The linked list is a `struct`:
+
 ```c
 typedef struct _node {
 	char data;
@@ -1095,13 +1117,14 @@ typedef struct _node {
 |:------|:------------|
 | size of the array is fixed | sized of linked list is not fixed |
 | occupies less memory for the same number of elements |  requires more space because of “next” |
-| accessing $i$-th value is fast using indices (simple arithmetic) | has to traverse the list from start |
+| accessing $$i$$-th value is fast using indices (simple arithmetic) | has to traverse the list from start |
 | inserting new elements is expensive | after deciding where to add, is straightforward (no shifting) |
 | no deleting without shifting items | deleting is easy (kind of)|
 
 
 #### Functions in Linked List:
 - `print` prints the data in the linked list:
+
 ```c
 // Print all the elements in the linked list
 void print(const Node * cur) {
@@ -1112,6 +1135,7 @@ void print(const Node * cur) {
 }
 ```
 - `length` counts the number of nodes in a linked list:
+
 ```c
 // Get the length of nodes in a linked list
 long length(const Node * head) {
@@ -1120,6 +1144,7 @@ long length(const Node * head) {
 }
 ```
 - `add_after` inserts new node with a given data value immediately after a given existing node:
+
 ```c
 // Add a new node to linked list
 void add_after(Node * node, char val) {
@@ -1130,6 +1155,7 @@ void add_after(Node * node, char val) {
 }
 ```
 - `add_front` inserts a new node in the beginning of the list:
+
 ```c
 // add node to beginning of list
 void add_front(Node ** list_ptr, char val) {
@@ -1139,6 +1165,7 @@ void add_front(Node ** list_ptr, char val) {
 }
 ```
 - `remove_after` removes node after current and returns the removed `char`:
+
 ```c
 // remove node after current, return removed char, or '?' if no node
 char remove_after(Node * node) {
@@ -1152,6 +1179,7 @@ char remove_after(Node * node) {
 }
 ```
 - `remove_front` removes first node, if any, return removed `char`:
+
 ```c
 // remove first node, if any, return removed char or '?' if no node
 char remove_front(Node ** list_ptr) {
@@ -1165,6 +1193,7 @@ char remove_front(Node ** list_ptr) {
 }
 ```
 - `remove_all` removes all occurrences of a particular character:
+
 ```c
 // remove all occurrences of a particular character
 void remove_all(Node ** list_ptr, char val) {
@@ -1178,6 +1207,7 @@ void remove_all(Node ** list_ptr, char val) {
 }
 ```
 - `clear_list` frees all the nodes:
+
 ```c
 // free all the nodes
 void clear_list(Node * list_ptr) {

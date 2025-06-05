@@ -14,6 +14,7 @@ title: "Machine Level Structure Notes"
 
 ### Strategies for Optimization
 - **Code Motion** reduces the computation performed if they have the same result, especially in a loop.
+
 ```c
 // Before Optimization:
 for (int j = 0; j < n; j++) a[n * i + j] = b[j];
@@ -28,6 +29,7 @@ for (int j = 0; j < n; j++) a[ni + j] = b[j];
 	- One can also share the common subexpressions, such as index calculation, `inj = i * n + j;`.
 - **Reduce procedure calls** omits function calls in loops when the value is unchanged:
 	- Specifically, there are obvious function calls like accessors, but also some hidden calls, like boundary checks, in which we can avoid.
+
 ```c
 // Before Optimization:
 for (size_t i = 0; i < strlen(s); i++) /* manupulations on s */;
@@ -41,13 +43,14 @@ for (size_t i = 0; i < len; i++) /* manupulations on s */;
 	- One can create a local variable to and store once to prevent compiler repetitively accessing a single pointer.
 - Use **Instruction-Level Parallelism**, which is having multiple operations at the same time.
 	- The *cycle per element* (CPE) is a convenient way to express performance of program that operates on *vectors or lists*, with parameters:
-		- Length = $n$,
-		- CPE = $\text{cycles per OP}$: $$T = n\times \operatorname{CPE} + \operatorname{Overhead}.$$
+		- Length = $$n$$,
+		- CPE = $$\text{cycles per OP}$$: $$$$T = n\times \operatorname{CPE} + \operatorname{Overhead}.$$$$
 
 ### Superscalar Processor
 - A superscalar processor can issue and execute *multiple instructions in one cycle*. The instructions are retrieved from a sequential instruction stream and are usually scheduled dynamically:
 	- The superscalar processor allows working without programming effort and take advantage of the instruction level parallelism that most programs have.
 - In executing the following code, although each multiplication takes 3 stages, they can be executed optimally with superscalar processor:
+
 ```c
 long mul_eg(long a, long b, long c) {
 	long p1 = a * b;
@@ -94,7 +97,7 @@ long mul_eg(long a, long b, long c) {
 - **Loop Unrolling**, the unrolling means to make loop increment by 2 instead of 1 so it performs double of useful work per iteration.
 - The re-association of `x = x OP a OP b` to `x = x OP (a OP b)` would allow better efficiency as there will be more parallelism (as there are less dependency):
 	- Even further, for addition, we can have `x1 = x1 OP a`, `x2 = x2 OP b` in each iteration and eventually allow `x = x1 + x2` to construct two *streams* of operations.
-- In particular, the unroll factor ($L$) means how many operations must be made in an iteration and the accumulator ($K$) indicates how many results are in parallel, their relationship is:$$K \;\big|\; L.$$
+- In particular, the unroll factor ($$L$$) means how many operations must be made in an iteration and the accumulator ($$K$$) indicates how many results are in parallel, their relationship is:$$$$K \;\big|\; L.$$$$
 - For double FP, the best operation would have a certain unrolling factor and the accumulators.
 
 ### AVX2
@@ -121,32 +124,32 @@ long mul_eg(long a, long b, long c) {
 
 |   Entry    |  Register   | Specialized Usage / Convention                              |
 | :--------: | :---------: | :---------------------------------------------------------- |
-|     0      |   `$zero`   | always has the value $0$.                                   |
-|     1      |    `$at`    | conventionally reserved for pseudo-instructions             |
-|    2-3     | `$v0`-`$v1` | conventionally return values of a function call             |
-|    4-7     | `$a0`-`$a3` | conventionally arguments for a function call                |
-| 8-15,24,25 | `$t0`-`$t9` | conventionally temporaries, can be overwritten by functions |
-|   16-23    | `$s0`-`$s7` | conventionally saved, have to be preserved by functions     |
-|   26-27    | `$k0`-`$k1` | conventionally reserved for kernel                          |
-|     28     |    `$gp`    | conventionally global area pointer                          |
-|     29     |    `$sp`    | conventionally stack pointer                                |
-|     30     |    `$fp`    | conventionally frame pointer                                |
-|     31     |    `$ra`    | always contains the return address                          |
+|     0      |   `$$zero`   | always has the value $$0$$.                                   |
+|     1      |    `$$at`    | conventionally reserved for pseudo-instructions             |
+|    2-3     | `$$v0`-`$$v1` | conventionally return values of a function call             |
+|    4-7     | `$$a0`-`$$a3` | conventionally arguments for a function call                |
+| 8-15,24,25 | `$$t0`-`$$t9` | conventionally temporaries, can be overwritten by functions |
+|   16-23    | `$$s0`-`$$s7` | conventionally saved, have to be preserved by functions     |
+|   26-27    | `$$k0`-`$$k1` | conventionally reserved for kernel                          |
+|     28     |    `$$gp`    | conventionally global area pointer                          |
+|     29     |    `$$sp`    | conventionally stack pointer                                |
+|     30     |    `$$fp`    | conventionally frame pointer                                |
+|     31     |    `$$ra`    | always contains the return address                          |
 
 ### MIPS Pipelines
 - The MIPS Structure separates the procedures into pipelines:
 	- The pipeline has the theoretical speed-up, but *the actual speed-up* may not be fully reached.
 	- The more tasks makes the speed-up approaches the theoretical limit.
 - The MIPS Pipelines have the following procedures:
-	1. Instruction Fetch: Fetch instruction from memory, takes $200\mathrm{ps}$.
-	2. Register Read: Read registers and decode instructions (*registers are always encoded in same place in instruction*), takes $100\mathrm{ps}$.
-	3. ALU: Execute operation or calculate an address, takes $200\mathrm{ps}$.
-	4. Data Access: Access an operand in memory, takes $200\mathrm{ps}$.
-	5. Register Write: Write results into a register, takes $100\mathrm{ps}$.
-	-  **Load word** (lw) takes all procedures, so total time is $800\mathrm{ps}$.
-	-  **Store word** (sw) takes all procedures but register write, so total time is $700\mathrm{ps}$.
-	-  **R-format** (add) takes all procedures but data access, so total time is $600\mathrm{ps}$.
-	- **Brand** (beq) takes instruction fetch, register read, and ALU, so total time is $500\mathrm{ps}$.
+	1. Instruction Fetch: Fetch instruction from memory, takes $$200\mathrm{ps}$$.
+	2. Register Read: Read registers and decode instructions (*registers are always encoded in same place in instruction*), takes $$100\mathrm{ps}$$.
+	3. ALU: Execute operation or calculate an address, takes $$200\mathrm{ps}$$.
+	4. Data Access: Access an operand in memory, takes $$200\mathrm{ps}$$.
+	5. Register Write: Write results into a register, takes $$100\mathrm{ps}$$.
+	-  **Load word** (lw) takes all procedures, so total time is $$800\mathrm{ps}$$.
+	-  **Store word** (sw) takes all procedures but register write, so total time is $$700\mathrm{ps}$$.
+	-  **R-format** (add) takes all procedures but data access, so total time is $$600\mathrm{ps}$$.
+	- **Brand** (beq) takes instruction fetch, register read, and ALU, so total time is $$500\mathrm{ps}$$.
 - The pipeline allows the theoretical speed-up of 4 times:
 	- In the pipeline, even if a task takes half of time cycle, it still needs to align with the full time cycle block.
 	- The more tasks there are, the speed-up approaches closer to the theoretical limit.
@@ -171,8 +174,8 @@ long mul_eg(long a, long b, long c) {
 		- In particular, the *execution* of the previous step can be pushed to the *execution* of the next step, no need to wait for write back to instruction decode.
 	- For instance, there are memory access conflicts at the following example of data dependence (sometimes, a reorder would work):
 ```
-add $s0, $t0, $t1
-sub $t0, $s0, $t3    // Here, $s0 will be write by the previous step.
+add $$s0, $$t0, $$t1
+sub $$t0, $$s0, $$t3    // Here, $$s0 will be write by the previous step.
 ```
 - **Control hazard** happens when *selection of next instruction depends on outcome of previous*:
 	- In terms of a control hazard, the following instructions cannot start until branch condition result is known.
@@ -180,10 +183,10 @@ sub $t0, $s0, $t3    // Here, $s0 will be write by the previous step.
 		- In particular, we can keep record of branch taken or not and make prediction based on the history.
 	- An example would be having a comparison before prior steps:
 ```
-add $s0, $t0, $t1
-beq $s0, $s1, ff40  // The comparison involves data hazard from add
+add $$s0, $$t0, $$t1
+beq $$s0, $$s1, ff40  // The comparison involves data hazard from add
                     // Jump to address ff40 if they are equal
-sub $t0, $s0, $t3   // Executes only if previous has non-zero-flag
+sub $$t0, $$s0, $$t3   // Executes only if previous has non-zero-flag
 ```
 - The control or branch hazard is has instruction control unit that work well ahead of execution unit to generate enough operations to keep the EU busy:
 	- At the conditions, when it cannot be determined, the execution would begin the next one as prediction, but it do not actually modify register or memory data for the predicted position.
@@ -199,6 +202,7 @@ sub $t0, $s0, $t3   // Executes only if previous has non-zero-flag
 	- **Spatial locality** accounts for which is after an item being referenced:
 		- e.g.: The processing of a sequential data.
 - In particular, an example is to access the elements in a 2-D array, when having loops, looping though horizontal would be fast:
+
 ```c
 for (int i = 0; i < size; i++) {
 	for (int j = 0; j < size; j++) {
@@ -209,12 +213,12 @@ for (int i = 0; i < size; i++) {
 
 ### Types of Memories
 - From the fastest speed / smallest capacity to the slowest speed / biggest capacity (and highest cost to lowest cost), we have:
-	- SRAM on CPU $\Rightarrow$ DRAM on motherboard $\Rightarrow$ Flash memory $\Rightarrow$ Magnetic disk.
+	- SRAM on CPU $$\Rightarrow$$ DRAM on motherboard $$\Rightarrow$$ Flash memory $$\Rightarrow$$ Magnetic disk.
 	- The SRAM is integrated in CPU, runs at similar clock speeds, and uses more transistors with flip flops.
 	- The DRAM is on separated chips, or multiple chips on module (DIMM), with capacitors, so they lose charge frequently and when power is turned off.
 	- Flash memory is EEPROM (electrically erasable programmable read-only memory), which allows reading multiple bytes and write require erase of a block (so write can ear out the memory).
 	- Hard drives are magnetic charge on spinning disk, and the read/write requires head at the right place. The access is slow but it store bulk of data storage.
-- Typically, the 2 Level Memory involves the follows:$$\text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}.$$
+- Typically, the 2 Level Memory involves the follows:$$$$\text{Processor} \longleftrightarrow \text{Cache} \longleftrightarrow \text{Main Memory (DRAM)}.$$$$
 	- Here, the memory is requested from CPU, if data is found in cache, it is sent directly to CPU, which is a **cache hit**.
 	- If data is not found in cache, the memory is requested from cache to main memory (which is slow) and then sending data from memory to cache, storing it, and eventually send to processor. This is a **cache miss**.
 - The memory embodies the following concepts:
@@ -223,8 +227,8 @@ for (int i = 0; i < size; i++) {
 	- **Hit rate** is the fraction of memory lookups served by data already in cache.
 	- **Miss rate** is the fraction of memory lookups requiring memory transfers.
 	- **Hit time** is the time to process a cache hit.
-	- **Miss penalty** is the time to process a cache miss, typically $100\times$.
-- The memory hierarchy allows many levels, where the transfer between memory in level $i$ and $i+1$ follows the same principle, and moreover, if an item is in level $i$, then it appear in level $i+1$.
+	- **Miss penalty** is the time to process a cache miss, typically $$100\times$$.
+- The memory hierarchy allows many levels, where the transfer between memory in level $$i$$ and $$i+1$$ follows the same principle, and moreover, if an item is in level $$i$$, then it appear in level $$i+1$$.
 
 {% raw %}
 
@@ -253,7 +257,7 @@ for (int i = 0; i < size; i++) {
 	- **index** is \(\log_2(\text{number of slots})\).
 	- **tag to identify position** in main memory is the remaining of address.
 	\[\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
-	- Note that for a $n$-way set-associate ($n$ has to be an integer power of $2$), there will be $n$ sets in for each index.
+	- Note that for a $$n$$-way set-associate ($$n$$ has to be an integer power of $$2$$), there will be $$n$$ sets in for each index.
 	- The total capacity of the cache (or total amount of data is) has the following relationship:
 	\[\text{Capacity} = \
 #\text{Sets} \times \
@@ -264,7 +268,7 @@ for (int i = 0; i < size; i++) {
 		- Number of time accessed.
 		- Least recent use (**LRU**) in which the least recent accessed block get discarded first.
 		- First in, first our (**FIFO**) in which the oldest block get discarded first.
-	- The **LRU** and **FIFO** needs an introduction of timestamp, in which we always find the $2^n-1$ timestamp (where $n$ is the associative factor) and use the slot for latest access / new memory block with $0$, and increment the rest up to the access one / no bound by $1$.
+	- The **LRU** and **FIFO** needs an introduction of timestamp, in which we always find the $$2^n-1$$ timestamp (where $$n$$ is the associative factor) and use the slot for latest access / new memory block with $$0$$, and increment the rest up to the access one / no bound by $$1$$.
 	- In terms of write, when we have write-hit, we have the following strategies:
 		- **Write-through**: we write the value in that address immediately to the memory.
 		- **Write-back**: we defer the write to memory until replacement of line. Here, the block is marked as dirty and it will be written to memory when it is evicted.
@@ -285,7 +289,7 @@ for (int i = 0; i < size; i++) {
 - The cache performance uses the following metrics:
 	- **Miss Rate** is the fraction of memory references not found in cache (misses / accesses) = 1 – hit rate.
 		- It is typically 3-10% for L1, and can be quite small (e.g., < 1%) for L2, depending on size, etc.
-		- The hit and miss differs by $100\times$ for just L1 and main memory, so 99% hit is twice as good as 97% hit.
+		- The hit and miss differs by $$100\times$$ for just L1 and main memory, so 99% hit is twice as good as 97% hit.
 	- **Hit Time** is the time to deliver a line in the cache to the processor, and it includes time to determine whether the line is in the cache.
 		- It is typically 4 clock cycle for L1 and 10 clock cycles for L2.
 	- **Miss Penalty** is the additional time required because of a miss, which is typically 50-200 cycles for main memory.
@@ -297,6 +301,7 @@ for (int i = 0; i < size; i++) {
 	- minimize the misses in the inner loops, which is preserving temporal and spatial locality (for repeated references to variables and stride-1 reference patters).
 - An example for cache manipulation is on matrix multiplication:
 	- Since `C` arrays are allocated in row-major order, each row is contiguous memory location, so the optimal one is `kij` order:
+
 ```c
 for (k = 0; k < n; k++) {
 	for (i = 0; i < n; i++) {
@@ -349,7 +354,7 @@ for (k = 0; k < n; k++) {
 	- It combine object files `printf.o`, `scanf.o`, ... into archive `libc.a`,
 	- It let the linker pick out the ones that are needed:
 		- The code execution is `gcc main.c /usr/lib/libc.a`.
-		- To create one, use `$ar rcs libmy.a my1.o my2.0 my3.o`
+		- To create one, use `$$ar rcs libmy.a my1.o my2.0 my3.o`
 
 ### Relocation Process
 - During relocation the assemblers generate object files that starts at address 0:
@@ -382,7 +387,7 @@ for (k = 0; k < n; k++) {
 	- e.g.: For incrementing a global variable `b`, the distance between code line and `GOT` is `0x2008b9` bytes, so the assembly code looks like:
 ```
 mov 0x2008b9(%rip), %rax    // load the address of symbol
-addl $1, (%rax)             // increment the value
+addl $$1, (%rax)             // increment the value
 ```
 - The `GOT` entry must be later filled in, and it is the reference to data:
 	- When an executable object is loaded, the dynamic linker eagerly determines *run-time addresses for all referenced global variables*, and stores them in the appropriate `GOT` entries.
@@ -405,6 +410,7 @@ addl $1, (%rax)             // increment the value
 		- E.g.: every `C` program is linked against the `C` library (`libc`), so the libc shared library is loaded automatically when the `C` program runs.
 		- However, programs can also load shared libraries (and resolve symbols in them) dynamically.
 	- In general, a function can be interpreted as a pointer, which is:
+
 ```c
 // Declare a pointer to a function returning int and taking
 // a single const char * parameter.
@@ -427,6 +433,7 @@ ptr("Hello world");
 	- This is “instrumenting” the executable in which functions are redefined by interpositioning, that is, *linking (statically or dynamically) functions with the same names into the executable*.
 	- Dynamic loading allows the interposed function(s) to call the “real” function(s).
 	- The `LD_PRELOAD` environment variable can be used to “inject” interposed definitions into an arbitrary program.
+
 ```c
 // instr.c
 
@@ -466,6 +473,7 @@ gcc -shared -nostdlib -o instr.so instr.o -ldl
 	- A “plugin” is a shared library intended to *extend the functionality of a program*, each plugin defines a *standard set of functions*.
 	- “Host” program loads plugin share libraries dynamically and calls functions.
 - In an example of an image analysis program, we have:
+
 ```c
 const char *get_plugin_name(void);
 const char *get_plugin_desc(void);
@@ -484,7 +492,7 @@ struct Image *transform_image(struct Image *source, void *arg_data);
 	- **Traps and system calls**: intentional calls, and are triggered by instruction ("`syscall`").
 	- **Faults**: maybe recoverable, e.g., swapped out memory ("page fault"), and if it is recovered, the program return to regular control flow.
 	- **Aborts**: unrecoverable fatal error, e.g., memory corrupted, and the application process is terminated.
-- In general, the process might could be handle, which would follow the below structure: $$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix} $$
+- In general, the process might could be handle, which would follow the below structure: $$$$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix} $$$$
 
 ### User and Kernel Mode
 - There is a mode bit in the control register.
@@ -525,20 +533,21 @@ string_end:
 .section .text
 .globl main
 main:
-    movq $1, %rax                       ; write is system call 1
-    movq $1, %rdi                       ; arg1: stdout is "file" 1
+    movq $$1, %rax                       ; write is system call 1
+    movq $$1, %rdi                       ; arg1: stdout is "file" 1
     movq string, %rsi                   ; arg2: the string
     movq len, %rdx                      ; arg3: the length of string
     syscall                             ; make system call
 
-    movq $60, %rax                      ; exit is system call 60
-    movq $0, %rdi                       ; put in the exit status
+    movq $$60, %rax                      ; exit is system call 60
+    movq $$0, %rdi                       ; put in the exit status
     syscall                             ; make system call
 ```
-- The system call control process might could be handle, which would follow the below structure: $$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix} $$
+- The system call control process might could be handle, which would follow the below structure: $$$$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix} $$$$
 
 ### Child and Parent Process
 - In `C` programs, the code can spawn child process:
+
 ```c
 int main() {
      int x = 1;
@@ -564,6 +573,7 @@ parent x = 0
 	- When called, the parent and child process run concurrently, and there is no guarantee which proceeds first.
 	- It is the duplicate by separate address space, *i.e.*, the initial memory is identical and each process *makes changes to its private copy*.
 - When there are multiple `fork()` calls, the number of processes grows exponentially:
+
 ```c
 int main() {
      fork();
@@ -615,6 +625,7 @@ int main() {
 	- If there is a signal, forces process to receive signal, where each signal has a default action,
 	- Process can also set up a signal handler for customized response.
 - An example of signal Handler is as follows:
+
 ```c
 
 #include "csapp.h"
@@ -642,6 +653,7 @@ int main() {
 	- The `setitimer` system call allows the process to create an interval timer,
 	- When the timer elapses, OS kernel sends `SIGALRM` signal to process.
 	- The following example is impacted by `SIGALRM` signals:
+
 ```c
 
 #include "csapp.h"
@@ -668,6 +680,7 @@ int main(void) {
 }
 ```
 - The above code causes anomaly, as if we inspect the increment, it is not atomic, which is:
+
 ```c
 tmp = count;
 tmp = tmp + 1;
@@ -675,6 +688,7 @@ count = tmp;
 ```
 - in which if `count` is updated by code executing asynchronously, the updated value could be overwritten by the third step.
 - In this case, the potential solution is to have a synchronization *signal mask* to synchronize signal handlers with the main program, which is:
+
 ```c
 for (int i = 0; i < NCOUNT; i++) {
   sigprocmask(SIG_BLOCK, &mask, NULL);
@@ -700,10 +714,10 @@ for (int i = 0; i < NCOUNT; i++) {
 
 ### Address Space
 - The **address space** is consisted of:
-	- **Virtual memory size**: $N=2^n$ bytes, e.g. 256TB,
-	- **Physical memory size**: $M=2^m$ bytes, e.g. 16GB,
-	- **Page** (or block of memory) size: $P = 2^p$ bytes, e.g. 4KB,
-	- where a virtual address can be encoded in $n$ bits.
+	- **Virtual memory size**: $$N=2^n$$ bytes, e.g. 256TB,
+	- **Physical memory size**: $$M=2^m$$ bytes, e.g. 16GB,
+	- **Page** (or block of memory) size: $$P = 2^p$$ bytes, e.g. 4KB,
+	- where a virtual address can be encoded in $$n$$ bits.
 - The connection is the caching between RAM and disk, driven by a large virtual memory address space to avoid unnecessary and duplicate loading.
 	- The "blocks" in caching here "page" and the mapping is "paging".
 - The mapping has three states:
@@ -738,9 +752,9 @@ for (int i = 0; i < NCOUNT; i++) {
 - **Memory Protection** has a `SUP` bit recording if the page may be *kernel only*, which is `SUP = yes`, the page me be read-only.  ![[Screenshot 2024-04-02 at 7.42.32 PM.png]]
 
 ### Address Translation
-- The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:$$\operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases}$$
+- The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:$$$$\operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases}$$$$
 	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).![[Screenshot 2024-04-02 at 8.39.01 PM.png]]
-	- The virtual address has page offset as $\log_2(\text{Page size})$ and the virtual page number can be converted only if it is valid.
+	- The virtual address has page offset as $$\log_2(\text{Page size})$$ and the virtual page number can be converted only if it is valid.
 - During a **Page Hit**, the process is as follows:![[Screenshot 2024-04-02 at 8.40.56 PM.png]]
 	- **VA**: CPU requests data at virtual address,
 	- **PTEA**: look up page table entry in page table,
@@ -763,7 +777,7 @@ for (int i = 0; i < NCOUNT; i++) {
 ### Combining MMU with Cache
 - For the On-CPU cache, the CPU integrate cache and virtual memory:
 	- MMU resolves virtual address to physical address, the physical address is checked against cache.![[Screenshot 2024-04-02 at 8.46.29 PM.png]]
-	- The on-disk memory is too slow and having data in RAM is only practical solution, so we combine into $\text{CPU}\longleftrightarrow\text{MMU}\longleftrightarrow\text{Cache}$ structure.
+	- The on-disk memory is too slow and having data in RAM is only practical solution, so we combine into $$\text{CPU}\longleftrightarrow\text{MMU}\longleftrightarrow\text{Cache}$$ structure.
 
 ### Translation Lookup Buffer (TLB)
 - For the slow look-uptime, the **Translation Lookahead Buffer** (TLB), it has the same structure as cache, with lowest bits as offset in page, middle bits as index in cache, and highest bits as tag in cache.
@@ -773,7 +787,7 @@ for (int i = 0; i < NCOUNT; i++) {
 - For the huge address space, we introduce multi-level page table:
 	- E.g., the 32 bit address space of 4GB with page size 4KB and size of page table entry being 4 bytes, the number of pages is 1M and size of page table is 4MB, if there is one page table per process, most of the address space is not used.
 	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:![[Screenshot 2024-04-02 at 8.54.52 PM.png]]
-		- The virtual address will be separated into more pieces, in 32 bit x86: $$\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}$$
+		- The virtual address will be separated into more pieces, in 32 bit x86: $$$$\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}$$$$
 
 
 ### Linux Virtual Memory
