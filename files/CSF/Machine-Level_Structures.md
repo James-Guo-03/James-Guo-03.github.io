@@ -655,6 +655,7 @@ int main() {
 |   18   | `SIGCONT` |        ignore         | continue process if stopped          |
 |   19   | `SIGSTOP` | stop until `SIGCONT`  | stop signal not from terminal        |
 |   20   | `SIGTSTP` | stop until `SIGCONT`  | stop signal from terminal (`ctrl-Z`) |
+
 - Note that `SIGKILL` and `SIGSTOP` cannot be caught.
 - The signals can be sent from shell with command: `/bin/kill -9 PID` or keystroke as `ctrl-C` for `SIGINT` and `ctrl-Z` for `SIGTSTP`.
 	- There are also `C` function and Assembly `syscall`.
