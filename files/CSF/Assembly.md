@@ -3,7 +3,9 @@ layout: default
 title: "Assembly Notes"
 ---
 
+
 ## Introduction to Machine Code
+
 ### Compilation into Machine Code
 - A computer can only directly execute the machine code:
 	- The program interprets the high-level code and carries out the specified computation.
@@ -15,11 +17,13 @@ title: "Assembly Notes"
 		- `gcc -c program.s`
 	- Step 3. Link the **Object code** to Executable:
 		- `gcc -o program program.o`
+
 ### `x86-64` Assembly Programming
 - The assembly code has complete control over hardware and helps understanding the code.
 - The assembly optimize performance-critical code.
 - The assembly could implement code generators.
 - The `x86-64` architecture us based in the AMD64 CPUs.
+
 
 ### Optimizations
 - The limitation for the optimizing compilers are:
@@ -32,7 +36,9 @@ title: "Assembly Notes"
 - Prevent memory aliasing and introducing local variables (same element of array to local variable).
 - Use **Instruction-Level Parallelism**, which is having multiple operations at the same time.
 
+
 ## `x86-64` Structures
+
 ### Registers Usages
 - **Registers** are the *smallest data holding elements* that are built into the processor's hardware itself:
 	- **Registers** are the *temporary storage locations* that are directly accessible by the **processor**.
@@ -50,6 +56,7 @@ title: "Assembly Notes"
 - In the above registers, `%rip` and `%rsp` are specifically used. The other are general-purpose registers:
 	- ​`%rax​`, ​`%rcx`​, ​`%rdx`​, ​`%rdi​`, ​`%rsi​`, `%rsp`, and `%r8-r11` are considered **caller-save registers**, meaning that they are *not necessarily saved across function calls*.
 	- ​`%rbx`, `%rbp`, and `%r12-r15` are **callee-save registers**, meaning that *they are saved across function calls*.
+
 ### Register Structures
 - From the changes from 16 to 64 bits, the registers can be divided into:
 	- Low byte (`0 Byte`), Second lowest byte (`1 Byte`), Lowest 2 bytes (`0-1 Byte`), and Lowest 4 bytes (`0-3 Byte`).
@@ -61,6 +68,7 @@ title: "Assembly Notes"
 	- A stack frame represents an in-progress function call, containing:
 		- **Return address**. The address of instructions where control return when function returns.
 		- **Local variables** and **temporary data**.
+
 
 ### Data Section
 - Assembly allows data sections as the structure of the code:
@@ -94,6 +102,7 @@ nameOfLabel:
 	addq $8, %rsp               // Stack alignment 
 	ret
 ```
+
 ### Stack Manipulation
 - Functions or subroutines are the pushed to the stack when called:
 	- Arguments 1–6 passed in `%rdi`, `%rsi`, `%rdx`, `%rcx`, `%r8`, and `%r9`.
@@ -117,6 +126,7 @@ nameOfLabel:
 	- To allocate `n` bytes, subtract `n` from `%rsp` and updated %rsp is a pointer to the beginning of the allocated memory.
 	- To deallocate `n` bytes, add `n` to `%rsp`.
 	- As instructions such as push and pop change `%rsp`, one needs to use the frame pointer register `%rbp` to keep track of allocated memory area.
+
 ### Array
 - Array is sequence of elements, each being a variable:
 	- All elements have the same type, the element type.
@@ -155,6 +165,7 @@ sum_elts_ptr:
     ret
 ```
 - Multidimensional arrays in `C` are laid out in row-major order, so first dimension is considered “rows”, second dimension is considered “columns”.
+
 ### Struct
 - `struct` (a.k.a. “record”) is a heterogenous data type consisting of an arbitrary number of fields with arbitrary types.
 - To access a field within a struct instance, need to know the base address of the struct instance and the offset of the field being accessed:
@@ -165,7 +176,9 @@ sum_elts_ptr:
 ```asm
 /* Note that first three arguments are in %rdi, %rsi, and %rdx */
 
+
 #define PLAYER_X_OFFSET 0
+
 #define PLAYER_Y_OFFSET 4
 
 move_player:
@@ -173,6 +186,7 @@ move_player:
     addl %edx, PLAYER_Y_OFFSET(%rdi)  /* p->y += dy */
     ret
 ```
+
 ### Buffer Overflow
 - `C` is a memory-unsafe language:
 	- No bounds checking of array accesses.
@@ -188,12 +202,15 @@ move_player:
 	- Prior to return, check the canary value, if canary was modified, terminate program.
 	- Canary value generated randomly, cannot easily be guessed.
 	- Return address (in theory) can’t be overwritten without also overwriting canary value.
+
 ## Assembly Operations
+
 ### Assembly Execution
 - Assembly code is a sequence of *instructions* and is executed *sequentially*:
 	- Each instruction has a mnemonic, which represents the execution.
 	- The instructions have one or two operands that specify data values (input/output):
 		- In the `AT&T` syntax, the first operand is **source** and the second is **destination**.
+
 ### Operands
 - The **instruction mnemonics** sometimes use *suffixes* to indicate the operand size:
 
@@ -215,6 +232,7 @@ move_player:
 |Memory reg|`(R)`| `(%rax)`| The dereference of an address|
 |Memory reg| `N(R,R,S)`|`8(%rax,%rsi,4)`| Address $= \texttt{\%rax} + (\texttt{\%rsi} \times 4) + 8$ |
 
+
 ### Data movements
 - The most assembly code is data movement.
 - `mov` copies source operand to destination operand:
@@ -235,6 +253,7 @@ move_player:
 |`cwtl`|Convert word in `​%ax`​ to doubleword in `​%eax`​ (sign-extended)|
 |`cltq`|Convert doubleword in `​%eax`​ to quadword in `​%rax`​ ​(sign-extended)|
 |`cqto`|Convert quadword in `%rax` to octoword in `%rdx:%rax`|
+
 
 ### Arithmetic Operations
 - **ALU** (or Arithmetic Logic Unit) is hardware component that does computation.
@@ -291,6 +310,7 @@ move_player:
 	movq %r11, %rax         /* move the ending 64 bit *
 	divq %r10               /* unsigned division *
 ```
+
 ### Control Flow
 - **Unconditional jumps** uses `jmp`. Since it is unconditional, it does not directly impact decisions.
 - Condition codes are status bits updated by most ALU instructions to indicate the outcome of the instruction, it embraces a variety of flag:
@@ -387,6 +407,7 @@ main:
 	/* the rest are the same but omitted */
 ```
 - Control flow changes the value of `%rip`.
+
 ### Loops
 
 - The loop shall use a `reg` for counter and `jX` is a conditional jump which, when taken, terminates loop.

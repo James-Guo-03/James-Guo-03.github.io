@@ -3,12 +3,15 @@ layout: default
 title: "Machine Level Structure Notes"
 ---
 
+
 ##  Program Optimization
+
 ### Motivations to Optimizations
 - The limitation for the optimizing compilers are:
 	- The program behavior cannot be changed, especially under pathological conditions.
 	- Extensive procedure or optimization among different files are hard.
 	- The compiler must be conservative when in doubt.
+
 ### Strategies for Optimization
 - **Code Motion** reduces the computation performed if they have the same result, especially in a loop.
 ```c
@@ -40,6 +43,7 @@ for (size_t i = 0; i < len; i++) /* manupulations on s */;
 	- The *cycle per element* (CPE) is a convenient way to express performance of program that operates on *vectors or lists*, with parameters:
 		- Length = $n$,
 		- CPE = $\text{cycles per OP}$: $$T = n\times \operatorname{CPE} + \operatorname{Overhead}.$$
+
 ### Superscalar Processor
 - A superscalar processor can issue and execute *multiple instructions in one cycle*. The instructions are retrieved from a sequential instruction stream and are usually scheduled dynamically:
 	- The superscalar processor allows working without programming effort and take advantage of the instruction level parallelism that most programs have.
@@ -76,6 +80,7 @@ long mul_eg(long a, long b, long c) {
 | Single / Double FP Multiply |    5    |      1       |
 | Single / Double FP Add      |    3    |      1       |
 | Single / Double FP Divide   |  3-15   |     3-15     |
+
 ### Optimization for Processor
 - The **latency bound** gives a minimum value for the CPE for any function that must perform the combining operation in a strict sequence. (How many steps it takes to do.)
 - The **throughput bound** gives a minimum bound for the CPE based on the maximum rate at which the functional units can produce results. (How much the CPU functionalities are saturated.)
@@ -91,6 +96,7 @@ long mul_eg(long a, long b, long c) {
 	- Even further, for addition, we can have `x1 = x1 OP a`, `x2 = x2 OP b` in each iteration and eventually allow `x = x1 + x2` to construct two *streams* of operations.
 - In particular, the unroll factor ($L$) means how many operations must be made in an iteration and the accumulator ($K$) indicates how many results are in parallel, their relationship is:$$K \;\big|\; L.$$
 - For double FP, the best operation would have a certain unrolling factor and the accumulators.
+
 ### AVX2
 - AVX2 ensembles the **YMM register**, which has 16 registers in total, each with 32 bytes, this can be:
 	- 32 single-byte integers,
@@ -100,7 +106,9 @@ long mul_eg(long a, long b, long c) {
 	- 4 double-precision float.
 - The **SIMD** operations are on these vectors, which is:
 	- e.g.: `vaddsd %ymm0, %ymm1, %ymm1` adds each entry of `%ymm0` with `%ymm1` into `%ymm1`, which incurs a lower vector throughput bound.
+
 ## CPU Structures
+
 ### MIPS Structure
 - Developed in an early stage, MIPS is the motivation for modern CPUs.
 - The MIPS structure embodies some features, like:
@@ -124,6 +132,7 @@ long mul_eg(long a, long b, long c) {
 |     29     |    `$sp`    | conventionally stack pointer                                |
 |     30     |    `$fp`    | conventionally frame pointer                                |
 |     31     |    `$ra`    | always contains the return address                          |
+
 ### MIPS Pipelines
 - The MIPS Structure separates the procedures into pipelines:
 	- The pipeline has the theoretical speed-up, but *the actual speed-up* may not be fully reached.
@@ -145,6 +154,7 @@ long mul_eg(long a, long b, long c) {
 - In each stage of the pipeline, the information from instruction is needed:
 	- on which ALY operation to execute, which memory address to consult, and which register to write to.
 	- the control information has to be passed through stages:![[Screenshot 2024-04-01 at 11.27.57 PM.png]]
+
 ### MIPS Hazards
 - *Hazards* happens when the next instruction cannot be executed in next clock cycles, with three types.
 - **Structural hazard** happens when *instructions overlap in resource use in the same stage*:
@@ -178,7 +188,9 @@ sub $t0, $s0, $t3   // Executes only if previous has non-zero-flag
 - The control or branch hazard is has instruction control unit that work well ahead of execution unit to generate enough operations to keep the EU busy:
 	- At the conditions, when it cannot be determined, the execution would begin the next one as prediction, but it do not actually modify register or memory data for the predicted position.
 
+
 ## Memory Hierarchy
+
 ### Locality
 - The expectation is to have lots of memory and quick access, but the speed and size for memories have tradeoffs.
 - A helpful concept is *locality*, which is the trend to reference data items that are near other recently referenced data items or that were recently referenced themselves:
@@ -194,6 +206,7 @@ for (int i = 0; i < size; i++) {
 	}
 }
 ```
+
 ### Types of Memories
 - From the fastest speed / smallest capacity to the slowest speed / biggest capacity (and highest cost to lowest cost), we have:
 	- SRAM on CPU $\Rightarrow$ DRAM on motherboard $\Rightarrow$ Flash memory $\Rightarrow$ Magnetic disk.
@@ -214,6 +227,7 @@ for (int i = 0; i < size; i++) {
 - The memory hierarchy allows many levels, where the transfer between memory in level $i$ and $i+1$ follows the same principle, and moreover, if an item is in level $i$, then it appear in level $i+1$.
 
 {% raw %}
+
 
 ### Caching Strategies
 - All data is in large main memory, but data for processing has to moved to cache:
@@ -241,7 +255,9 @@ for (int i = 0; i < size; i++) {
 	\[\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
 	- Note that for a $n$-way set-associate ($n$ has to be an integer power of $2$), there will be $n$ sets in for each index.
 	- The total capacity of the cache (or total amount of data is) has the following relationship:
-	\[\text{Capacity} = \#\text{Sets} \times \#\text{Block Size}\times\text{Associative Factor}.\]
+	\[\text{Capacity} = \
+#\text{Sets} \times \
+#\text{Block Size}\times\text{Associative Factor}.\]
 	- For set associative cache, there will be caching strategies, the blocks are read in when needed.
 	- When the cache is full, the blocks are discarded based on:
 		- Random discard.
@@ -259,6 +275,7 @@ for (int i = 0; i < size; i++) {
 
 {% endraw %}
 
+
 ### Cache Performances
 - The Intel Core i7 Cache has 3 level of caches, which respectively:
 	- L1 i-cache and d-cache: 32KB, 8-way, with 4 cycles to access;
@@ -273,6 +290,7 @@ for (int i = 0; i < size; i++) {
 		- It is typically 4 clock cycle for L1 and 10 clock cycles for L2.
 	- **Miss Penalty** is the additional time required because of a miss, which is typically 50-200 cycles for main memory.
 		- The trend should be increasing.
+
 ### Cache Friendly Code
 - In developing the cache friendly code, we shall:
 	- make the common case go faster, especially on the inner loops of the core functions.
@@ -290,7 +308,9 @@ for (k = 0; k < n; k++) {
 }
 ```
 - The example achieves 0.5 misses per iteration, while the other strategies also exceeds the L2 and L3 cache limits.
+
 ## Linking
+
 ### Compilation Process and Static Linking
 - In conventional compilation, the output file is small since the executions is put into the dynamic library.
 - To achieve static linking, we compile with `--static` flag, which results in very large file, as it includes the entire library.
@@ -330,6 +350,7 @@ for (k = 0; k < n; k++) {
 	- It let the linker pick out the ones that are needed:
 		- The code execution is `gcc main.c /usr/lib/libc.a`.
 		- To create one, use `$ar rcs libmy.a my1.o my2.0 my3.o`
+
 ### Relocation Process
 - During relocation the assemblers generate object files that starts at address 0:
 	- when combining multiple object files, code must be shifted,
@@ -345,6 +366,7 @@ for (k = 0; k < n; k++) {
 		- **Added**: Constant part of relocation expression.
 - In terms of static linking, the global variables and other loaded from executables are guaranteed to have the same positions, but local variables on the stack could have pointer addresses vary for each execution:
 	- This is due to the given structure of the memory setup:![[Screenshot 2024-04-02 at 9.15.53 PM.png]]
+
 ### Dynamically Linking Process
 - **Dynamically linking Process** involves the started libraries.
 - Once program is executed, loader calls dynamic linker:
@@ -393,7 +415,8 @@ ptr = puts;
 ptr("Hello world");
 ```
 - In incurring a dynamic loading on Linux, we use:
-	- The command as `#include <dlfcn.h>`,
+	- The command as `
+#include <dlfcn.h>`,
 	- Call `dlopen` to dynamically load a shared library,
 	- Once a shared library has been loaded, call `dlsym` to get the addresses of data and functions within it,
 	- Call `dlclose` to unload the shared library,
@@ -406,7 +429,9 @@ ptr("Hello world");
 	- The `LD_PRELOAD` environment variable can be used to “inject” interposed definitions into an arbitrary program.
 ```c
 // instr.c
+
 #include <stdlib.h>
+
 #include <dlfcn.h>
 
 // Get the definition for real put.
@@ -448,7 +473,9 @@ void *parse_arguments(int num_args, char *args[]);
 struct Image *transform_image(struct Image *source, void *arg_data);
 ```
 - Each plugin defines its own versions of all of the required functions, and the Host program loads plugin shared libraries and calls the functions as appropriate.
+
 ## Process Control and Signal
+
 ### Control Flow for Processes
 - In the normal control, we have:
 	- The CPU executes one instruction after another, and typically, they are next to each other in memory (unless jumps, branches, and returns from subroutine).
@@ -458,6 +485,7 @@ struct Image *transform_image(struct Image *source, void *arg_data);
 	- **Faults**: maybe recoverable, e.g., swapped out memory ("page fault"), and if it is recovered, the program return to regular control flow.
 	- **Aborts**: unrecoverable fatal error, e.g., memory corrupted, and the application process is terminated.
 - In general, the process might could be handle, which would follow the below structure: $$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \text{Interrupt (Finish current instruction)} & \longrightarrow &\text{Interrupt handler}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \text{success / fail} & \longrightarrow \text{Terminate}\\ \downarrow\end{matrix} $$
+
 ### User and Kernel Mode
 - There is a mode bit in the control register.
 - For **Kernel Mode**, it may execute any instruction, access any memory.
@@ -466,6 +494,7 @@ struct Image *transform_image(struct Image *source, void *arg_data);
 	- voluntarily (sleep),
 	- triggered by interrupt, or
 	- through `syscall`.
+
 ### System Calls
 - There are a few examples of system calls with their functionalities:
 
@@ -507,6 +536,7 @@ main:
     syscall                             ; make system call
 ```
 - The system call control process might could be handle, which would follow the below structure: $$\begin{matrix}\text{Execute instructions}\\ \downarrow \\ \texttt{syscall} & \longrightarrow &\text{control passes to kernel}\\ && \downarrow\\ \text{Handler returns to next instruction} & \longleftarrow & \texttt{syscall}\text{ handler runs}\\ \downarrow\end{matrix} $$
+
 ### Child and Parent Process
 - In `C` programs, the code can spawn child process:
 ```c
@@ -559,6 +589,7 @@ int main() {
 - The parent process may also execute another program, which is by:
 	- `execve(filename, argv, envp)` in `C`, where `envp` os the passed environment variable, and `syscall 59` in Assembly.
 	- In this case, the executed command takes over, but one can use `fork()` first to let both run together.
+
 ### Signals
 - Signals are *software-level communication between processes*:
 	- Signals can be sent and received from or by one process:
@@ -585,6 +616,7 @@ int main() {
 	- Process can also set up a signal handler for customized response.
 - An example of signal Handler is as follows:
 ```c
+
 #include "csapp.h"
 void sigint_handler(int sig) {
     printf("Caught %d\n", sig);          // print the signal caught
@@ -601,6 +633,7 @@ int main() {
 	- and creating stack frame for signal handler, while setting argument registers for signal handler, and eventually jumps to signal handler.
 	- Signals are normally delivered on the process’s call stack.
 	- Process may designate a special area of memory to serve as a stack for received signals.
+
 ### Asynchrony in Signals
 - Signal delivery could occur before or after any instruction, so they are **asynchronous**, meaning it happens at any time or ordering is unpredictable.
 - Signal handlers are asynchronous with respect to the rest of the program, and this could cause strange behavior.
@@ -610,7 +643,9 @@ int main() {
 	- When the timer elapses, OS kernel sends `SIGALRM` signal to process.
 	- The following example is impacted by `SIGALRM` signals:
 ```c
+
 #include "csapp.h"
+
 
 #define NCOUNT 100000000
 volatile int stop = 0, nsigs = 0, count = 0;
@@ -651,7 +686,9 @@ for (int i = 0; i < NCOUNT; i++) {
 	- Note that not all signals may be blocked  
 	- For the example program, we can block `SIGALRM` to avoid the signal handler from executing at the wrong time.
 	- There will be no anomaly. However, note that the program took a very long time to run (more than 70 seconds) due to the overhead of calling `sigprocmask` in the main loop.
+
 ## Virtual Memory
+
 ### Virtual Memory and Page Table
 - **Virtual Memory** is the abstraction of physical memory, it aims to:
 	- allow more available memory than physically exists (DRAM),
@@ -660,6 +697,7 @@ for (int i = 0; i < NCOUNT; i++) {
 - To allow this, the **Page table** maps from virtual address to physical addresses:
 	- It is made available by the Memory management unit (**MMU**), a hardware implementation of address translation.
 	- The page table is closely tied with multi-tasking (multiple processes) and  managed by hardware and software.
+
 ### Address Space
 - The **address space** is consisted of:
 	- **Virtual memory size**: $N=2^n$ bytes, e.g. 256TB,
@@ -685,6 +723,7 @@ for (int i = 0; i < NCOUNT; i++) {
 - For the **Process Memory**, there is nothing loaded at startup, but rather a working set (or resident set):
 	- They are pages of a process that are currently in DRAM, loaded by virtual memory system on demand.
 	- When memory actively required by all processes is larger than physically available, there will be frequent swapping of memory to/from disk, called **Thrashing**, which is very bad, as it slows down machine dramatically.
+
 ### Simplified Processes
 - For the **Process Address Space**, it starts from address of `0x400000`: ![[Screenshot 2024-04-02 at 7.09.49 PM.png]]
 	- Each process has its code in address 0x400000.
@@ -697,6 +736,7 @@ for (int i = 0; i < NCOUNT; i++) {
 - In certain cases, the process may need more memory (e.g., malloc call), then it needs a new entry in page table:
 	- It maps to arbitrary pages in physical memory, and the entries do not have to be contiguous.
 - **Memory Protection** has a `SUP` bit recording if the page may be *kernel only*, which is `SUP = yes`, the page me be read-only.  ![[Screenshot 2024-04-02 at 7.42.32 PM.png]]
+
 ### Address Translation
 - The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:$$\operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases}$$
 	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).![[Screenshot 2024-04-02 at 8.39.01 PM.png]]
@@ -719,18 +759,22 @@ for (int i = 0; i < NCOUNT; i++) {
 		- update page table entry, and
 		- trigger do-over of instruction that caused exception
 	- Loading into `RAM` is very slow, but the added complexity of handling in software is no big deal.
+
 ### Combining MMU with Cache
 - For the On-CPU cache, the CPU integrate cache and virtual memory:
 	- MMU resolves virtual address to physical address, the physical address is checked against cache.![[Screenshot 2024-04-02 at 8.46.29 PM.png]]
 	- The on-disk memory is too slow and having data in RAM is only practical solution, so we combine into $\text{CPU}\longleftrightarrow\text{MMU}\longleftrightarrow\text{Cache}$ structure.
+
 ### Translation Lookup Buffer (TLB)
 - For the slow look-uptime, the **Translation Lookahead Buffer** (TLB), it has the same structure as cache, with lowest bits as offset in page, middle bits as index in cache, and highest bits as tag in cache.
 	- For associative cache, there are more than 1 entry per index.![[Screenshot 2024-04-02 at 8.52.11 PM.png]]
+
 ### Multi-Level Page Table
 - For the huge address space, we introduce multi-level page table:
 	- E.g., the 32 bit address space of 4GB with page size 4KB and size of page table entry being 4 bytes, the number of pages is 1M and size of page table is 4MB, if there is one page table per process, most of the address space is not used.
 	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:![[Screenshot 2024-04-02 at 8.54.52 PM.png]]
 		- The virtual address will be separated into more pieces, in 32 bit x86: $$\underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}}$$
+
 
 ### Linux Virtual Memory
 - Each process has its own virtual address space, page table, and translation look-up buffer:
@@ -741,6 +785,7 @@ for (int i = 0; i < NCOUNT; i++) {
 	- Exception is handled by software (Linux kernel),
 	- Kernel must determine what to do.
 - The kernel walks through `vm_area_struct` list to resolve page fault.![[Screenshot 2024-04-02 at 9.06.08 PM.png]]
+
 ### Memory Mapping
 - Area of virtual memory contains file on disk.
 - In regular file in file system, files are divided up into pages:

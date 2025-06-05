@@ -3,7 +3,9 @@ layout: default
 title: "Representation Notes"
 ---
 
+
 ##  Data Representation
+
 ### Discrete Representation
 - Digital computers use a **discrete representation** for all data, which allow the number to have one set of possible values where the set of possible values is *enumerable*:
 	- The discrete data representation corresponds to the high voltage (1) and low voltage (0).
@@ -28,6 +30,7 @@ where $a,b,c$ are digits from $0$ to $n-1$ and the places are powers of $n$.
 |`short`|2|2|
 |`int`|4|4|
 |`long`|4|8|
+
 ### Memory Representation
 - Conceptually, the memory (RAM) is a sequence of byte-sized storage locations:
 	- Each byte storage location has an integer address.
@@ -37,6 +40,7 @@ where $a,b,c$ are digits from $0$ to $n-1$ and the places are powers of $n$.
 - In the memory, when storing a $n$-bit word, the $n/8$ contiguous bytes are used:
 	- The natural alignment must have an address of an $n$-byte word having an address that is exactly a multiple of $8$.
 	- In `C`, we can print the memory addresses by `"%p"` for the pointer, where addresses can be identifies as in the malloced buffer, as global variables or on the stack.
+
 ### Bit-wise Operators
 - `C` allows bitwise operators where we think of each bit (`1` or `0`) as Boolean values (`true` or `false`).
 
@@ -59,7 +63,9 @@ where $a,b,c$ are digits from $0$ to $n-1$ and the places are powers of $n$.
 ```c
 	x & ~(~0U << n);
 ```
+
 ## Binary Data
+
 ### Signed Integer Representation
 - **Sign magnitude representation** lets the most significant bit be a sign bit – $0$ is positive and $1$ is negative:
 	- The downsides are that there are two representations of 0 and the arithmetic is complicated by sign.
@@ -71,6 +77,7 @@ where $a,b,c$ are digits from $0$ to $n-1$ and the places are powers of $n$.
 	- For two's complement, the unsigned addition yields correct result for signed values.
 	- Hence, the subtraction would be adding the two's complement of the second argument.
 	- The additive inverse $-x$ can be computed by inverting all bits of $x$, then adding $1$.
+
 ### Extension and Truncation
 - For **signed extension** for *two's complement*, the strategy is to add all the prior digits of the most significant digit:
 	- `1011` extends to `11111011` and `0011` extends to `00000011`.
@@ -81,6 +88,7 @@ where $a,b,c$ are digits from $0$ to $n-1$ and the places are powers of $n$.
 - The conversion between **signed** and **unsigned** values do not change the underlying representation as bits:
 	- `10010110` means `-106` for signed but `150` for unsigned.
 - Hence, the type casting is always suggested so the conversions are explicit even if they are unnecessary. 
+
 ### Integer Arithmetics
 - Addition of unsigned values starts at the least significant digit and carry excess into next-most-significant digit:
 	- If the sum of $w$-bit (unsigned) integer value is too large to represent using a $w$-bit word, *overflow* occurs, in which the effective sum of integers $a$ and $b$ is:
@@ -96,6 +104,7 @@ $$a+b\pmod{2}.$$
 	- Unsigned/signed small to unsigned/signed large has value preserved.
 	- Unsigned/signed large to unsigned/signed small could have value changed.
 - Conversions between signed and unsigned type could generate surprising results.
+
 ### Floating-Point Representation
 - The computers can also represent floating-point values, as $\mathrm{ratio}\cong\mathrm{fraction}$.
 - Binary numbers can also be representing floating-point values.

@@ -1,13 +1,18 @@
+
 # Basic C++ Notes
 
+
 ## `C++` Structures:
+
 ### `C++` Comparing with `C`:
+
 #### `C++` special features:
 - The `C++` language contains:
 	- Classes – like Java `classes`.
 	- Templates – like Java `generics`.
 	- Standard Template Library – like `java.util`.
 	- More convenient text input & output.
+
 #### `C++` inheriting `C`:
 - Many features/concepts from `C` language are also relevant in `C++`:
 	- types: `int`, `char`, `float`, `double`, pointer types:
@@ -23,26 +28,35 @@
 	- `struct` (with minor differences):
 		- including new concept of `class`.
 - `C++` can use any `C` headers, such as `assert.h`, `math.h`, `ctype.h`, `stdlib.h`, ...
-	- when using `#include` drop the `.h` and add `c` in the beginning:
-		- e.g.: `#include <assert.h>` in `C` becomes `#include <cassert>`.
+	- when using `
+#include` drop the `.h` and add `c` in the beginning:
+		- e.g.: `
+#include <assert.h>` in `C` becomes `
+#include <cassert>`.
+
 ### `C++` Compiler:
+
 #### `C++` programming files:
 - Source files `<filename>.cpp`:
 	- The program code.
 	- Contains definitions for *functions* and *methods* of *classes* declared in a `.h` file:
 		- The `.h` file for templated class cannot be included in `.cpp` file.
-	- Use `#include` into include corresponded `.h` files.
+	- Use `
+#include` into include corresponded `.h` files.
 - Header files `<filename>.h`:
 	- Group together declarations.
 	- Declare `struct` and `class` for object oriented programming (*oop*).
-	- Included using `#include` in appropriate files.
+	- Included using `
+#include` in appropriate files.
 	- When having templated `class`, the definition shall go into a `.inc` or `.inl` file.
 	- Header files often has *header guards* when it contains definitions, which prevents definition duplications (giving *compiler errors*) when multiple `.cpp` files include the same `.h` file, as follows:
 ```cpp
 // rectangle.h:  
 // include lines like this at the top; change the all-caps
 // name to match the file name, rectangle.h in this case
+
 #ifndef RECTANGLE_H  
+
 #define RECTANGLE_H
 
 class Rectangle { // structure
@@ -56,11 +70,13 @@ class Rectangle { // structure
 };
 
 // include this line at the bottom
+
 #endif
 ```
 - Inclusion files `<filename>.inc` or `<filename>.inl`:
 	- The inclusion file serves as the extra lines for a templated class.
-	- The templated files needs to be included by `#include <filename>.inc`.
+	- The templated files needs to be included by `
+#include <filename>.inc`.
 - Intermediate object files `<filename>.o`:
 	- Translated from source files (`.c` files).
 	- Needed to be *linked* to executable file.
@@ -69,13 +85,15 @@ class Rectangle { // structure
 	- Execute using `./<executable>`.
 - Makefile `Makefile`:
 	- Producing linking and compiling with less repetition.
+
 #### `Makefile` in `C++`:
 - `Makefile` is a tool that helps keeping track of which files need to be recompiled.
 	- Save time by not re-compiling unnecessarily.
 	- Replacing the complicated recompile code for different files.
 - With the name of `Makefile` or `makefile`, the compiling uses only `make`.
 - `Makefile` uses the `bash` syntax:
-	- Lines in a makefile that begin with `#` are comments.
+	- Lines in a makefile that begin with `
+#` are comments.
 	- `$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.
@@ -83,6 +101,7 @@ class Rectangle { // structure
 	- Multiple targets can be triggered by making a single target.
 - Sample `Makefile` file:
 ```bash
+
 # Makefile:
 
 CC=g++  
@@ -100,6 +119,7 @@ functions.o: functions.cpp functions.h
 clean:  
 	rm -f *.o main
 ```
+
 #### `enum` type:
 - An enumeration is a distinct type whose value is restricted to a range of values.
 - An enum can include several explicitly named constants (“enumerators”):
@@ -124,11 +144,14 @@ if (col == MyColor::myred) { // Compiler will give an error.
 	// ...
 }
 ```
+
 #### `lambdas` functions:
 - A function can be passed into a function as a `functor`:
 	- The `functor` has definition of `return_type (*cmp)(const void *, const void *)` of comparing void pointers
 ```cpp
+
 #include <iostream>
+
 #include <cstdlib>
 template <typename T>
 int compare_T (const void *v1, const void *v2) {
@@ -164,12 +187,15 @@ int main( void ) {
 		- `param` are the parameters with type and variable name that the function takes as input.
 		- `code-block` includes all the operations and returns some objects, its type is derived by the compiler.
 	- If there are multiple returns, they need to be of the same type, else the compiler cannot know what to case.
+
 #### `auto` keyword:
 - By using the `auto` keyword, the compiler could determine the type for certain variables:
 	- `auto` acts the same as the definition of the type.
 - For inputting `functor` in functions, use of `auto` keyword and `typename` of `T_cmp` allows us to not give the full `functor type`, that is:
 ```cpp
+
 #include <iostream>
+
 #include <cstdlib>
 
 template <typename T, typename T_cmp>
@@ -202,10 +228,13 @@ int main( void ) {
 ```cpp
 auto it = c.cbegin();
 ```
+
 ### `C++` Compiling and Debugging:
+
 #### Steps of Compiler in `C++`:
 - `C++` follows the same steps of *Preprocessor*, *Compiler*, and *Linker*.
 - `C++` allows debugging through `GDB` and `valgrind`.
+
 #### `C++` Compiling Command:
 - Compile using GNU `C++` compiler (`g++`) to compile, link, and create executable.
 - The standard compiling command is `g++ -std=c++11 -Wall -Wextra -pedantic <c_file>`:
@@ -217,6 +246,7 @@ auto it = c.cbegin();
 	- `-o` flag places output in designate `filename`, *regardless* the output type.
 	- `-g` flag produces *debugging information* in the operating system's native format.
 	- `-c` flag compiles to `.o` file.
+
 #### GNU debugger, `GDB`:
 - `gdb` helps running program in a way that allowing:
 	- Flexibly `pause` and `resume`.
@@ -244,6 +274,7 @@ auto it = c.cbegin();
 - `help` commands provide prompt for help:
 	- Help advancing through the program: `help running`
 	- Help printing commands: `help show`
+
 #### Memory Track, `valgrind`:
 - `valgrind` finds memory usage mistakes:
 	- Invalid memory accesses (*e.g.* array index out of bounds).
@@ -255,7 +286,9 @@ auto it = c.cbegin();
 - When running `valgrind`, it runs the executable file:
 	- `valgrind --leak-check=full --show-leak-kinds=all ./<executable> <args> ...`
 	- The program’s output is *interleaved* with `valgrind` messages.
+
 ### `C++` References:
+
 #### Reference type:
 - Reference variable is an *alias*, another name for an existing variable (memory location).
 	- Used in many situations where *pointers* would be used in `C`.
@@ -277,6 +310,7 @@ void swap(int& a, int& b) { // Swaps two ints by reference.
 - Once a reference is set to alias a variable, it cannot later be set to alias another variable:
 	- When the reference is changed, then the original value changes.
 	- Reference variable must be initialized immediately and can't be `NULL`.
+
 #### References in functions:
 - In `C++`, a variable can be passed into functions via:
 	- Pass by value: when passed by value, the variable is deep copied into the function.
@@ -289,12 +323,15 @@ void swap(int& a, int& b) { // Swaps two ints by reference.
 	- `const` reference if modification is not permitted.
 		- Pass by reference avoids making copies, so it is more efficient.
 	- normal reference otherwise.
+
 #### `const` references:
 - A reference can be `const`, then one can’t subsequently assign via that reference.
 	- This is achieved by `const int& c = a` which adds `const` protection.
 	- Even so, one can still assign to the original non-`const` variable, or via a non-`const` reference to it.
 	- When attempting to assign value to `const` references, there will be *error*.
+
 ### I/O in `C++`:
+
 #### `<iostream>` header in `C++`:
 - `<iostream>` library allows the basic input or output stream from or to a stream:
 	- The stream for standard output is `std::cout`.
@@ -307,11 +344,14 @@ void swap(int& a, int& b) { // Swaps two ints by reference.
 		- E.g. `std::cin >> var_1;`
 		- `cin.get(char&)` takes in a `char` by reference and modify the value of the `char` to the next `char` in the input `stream`.
 	- When certain desired output/input formatting is needed, one can use `<cstdio>` package and `printf` with `scanf` from `C`.
+
 #### `<fstream>` header in `C++`:
 - `fstream` header handles the I/O for files:
 - `ofstream` is for writing to a file:
 ```cpp
+
 #include <iostream>
+
 #include <fstream>
 int main() {
 	std::ofstream ofile( "hello.txt" );
@@ -321,8 +361,11 @@ int main() {
 ```
 - `ifstream` is for reading from a file:
 ```cpp
+
 #include <iostream>
+
 #include <fstream>
+
 #include <string>
 int main() {
 	std::ifstream ifile( "hello.txt" );
@@ -341,10 +384,13 @@ int main() {
 ```
 - `fstream` is for reading and writing to/from a file:
 	- `<<` and `>>` operators are for file I/O.
+
 #### `stringstream` as buffer:
 - `stringstream` is a temporary string (“buffer”) that stores the data instead of reading or writing to a file or console.
 ```cpp
+
 #include <iostream>
+
 #include <sstream>
 int main(){
 	std::stringstream ss;  
@@ -361,6 +407,7 @@ int main(){
 - The `stringstream` also comes with buffers that only do reading or writing:
 	- `istringstream` is for reading only and only takes `>>` for extracting strings.
 	- `ostringstream` is for writing only and only takes `<<` for inputing strings.
+
 #### Object Oriented Programming from `ios`:
 - The `ios` class follows the structure of:
 ```UML
@@ -382,7 +429,9 @@ int main(){
 - `stringstream` inherits from `istream` and `ostream`:
 	- operators `<<` and `>>` are defined for reading/writing from/to a `stringstream`.
 	- we can use member function `.str()` to get the string out of the object.
+
 ### `C++` Standard Template Library:
+
 #### `C++` Namespaces:
 - Most `C++` functionality lives in namespace called `std`, if it is not included at the top, one needs to write the fully qualifies name each time:
 	- One can include the namespace at the top of the `.cpp` file.
@@ -404,9 +453,11 @@ using std::endl;
 	using TMap = map<int,string>;       // map type
 	using TMapItr = TMap::iterator;     // map iterator type
 ```
+
 #### `string` in `C++`:
 - `C++` strings have similar user-friendliness of `java`/`python` strings, it had less details like null terminators.
-- To include, we should have `#include <string>` at the top:
+- To include, we should have `
+#include <string>` at the top:
 	- The full name is `std::string`.
 	- One can have `using std::string` at the top of the `.cpp` file so one does not need to include `std` namespace every time.
 - A string can be initialized in multiple ways:
@@ -445,6 +496,7 @@ string s5 = s2;        // deep copy of s2 to s5
 	- `s.insert(size_t, const string&)` inserts a copy of the string at some position, `s.insert(size_t, size_t, char)` inserts a `char` for consecutive times.
 	- `s.erase(size_t pos = 0, size_t len = npos)` remove a length of characters from the indicated start position.
 	- `s.replace(size_t pos, size_t len, const string& str)` replaces the portion of the string spanned by `pos` and `len` to the copy of `str`.
+
 #### Templates in `C++`:
 - Templates are a way of writing an *object* or *function* so they can work with *any type*.
 	- Defining a template is simultaneously *defining a family of related objects/functions*.
@@ -481,14 +533,18 @@ int sum_every_other(const T& ls) {
 }
 ```
 - Templated classes are helpful for object oriented programming.
+
 #### `array` – fixed-length array  
 - `array` is a array with a fixed length.
-	- Use `#include <array>` to use it.
+	- Use `
+#include <array>` to use it.
 	- Use `[ ]` to access elements.
 	- Declare by `std::array<int, 3> a = {1, 2, 3};` for use.
+
 #### `vector` – dynamically-sized array:
 - `vector` is an array that automatically grows/shrinks as you need more/less room.
-	- Use `#include <vector>` to use it.
+	- Use `
+#include <vector>` to use it.
 	- Use `[ ]` to access elements, like arrays.
 	- Allocation, resizing, deallocation handled by `C++`.
 	- Like Java’s `java.util.ArrayList` or Python’s `list` type.
@@ -510,10 +566,12 @@ for (vector<string>::iterator it = names.begin();
 	cout << *it <<endl;
 }
 ```
+
 #### `map` – associative list, or dictionary:
 - Collection of `keys`, each with an associated `value`:
 	- Like Java’s `java.util.HashMap` or `TreeMap` or Python’s `dict` (dictionary) type.
-	- Use `#include <map>` to use it.
+	- Use `
+#include <map>` to use it.
 	- Use `[ ]` to access values by keys.
 - To use a map, we have:
 	- For namespaces, use `using std::map`.
@@ -525,16 +583,21 @@ for (vector<string>::iterator it = names.begin();
 - An iterator iterates through the keys via `map<int, std::string>::iterator`.
 	- Iterator moves over the keys in *ascending order*, the reverse iterator moves in *descending order*.
 	- To dereference a map iterator, `it->first` is the key and `it->second` is the value.
+
 #### `pair` – quick pair for output:
 - For functions returning multiple values, use `pair`, it allows returning two things of different type:
 	- `iterator` is a `pair`.
-	- use pair by defining `#include <utility>;`
+	- use pair by defining `
+#include <utility>;`
 	- declare `pair` by `std::pair<int, string> = std::make_pair(1, "2");`
+
 #### `tuple` – pair with unlimited amount of elements:
 - tuple is like pair but with as many fields as you like:
-	- Define by `#include <tuple>`.
+	- Define by `
+#include <tuple>`.
 	- Using namespace of `using std::tuple` and `using std::make_tuple`.
 	- Declare by `tuple<int, int, float> = make_tuple(1, 2 3.0f)`.
+
 #### `iterator` – quickly iterate through the object:
 - With `iterator` (or `reverse_iterator`), one can modify the data structure via the dereferenced iterator. With `const_iterator` (or `const_reverse_iterator`), the data are protected.
 
@@ -544,18 +607,23 @@ for (vector<string>::iterator it = names.begin();
 |`const_iterator`|forward|back|`.cbegin()` / `.cend()`|`const`|
 |`reverse_iterator`|back|forward|`.rbegin()` / `.rend()`|-|
 |`const_reverse_iterator`|back|forward|`.crbegin()` / `.crend()`|`const`|
+
 #### `algorithm` – algorithms for functions:
 - `algorithm` includes certain algorithms that can help quick coding.
-	- Include algorithms header by `#include <algorithm>`.
+	- Include algorithms header by `
+#include <algorithm>`.
 	- `std::sort(begin_iterator, end_iterator, order_function)` sorts the arrays though the ascending order or the order specified by a `bool` comparison function.
 	- `std::find(begin_iterator, end_iterator, value)` looks for the `value` through iterators, and will return the  `end_iterator` if nothing is found.
 	- `std::count(begin_iterator, end_iterator, value)` counts how many times `value` appears through iterators, and will return the number of occurrence.
+
 #### Other templates:
 - `set` – set with each element can appear at most once.
 - `list` – linked list.
 - `stack` – last-in first-out (LIFO).
 - `deque` – double-ended queue, flexible combo of LIFO/FIFO, has `pop_front()`.
+
 ### Dynamic Memory Allocation in `C++`:
+
 #### Dynamically allocating pointers:
 -  `new` and `delete` are the `C++` versions of `malloc` and `free` in `C`.
 	- `new` not only allocates the memory, it also calls the appropriate constructor if used on a class type.
@@ -568,6 +636,7 @@ int main() {
 	delete iptr;                   // deallocate the pointer.
 }
 ```
+
 #### Dynamically allocating arrays:
 -  `new` and `delete []` are for dynamically allocating/deallocating arrays.
 	- when allocating arrays, use `T *a = new T[n]` to allocate an array of `n` elements of type `T`.
@@ -583,13 +652,16 @@ int main() {
 	return 0;
 }
 ```
+
 ### `Exceptions` in `C++`:
+
 #### Exceptions:
 - Exceptions are to indicate a fatal error has occurred, where there is no reasonable way to continue from the point of the error.
 	- It might be possible to continue from somewhere else, but not from the point of the error.
 	- Exceptions are more flexible; often less error prone, more concise than manually propagating errors back through the chain of callers.
 - When an exception is thrown, a `std::exception` object is created.
-	- Could be included as `#include <stdexcept>`
+	- Could be included as `
+#include <stdexcept>`
 	- Exception types ultimately derive from `std::exception` base class.
 	- Exception's type and contents (accessed via `.what()`) describe what went wrong.
 - The `exception` class derives into:
@@ -623,13 +695,18 @@ int main() {
 	- If exception is never caught – i.e. we unwind all the way through `main` – exception info is printed to console and program exits.
 	- Unwinding causes local variables to go out of scope:
 		- As destructors always called when object goes out of scope, regardless of whether scope is exited because of reaching end, return, break, continue, exception.
+
 #### Customized `Exceptions`:
 - One can define their own exception class, derived from exception:
 	- Since exceptions are related through inheritance, one can choose whether to catch a base class (thereby catching more different things) or a derived class.
 ```cpp
+
 #ifndef EXCEPTION_H
+
 #define EXCEPTION_H
+
 #include <stdexcept>
+
 #include <string>
 class PlotException : public std::runtime_error {
 public:
@@ -638,10 +715,14 @@ public:
 	~PlotException() { }
 };
 
+
 #endif // EXCEPTION_H
 ```
+
 ## Object Oriented Programming in `C++`:
+
 ### Basic `class` in `C++`:
+
 #### `class`:
 - `C++` is an object-oriented programming language that supports putting related functionality as part of the object (in comparison with `struct`).
 - A `class` definition is like a blueprint defining a type:
@@ -678,6 +759,7 @@ int main() {
 - A class field cannot be immediately initialized when they are declared unless it is a `static` field.
 	- A `static` field is independent with instances of the `class`.
 	- A `static` function is not associated with any object.
+
 #### Style for `class`:
 - Class definition goes in a `.h` file.
 - Functions can be declared and defined inside `class { ... }`;
@@ -686,7 +768,9 @@ int main() {
 	- One needs to qualify the function with the class scope as `Clasname::function(parameters) { code }` in the `.cpp` files.
 ```cpp
 // Rectangle.h
+
 #ifndef RECTANGLE_H
+
 #define RECTANGLE_H
 class Rectangle {
 	// code in between
@@ -695,14 +779,17 @@ class Rectangle {
 	}
 	double get_area() const;     // long definition has prototype only
 };
+
 #endif
 
 // Rectangle.cpp
+
 #include "Rectangle.h"
 double Rectangle::area() const { // definition outside class
 	return width * height;
 }
 ```
+
 #### Constructors:
 - Default constructor for a class is a member function that `C++` calls when you declare a new variable of that class without any initialization:
 	- A constructor is a member function you can define yourself.
@@ -756,7 +843,9 @@ private:
 
 ```cpp
 // myThing4.cpp:
+
 #include <iostream>
+
 #include <vector>
 
 class MyThing {
@@ -782,6 +871,7 @@ int main() {
 ```
 
 {% endraw %}
+
 
 #### Destructors:
 - Since `new` in `C++` also calls the constructors, it is common for a constructor to obtain a resource (allocate memory, open a file, etc) that should be released when the object is destroyed.
@@ -818,6 +908,7 @@ private:
 		- E.g. `Rational r2(r1);`
 	- when sending a `class` object to a function using pass-by-value.
 	- when a `class` object is returned from a function by value.
+
 #### Initialization and Assignment:
 - `=` can be interpreted as:
 	- `=` in a declaration:
@@ -854,10 +945,12 @@ Image& operator=(const Image& o) {
     return *this; // for chaining
     }
 ```
+
 #### Templated class
 - Just like templated `struct`, we can make `class` templated in `C++`:
 ```cpp
 // ll_temp.inc:
+
 
 #include <iostream>
 template<typename T> class Node {  
@@ -876,13 +969,18 @@ private:
 	Node<T> *next;
 };
 ```
-- The main file must include `#include "ll_temp.h"` and `#include "ll_temp.h"`.
+- The main file must include `
+#include "ll_temp.h"` and `
+#include "ll_temp.h"`.
 	- This is not a `.cpp` file as compiler does not instantiate the type until first use, thus will cause a compiler issue.
 - For `friend` function, it must use a different `typename` variables (such as `<typename U>`), since it must be separable with the definition of the `typename` in the templated class.
+
 ### Overloading:
+
 #### Function Overloading:
 - `C++` compiler can distinguish functions with same name but different parameters.
 - It cannot distinguish functions with same name and parameters but different `return` types.
+
 #### Operator Overloading:
 - `C++` allows definition of new `classes`, and we can define new meanings for operators within the types:
 	-  Overloading means putting another definition for a name.
@@ -895,7 +993,9 @@ private:
 ```cpp
 // insertion_eg2.cpp:
 
-#include <iostream> #include <vector>
+
+#include <iostream> 
+#include <vector>
 using std::cout; using std::endl; using std::vector; using std::ostream;
 
 ostream& operator<<(ostream& os, const vector<int>& vec) { 
@@ -942,6 +1042,7 @@ Rational::operator+(const Rational& right) const {
 	- `.` for member access.
 	- `.**` for member access through pointer to member.
 	- `?:` for ternary conditional.
+
 #### `friend` keyword:
 - We can make use of the friend keyword to give the method “almost-member” status:
 	- during the operator overload involving private fields of a class, the `friend` keyword allows access to private member variables.
@@ -958,13 +1059,16 @@ private:
 };
 
 // rational.cpp
+
 #include "rational.h"
 ostream& operator<<(ostream& os, const Rational& r) {
 	os << r.num << "/" << r.den << ' ';
 	return os;
 }
 ```
+
 ### `class` Structures:
+
 #### Inheritance:
 - Classes we use are often related to each other, they can have:
 	- `is-a` relationship, a type of inheritance.
@@ -1018,6 +1122,7 @@ class A { ... };
 class B { ... };
 class C: public A, public B { ... };
 ```
+
 #### Polymorphism:
 - A derived class pointer can be declared using a base class pointer but initialized as a derived class:
 ```cpp
@@ -1055,6 +1160,7 @@ public:
 ```
 - Note that `virtual` only works for passing by reference, as when passed by object, the copied version discards the derived class information.
 	- In this case, the copied instance has base class memory layout, which means the virtual function is pointing to the base class when not passing by reference.
+
 #### Dynamic Dispatch:
 - When the compiler lays out a derived object in memory, it puts the data of the base class first, thus we can cast a derived class to its base class:
 	- In this case, the compiler *slices out* the derived class, i.e. ignores the contents of memory past the base data. 
@@ -1074,6 +1180,7 @@ public:
 	// use override in derived  ^^^^^^^^ class defensively
 };
 ```
+
 #### Abstract Class:
 - When a derived class has a function of the same name with the base class, it will hide the function declaration in the base class even if they have different parameters.
 	- The only way to access the function is by `var.BaseClass::function(param)`.
@@ -1099,6 +1206,7 @@ public:
 - We can have pointers and references of abstract class type but not concrete objects.
 - Any class with `virtual` member functions should also have a `virtual` destructor, even if the destructor does nothing:
 	- This is defensive programming, as else, when the destructor for the base class is called, it could not call the destructor for the derived class causing memory leak.
+
 #### UML Diagram:
 - Unified Modeling Language (UML) helps us visualize relationships.
 	- Class names go in rectangles.
@@ -1106,6 +1214,7 @@ public:
 		- `class A — IS-A —> class B`.
 	- Diamond at a containing class (A) goes to the contained class (B).
 		- `class A <>— HAS-A — class B`.
+
 #### Iterators for Containers:
 - For container classes, one can implement an iterator class nested in the class:
 	- Minimally, one needs to define:
@@ -1118,7 +1227,9 @@ public:
 	- Our enclosing (container) class should then also define methods named `begin` and end, `which` return iterators to the first item in the collection, and the just-past-last element in the collection, respectively.
 ```cpp
 // MyNode.h
+
 #ifndef MYNODE_H
+
 #define MYNODE_H
 
 // A single node holding payload data of any type
@@ -1131,13 +1242,18 @@ class MyNode {
 	MyNode<T>(int d, MyNode<T>* n) : data(d), next(n) { }
 };  
 
+
 #endif
 
 // MyList.h
+
 #ifndef MYLIST_H
+
 #define MYLIST_H
 
+
 #include <iostream>
+
 #include "MyNode.h"
 
 // A linked list template
@@ -1222,6 +1338,7 @@ class MyList {
   const MyNode<T>* get_head() const { return head; }
 
 };
+
 
 #endif
 ```

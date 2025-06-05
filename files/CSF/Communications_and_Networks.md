@@ -3,7 +3,9 @@ layout: default
 title: "Communications and Networks Notes"
 ---
 
+
 ## File Systems
+
 ### Unix I/O
 - `C` provides `FILE*` data type to represent a "file handle":
 	- It can be interpreted as a *source of input* or *destination for output*.
@@ -50,6 +52,7 @@ fprintf(stdout, "Hello world\n");          // explicitly print to stdout
 		- `SIGINT`: Interruption, typically by `CTRL-C`.
 		- `SIGALRM`: Software timer alert.
 	- System calls can be interrupted when receiving a signal.
+
 ### I/O Examples in `C`
 - In `C` language, the most basic I/O example is by the system calls, using the low-level function calls.
 - `open` opens a named file, and returns the file descriptor:
@@ -117,7 +120,9 @@ fclose(in);                               // close in, not necessary
 fclose(out);                              // close out, necessary
 ```
 
+
 ## Networks Connections
+
 ### Network Interface
 - Network allow communication between computers, access remote data, and share information.
 - To connect to a network, a computer device needs a network interface:
@@ -134,6 +139,7 @@ fclose(out);                              // close out, necessary
 |          kernel          |                     network protocol (IP)                      | datagrams |
 |          kernel          |                 link layer protocal (ethernet)                 |  frames   |
 |   transmission medium    | physical layer protocol <br>(ethernet over CAT 6 twisted pair) |  signals  |
+
 ### TCP/IP
 - The TCP/IP is a suite of *internet-working* protocols, *i.e.*, connecting lots of physical networks together, including when they use different technologies/protocols.
 - The two versions are IPv4 and IPv6:
@@ -157,6 +163,7 @@ fclose(out);                              // close out, necessary
 	- Not connection-oriented: data could be received in any order, no fixed duration of conversation.
 	- Used in applications where minimizing latency is important and data loss can be tolerated.
 	- UDP is unreliable, as data sent might not be received.
+
 ### Addressing and Routing
 - There are two kinds of address:
 	- Network address: address of a network interface within the overall internet (such as IPv4 address).
@@ -169,6 +176,7 @@ fclose(out);                              // close out, necessary
 - Router has a choice of outgoing links on which to send the packet:
 	- Each router has a routing table specifying which link to use based on matching the network part of the destination address.
 	- Routing algorithms: try to deliver packets efficiently, and avoid routing loops.
+
 ### Sockets
 - *Unix sockets* are API to allow programs to communicate over networks, it is designed to work with many underlying protocols:
 	- Socket can be interpreted as “communications endpoint”, and it appears to process as a file descriptor.
@@ -305,10 +313,13 @@ ssize_t	rio_readnb(rio_t *rp, void *usrbuf, size_t n);
 // Robustly read a text line (buffered)
 ssize_t	rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
 ```
+
 ## Networks Communications
+
 ### Hostnames
 - DNS (Domain Name Service) assign meaningful names (such as `ugradx.cs.jhu.edu`) to network addresses (such as `128.220.224.100`):
 	- `getaddrinfo` can look up network address for hostname.
+
 ### Application Protocols
 - *Application protocol* determines how data is exchanged by instances of an application program:
 	- Usually between a server and a client, while the other possibility is *peer to peer* (P2P) applications.
@@ -417,6 +428,7 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 ```
+
 ### HTTP Webpage
 - The application layer is at the top of the network protocol stack, it is consists of applications: web browsers/servers, email clients/servers, P2P file sharing apps, etc.
 - A synchronous client/server protocol used by web browsers, web servers, web clients, and web services is the HTTP 1.1:
@@ -478,6 +490,7 @@ void server_generate_text_response(int clientfd, const char *response_code, cons
 }
 ```
 - In creating the HTTP server, one should check the URL validity, then reading and responding to the messages.
+
 ### Untrusted Data
 - It is incredibly important to realize that data read from the client is untrusted:
 	- A network application which connects to untrusted peers must assume that they are malicious.
@@ -492,7 +505,9 @@ void server_generate_text_response(int clientfd, const char *response_code, cons
 	- When the function returns, it jumps to an address controlled by the malicious peer.
 	- For example: it could be possible for the client to cause the program to call the system function, which executes an arbitrary program as a subprocess.
 	- One possible way to prevent overflow is by setting the field size no less than the size of the buffer.
+
 ## Concurrency and Synchronization
+
 ### Threads
 - The previous server loop does not allow communicating with multiple threads at the same time.
 - One way of reaching concurrency is by processes created by `fork`:
@@ -505,6 +520,7 @@ void server_generate_text_response(int clientfd, const char *response_code, cons
 		- a stack (for the stack), and
 		- thread-local storage for per-thread variables,
 	- while all of these variables are not shared. The threads share the address space, open file tables, and the process context data.
+
 ### Pthreads
 - The Pthreads (POSIX threads) are standard API for using threads on Unix-like systems. It allows:
 	- creating threads and waiting for them to complete, and
@@ -538,6 +554,7 @@ pthread_t pthread_self(void);
 ```c
 int pthread_detach(pthread_t thread);
 ```
+
 ### Multithreaded Web Server
 - A web server can be created using multiple threads to allow multiple connections:
 	- server will create a thread for each client connection,
@@ -585,6 +602,7 @@ while (1) {
 	}
 }
 ```
+
 ### Shared Memory
 - Main issue with writing multithreaded programs is that the threads execute in the same address space, so they share memory:
 	- A variable written by one thread may be read by another.
@@ -605,6 +623,7 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 	- Concurrently-executing threads can use shared data structures to communicate,
 	- But concurrent modification of shared data is likely to lead to violated data structure invariants, corrupted program state, etc.
 	- Synchronization mechanisms allow multiple threads to access shared data cooperatively, realized by *queues*.
+
 ### Parallel Computation: Mandelbrot Set
 - Parallel computation can be used to solve the problem of Mandelbrot set, namely the question that:
 	- Assume $C$ is a complex number and $Z_0 = 0 + 0i$. The recursive definition is as follows: $$Z_{n+1} = Z_n^2 + C,$$
@@ -616,6 +635,7 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 	- assign a subset of array elements to each computation thread, and
 	- when all threads have finished, use iteration counts to render image.
 - In particular, we can use the parallelism of threads on multiple cores as processes to execute the work.![[fork_join_parallel.png]]
+
 ### Thread Synchronization
 - *Atomicity* guarantees that either all operations occur, or no operations occur at all.
 - Incrementing the counter (`obj->count++`) is not atomic, as we should think of `var++` as meaning:
@@ -638,6 +658,7 @@ var = reg;
 - *Semaphores* and *mutexes* are two types of synchronization constructs available in `pthreads`, both of them can be used to guarantee mutual exclusion:
 	- Semaphores can also be used to manage access to a *finite resource*, while
 	- *Mutexes* (mutual exclusion locks) are simpler.
+
 ### Mutexes
 - For mutexes, they encapsulates the following information:
 	- `pthread_mutex_t`: is data type for a `pthreads` mutex,
@@ -739,6 +760,7 @@ class Guard {
 }
 ```
 - The `Guard` is not entirely the same with mutex lock, as the mutex locks could be not unlocked in the case of a break or exception, resulting in deadlock.
+
 ### Semaphores
 - A semaphore is a more general synchronization construct. When created, semaphore is initialized with a nonnegative integer count value.
 - There are two operations:
@@ -836,6 +858,7 @@ void bqueue_destroy(BoundedQueue *bq) {
 	- *Prethreading* is when the program creates a fixed number of threads ahead of time, assigns work to them as it becomes available.
 	- Queues are an ideal mechanism to allow the “supervisor” thread to send work to the worker threads.
 	- A queue can also be used for messages sent from the workers back to the supervisor thread.
+
 ### Sequential Computation: Conway's Game of Life
 - The Conway's game of life has the following rules:
 	- Grid-based cellular automaton, cells are alive (1) or dead (0).
@@ -852,6 +875,7 @@ void bqueue_destroy(BoundedQueue *bq) {
 - With the actual implementation, we got about a $2\times$ speedup using four threads Relatively large chunks of work were assigned:
 	- The costs of synchronization amortized over relatively large amounts of sequential computation done by worker threads,
 - Hence, queues are an effective mechanism for communication between threads.
+
 ### Concurrency Issue: Dead Locks
 - Use of blocking synchronization constructs such as semaphores and mutexes can lead to *deadlock*, where the program hangs indefinitely.
 ```c
@@ -890,6 +914,7 @@ pthread_mutex_unlock(&obj->lock2);
 - A good approach to avoiding self-deadlock is:
 	- avoid acquiring locks in helper functions, and
 	- make “higher-level” functions (often, the “public” API functions of the locked data structure) responsible for acquiring locks.
+
 ### Condition Variables for Threads
 - Condition variables are another type of synchronization construct supported by pthreads. They allow threads to wait for a condition to become true: for example:
 	- Wait for queue to become non-empty,
@@ -949,6 +974,7 @@ void bqueue_enqueue(BoundedQueue *bq, void *item) {
 	- `pthread_cond_wait` must be done in a loop:
 		- Since spurious wakeups are possible, so waited-for condition must be re-checked.
 	- Use `pthread_cond_broadcast` whenever a condition might have been enabled.
+
 ### Amdahl’s Law
 - During parallelizing a computation: the goal is to make the computation complete as fast as possible.
 - Suppose that $t_s$ is the sequential running time, and $t_p$ is the parallel running time, the speedup (denoted $S$) is $t_s/t_p$.
@@ -964,6 +990,7 @@ void bqueue_enqueue(BoundedQueue *bq, void *item) {
 - Gustafson-Barsis’s Law: for some important computations, the proportion of parallelizable computation scales with the problem size:
 	- These are called *scalable* computations, and
 	- Such computations can realize speedups proportional to $P$ for a large number of processors.
+
 ### Atomic Machine Instructions
 - Modern processors typically support atomic machine instructions, these are atomic even when used on shared variables by multiple threads.
 - Some ways to use the atomic machine instructions:
@@ -1004,6 +1031,7 @@ typedef struct {
 		- Retry transaction if another thread committed an update concurrently, invalidating proposed update.
 	- Issue: waits and wake-ups are not really possible:
 		- E.g., when trying to dequeue from an empty queue, can’t easily wait for item to be available, calling thread must spin.
+
 ### Concurrency and Parallelism
 - In general, servers (including web servers) should receive requests from many clients, simultaneously:
 	- Here *concurrency* implies processing involving multiple tasks that can execute asynchronously with respect to each other, some examples are multiple server/client conversations could be ongoing at the same time.
@@ -1013,6 +1041,7 @@ typedef struct {
 	- In concurrency, $A$ and $B$ can happen at any order, *i.e.*, $A$ can happen before or after $B$ happens.
 	- In parallelism, $A$ and $B$ are executed at the same time. In particular, parallel execution requires multiple processors or cores.
 	- Parallelism implies concurrency, but the converse is not necessarily true.
+
 ### Concurrency with Processes
 - In particular, `fork` system call makes a new child process duplicating the parent process including inheriting open files.
 - Hence, each time the server accepts a connection, it can `fork` a child process to handle communication with that client:
@@ -1141,6 +1170,7 @@ if (clientfd < 0) {
 	fatal("Error accepting client connection");
 }
 ```
+
 ### I/O Multiplexing
 - I/O blocking could occur, *i.e.*, the server is not responsive while:
 	1. Waiting for client connection to arrive  
@@ -1154,10 +1184,12 @@ if (clientfd < 0) {
 	- If a blocking operation (`accept`, `read`, `write`) is invoked, but it can’t be completed immediately:
 		- the operation returns an error, or
 		- `errno` is set to `EWOULDBLOCK` error code.
-- When a `C` library or system call function fails, errno is set to an integer error code to indicate the reason for the failure, which is available using `#include <errno.h>`.
+- When a `C` library or system call function fails, errno is set to an integer error code to indicate the reason for the failure, which is available using `
+#include <errno.h>`.
 - This is actually not a global variable (because that wouldn’t work in a multithreaded program), its actual definition in the Linux C library (`glibc`) is:
 ```c
 extern int *__errno_location (void) __THROW __attribute_const__;
+
 # define errno (*__errno_location ())
 ```
 - `__errno_location` function returns a pointer to an integer variable allocated in thread-local storage, so each thread has its own `errno`.
@@ -1205,8 +1237,11 @@ while (1) {
 	- Maintaining and updating state of client connections is more complicated compared to code for process- or thread-based concurrency, we can just use normal loops and control flow.
 - The protocol is to read one line of text from client, send same line back, repeat until quit is received, with the following data structure:
 ```c
+
 #define CONN_READING  0
+
 #define CONN_WRITING  1
+
 #define CONN_DONE     2
 
 struct Connection {
@@ -1258,6 +1293,7 @@ for (int fd = 0; fd <= maxfd; fd++) {
 	}
 }
 ```
+
 ### Coroutines
 - One way to reduce the complexity of I/O multiplexing is to implement communication with clients using coroutines:
 	- coroutines are, essentially, a lightweight way of implementing threads, but
