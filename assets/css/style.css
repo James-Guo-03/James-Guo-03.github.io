@@ -1,5 +1,5 @@
 body {
-    font-family: "Palatino Linotype", serif;
+    font-family: "Palatino", serif;
     font-size: 12pt;
 }
 
@@ -163,5 +163,5 @@ tr:nth-child(odd) {
 }
 
 .mjx-chtml {
-    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif !important;
+    font-family: 'Palatino', 'Book Antiqua', Palatino, serif !important;
 }
