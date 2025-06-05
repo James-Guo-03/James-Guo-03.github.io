@@ -1,5 +1,5 @@
 body {
-    font-family: "Palatino", serif;
+    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
     font-size: 12pt;
 }
 
@@ -100,7 +100,7 @@ max-width: 64em;
 }
 
 button {
-    font-family: "Palatino", serif;
+    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
     font-size: 17px;
     padding: 12px 24px;
     background-color: #bdd5e0; 
@@ -112,13 +112,11 @@ button {
 }
 
 button:hover {
-    font-family: "Palatino", serif;
     background-color: #162a52;
     color: #bdd5e0;
 }
 
 button:disabled {
-    font-family: "Palatino", serif;
     background-color: #647176;
     color: #383f42;
     cursor: default;
@@ -130,7 +128,7 @@ button:disabled a {
 
 
 textarea {
-    font-family: "Palatino", serif;
+    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
     font-size: 12px;
     width: 75%;
     margin: 0 auto 10px auto;  
@@ -163,5 +161,5 @@ tr:nth-child(odd) {
 }
 
 .mjx-chtml {
-    font-family: 'Palatino', 'Book Antiqua', Palatino, serif !important;
+    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif !important;
 }
