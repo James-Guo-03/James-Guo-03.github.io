@@ -5,7 +5,7 @@ title: "Notes"
 
 # Lecture Notes from Certain Courses and Reading
 
-As I have been taking various courses and participating in readings, I have tried to compile some of my notes into LaTeX documentations.
+As I have been taking various courses and participating in readings, I have tried to compile some of my notes into $$\LaTeX$$ documentations.
 - The LaTeX notes allow me to integrate equations easily while maintaining a clear view.
 - These compiled files would be helpful for me when recalling certain materials as well as for others to potentially use on them.
 
