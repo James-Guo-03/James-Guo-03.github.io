@@ -41,6 +41,7 @@ a {
 .topnav {
     background-color: #07132d;
     color: #ffffff;
+    display: block;
 }
 
 .topnav a {
@@ -80,6 +81,23 @@ a {
     vertical-align: middle;
     height: 25px;
     width: 25px;
+}
+
+.navbar-print {
+  display: none;
+}
+
+@media print {
+  .topnav {
+    display: none !important;
+  }
+
+  .navbar-print {
+    background-color: #07132d !important;
+    color: #ffffff !important;
+    display: block !important;
+    margin-bottom: 20px;
+  }
 }
 
 .column {
