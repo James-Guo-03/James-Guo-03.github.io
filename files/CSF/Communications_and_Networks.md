@@ -26,7 +26,7 @@ fprintf(stdout, "Hello world\n");          // explicitly print to stdout
 	- Each entry in the table points to a *file object*, which contains:
 		- pointer to a *vnode* (or *virtual node*), a structure representing actual file data, in files/terminal devices/pipes/network connections/etc.
 		- file position (the offset of next byte to be read or written, for random-access files), and
-		- reference count.![[vnode.jpg]]
+		- reference count.![vnode.jpg](vnode.jpg)
 	- Multiple file descriptors can refer to the same file object, realized by `dup(fd)` and `dup2(fd1, fd2)` which creates a new descriptors referring to the same file objects.
 	- In particular, when a child process it created by `fork`, it inherits the parent process's file table.
 - In general, the concept of *file* is a sequence of bytes that can be read and written sequentially:
@@ -39,7 +39,7 @@ fprintf(stdout, "Hello world\n");          // explicitly print to stdout
 		- Peripheral devices.
 - Unix *filesystem* is a hierarchical namespace for files:
 	- The system starts from the *root directory* (`/`), and navigates through a sequence of at least 0 *intermediate directories*.
-	- The directories, such as `/usr/bin/gcc`, would locate to a file in the system. ![[File_system.jpg]]
+	- The directories, such as `/usr/bin/gcc`, would locate to a file in the system. ![File_system.jpg](File_system.jpg)
 - A *system call* is a mechanism allowing a process to request a service from the operating system:
 	- To the running programs, the system calls are function calls.
 	- System calls are *very low-level*, but most programming languages provide a *run-time* library with *higher-level* languages.
@@ -134,7 +134,7 @@ fclose(out);                              // close out, necessary
 - Network allow communication between computers, access remote data, and share information.
 - To connect to a network, a computer device needs a network interface:
 	- networks uses ethernet or Infiniband (wired), and Wi-Fi(802.11) or cellular modem (wireless).
-	- To the computing device, or the host, the network is like a peripheral device. The network interface device notifies the host CPU and RAM when data arrives from the network. ![[Internet_interface.png]]
+	- To the computing device, or the host, the network is like a peripheral device. The network interface device notifies the host CPU and RAM when data arrives from the network. ![Internet_interface.png](Internet_interface.png)
 - *Protocol Stack* is needed to allow network applications to communicate over the attached network interface(s), as the network protocols are layered:
 	- The issue is to consider compatibility for different network technologies, identifying the devices, and data routing.
 	- Network security involves the security requirements while the controlling access should only permit authorized agent access to the data and services.
@@ -159,7 +159,7 @@ fclose(out);                              // close out, necessary
 	- Transport protocols (such as TCP and UDP) are layered on top of IP, they uses the IP datagram, namely:
 		- consists of header followed by data,
 		- may be fragmented and reassembled, and
-		- protocol field indicates which transport protocol is being used.![[IP_datagram.png]]
+		- protocol field indicates which transport protocol is being used.![IP_datagram.png](IP_datagram.png)
 - TCP (Transmission Control Protocol) is a connection protocol layered on IP (value in Protocol field is `6`), it allows the creation of virtual connections between peer systems on network:
 	- A connection is a bidirectional data stream, data sent in both directions.
 	- Data is guaranteed to be delivered in the order sent.
@@ -179,7 +179,7 @@ fclose(out);                              // close out, necessary
 	- it conveys information about the network on which the interface can be found.
 	- a router makes routing decisions based on a network address.
 - Hardware address is used to deliver a data packet to a destination within the local network:
-	- a switch makes routing decisions based on a hardware address.![[Address_reality.png]]
+	- a switch makes routing decisions based on a hardware address.![Address_reality.png](Address_reality.png)
 - Router has a choice of outgoing links on which to send the packet:
 	- Each router has a routing table specifying which link to use based on matching the network part of the destination address.
 	- Routing algorithms: try to deliver packets efficiently, and avoid routing loops.
@@ -659,7 +659,8 @@ char *strtok_r(char *_str_, const char *_delim_, char **_saveptr_);
 	- create fixed number of computation threads,
 	- assign a subset of array elements to each computation thread, and
 	- when all threads have finished, use iteration counts to render image.
-- In particular, we can use the parallelism of threads on multiple cores as processes to execute the work.![[fork_join_parallel.png]]
+- In particular, we can use the parallelism of threads on multiple cores as processes to execute the work.
+![fork_join_parallel.png](fork_join_parallel.png)
 
 ### Thread Synchronization
 - *Atomicity* guarantees that either all operations occur, or no operations occur at all.
@@ -939,7 +940,8 @@ pthread_mutex_unlock(&obj->lock2);
 	- Edges between threads and resources,
 	- Edge from resource to thread: thread has locked the resource, and
 	- Edge from thread to resource: thread is waiting to lock the resource.
-- In the diagrams, cycle indicates a deadlock.![[Dead_lock.png]]
+- In the diagrams, cycle indicates a deadlock.
+![Dead_lock.png](Dead_lock.png)
 - Deadlocks can only occur if:
 	- threads attempt to acquire multiple locks simultaneously, and
 	- there is not a globally-consistent lock acquisition order.
@@ -1312,7 +1314,8 @@ struct Connection {
 ```
 - A synchronous network protocol can be modeled as a state machine:
 	- In a protocol implementation using threads or processes for concurrency, state is implicit.
-	- When implementing a protocol with I/O multiplexing, state must be explicit.![[state_machine.png]]
+	- When implementing a protocol with I/O multiplexing, state must be explicit.
+	![state_machine.png](state_machine.png)
 - In particular, it is still suggested to use non-blocking for `select` or `poll` to determine when file descriptors are ready.
 
 ```c

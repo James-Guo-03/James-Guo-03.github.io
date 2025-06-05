@@ -157,7 +157,8 @@ long mul_eg(long a, long b, long c) {
 	- There are cases of **Hazards**, in which the next instruction cannot be executed in the next clock cycle.
 - In each stage of the pipeline, the information from instruction is needed:
 	- on which ALY operation to execute, which memory address to consult, and which register to write to.
-	- the control information has to be passed through stages:![[Screenshot 2024-04-01 at 11.27.57 PM.png]]
+	- the control information has to be passed through stages:
+	![Screenshot 2024-04-01 at 11.27.57 PM.png](Screenshot 2024-04-01 at 11.27.57 PM.png)
 
 ### MIPS Hazards
 - *Hazards* happens when the next instruction cannot be executed in next clock cycles, with three types.
@@ -370,14 +371,16 @@ for (k = 0; k < n; k++) {
 		- **Symbol**: Symbol table index,
 		- **Added**: Constant part of relocation expression.
 - In terms of static linking, the global variables and other loaded from executables are guaranteed to have the same positions, but local variables on the stack could have pointer addresses vary for each execution:
-	- This is due to the given structure of the memory setup:![[Screenshot 2024-04-02 at 9.15.53 PM.png]]
+	- This is due to the given structure of the memory setup:
+	![Screenshot 2024-04-02 at 9.15.53 PM.png](Screenshot 2024-04-02 at 9.15.53 PM.png)
 
 ### Dynamically Linking Process
 - **Dynamically linking Process** involves the started libraries.
 - Once program is executed, loader calls dynamic linker:
 	- Dynamic linker "loads" shared library, but nothing is actually loaded.
 	- It creates the **memory mapping**: which pretends it’s in memory (operating system deals with mapping of RAM address).
-	- In the dynamically linking, there is an extra *Memory-mapped region for shared libraries*, which uses `libc.so`.![[Screenshot 2024-04-02 at 9.16.31 PM.png]]
+	- In the dynamically linking, there is an extra *Memory-mapped region for shared libraries*, which uses `libc.so`.
+	![Screenshot 2024-04-02 at 9.16.31 PM.png](Screenshot 2024-04-02 at 9.16.31 PM.png)
 - In **shared libraries**, multiple processes use same shared library:
 	- We want to put it into a dedicated place in memory, but there may be many libraries and we may run out of (or waste) address space.
 	- Instead, we compile it into **position-independent code**, in which no matter where the libraries are loaded into memory, the distances between addresses are the same:
@@ -724,45 +727,54 @@ for (int i = 0; i < NCOUNT; i++) {
 - The mapping has three states:
 	- **Caches**, which is allocated page and stored in physical memory.
 	- **Uncaches**, which is allocated page but not in physical memory.
-	- **Unallocated**, which is not used by virtual memory system so far.![[Screenshot 2024-04-02 at 6.08.59 PM.png]]
+	- **Unallocated**, which is not used by virtual memory system so far.
+	![Screenshot 2024-04-02 at 6.08.59 PM.png](Screenshot 2024-04-02 at 6.08.59 PM.png)
 - Here, we use a **Page Table**, which is an array of page table entries (**PTE**), which is a tree where leaves store the page table entries.
 	- Each PTE maps a virtual page to a physical page, it contains:
 		- **Valid bit**: set if PTE currently maps to physical address (cached), not set otherwise (uncached or unallocated).
-		- **Mapped address**: if cached, physical address in DRAM, if not cached, physical address on disk.![[Screenshot 2024-04-02 at 6.12.46 PM.png]]
+		- **Mapped address**: if cached, physical address in DRAM, if not cached, physical address on disk.
+		![Screenshot 2024-04-02 at 6.12.46 PM.png](Screenshot 2024-04-02 at 6.12.46 PM.png)
 	- When the valid bit is 1, we have a page hit, otherwise, we have a **page fault**, where the valid bit is 0.
 		- During a page fault, the page is on the disk, it makes space in RAM and pre-empt the "victim" page (typically out-dated cached page). Eventually, the page is loaded into RAM, and the table entry is updated.
 	- When loading a program, we need to load its executable into memory:
 		- Similarly, we create data objects when program is running (“allocating” memory).
 		- Here, we identify space in virtual memory, map to data on disk.
-		- In fact, it does not actual load, while just creates page table entries, and let virtual memory system handle (this is *on-demand loading*).![[Pasted image 20240402181944.png]]
+		- In fact, it does not actual load, while just creates page table entries, and let virtual memory system handle (this is *on-demand loading*).
+		![Pasted image 20240402181944.png](Pasted image 20240402181944.png)
 - For the **Process Memory**, there is nothing loaded at startup, but rather a working set (or resident set):
 	- They are pages of a process that are currently in DRAM, loaded by virtual memory system on demand.
 	- When memory actively required by all processes is larger than physically available, there will be frequent swapping of memory to/from disk, called **Thrashing**, which is very bad, as it slows down machine dramatically.
 
 ### Simplified Processes
-- For the **Process Address Space**, it starts from address of `0x400000`: ![[Screenshot 2024-04-02 at 7.09.49 PM.png]]
+- For the **Process Address Space**, it starts from address of `0x400000`:
+![Screenshot 2024-04-02 at 7.09.49 PM.png](Screenshot 2024-04-02 at 7.09.49 PM.png)
 	- Each process has its code in address 0x400000.
 	- The linking is easy, as the linker can establish fixed addresses.
 - During **Simplified Loading**, when loading process into memory, the information enter the `.data` and `.text` section into the page table:
 	- They are marked invalid as it is not actually in RAM, and it calls the *memory mapping*.
 - For **Simplified Sharing**, many shared libraries used by several processes:
-	- e.g., `stdio` providing `printf`, `scanf`, `open`, `close`, ...![[Screenshot 2024-04-02 at 7.36.43 PM.png]]
+	- e.g., `stdio` providing `printf`, `scanf`, `open`, `close`, ...
+	![Screenshot 2024-04-02 at 7.36.43 PM.png](Screenshot 2024-04-02 at 7.36.43 PM.png)
 	- The libraries will not copied multiple times into RAM.
 - In certain cases, the process may need more memory (e.g., malloc call), then it needs a new entry in page table:
 	- It maps to arbitrary pages in physical memory, and the entries do not have to be contiguous.
-- **Memory Protection** has a `SUP` bit recording if the page may be *kernel only*, which is `SUP = yes`, the page me be read-only.  ![[Screenshot 2024-04-02 at 7.42.32 PM.png]]
+- **Memory Protection** has a `SUP` bit recording if the page may be *kernel only*, which is `SUP = yes`, the page me be read-only.
+![Screenshot 2024-04-02 at 7.42.32 PM.png](Screenshot 2024-04-02 at 7.42.32 PM.png)
 
 ### Address Translation
 - The **Address translation** function maps virtual address to physical address, in which the virtual address are used by machine code instructions and physical address are location in RAM, formally:
 \\[ \operatorname{MAP}:VA\to PA \;\cup \;\{0\} , \; A\mapsto\begin{cases}PA, & \mbox{if in RAM};\\0, & \mbox{otherwise}.\end{cases} \\]
-	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).![[Screenshot 2024-04-02 at 8.39.01 PM.png]]
+	- The procedure is done frequently in machine code, and it is executed in Memory Management Unit (MMU).
+	![Screenshot 2024-04-02 at 8.39.01 PM.png](Screenshot 2024-04-02 at 8.39.01 PM.png)
 	- The virtual address has page offset as $$\log_2(\text{Page size})$$ and the virtual page number can be converted only if it is valid.
-- During a **Page Hit**, the process is as follows:![[Screenshot 2024-04-02 at 8.40.56 PM.png]]
+- During a **Page Hit**, the process is as follows:
+	![Screenshot 2024-04-02 at 8.40.56 PM.png](Screenshot 2024-04-02 at 8.40.56 PM.png)
 	- **VA**: CPU requests data at virtual address,
 	- **PTEA**: look up page table entry in page table,
 	- **PTE**: returns page table entry,
 	- **PA**: get physical address from entry, look up in memory.
-- When a **Page Fault**, we have:![[Screenshot 2024-04-02 at 8.41.57 PM.png]]
+- When a **Page Fault**, we have:
+![Screenshot 2024-04-02 at 8.41.57 PM.png](Screenshot 2024-04-02 at 8.41.57 PM.png)
 	- **VA**: CPU requests data at virtual address,
 	- **PTEA**: look up page table entry in page table,
 	- **PTE**: returns page table entry,
@@ -778,17 +790,20 @@ for (int i = 0; i < NCOUNT; i++) {
 
 ### Combining MMU with Cache
 - For the On-CPU cache, the CPU integrate cache and virtual memory:
-	- MMU resolves virtual address to physical address, the physical address is checked against cache.![[Screenshot 2024-04-02 at 8.46.29 PM.png]]
+	- MMU resolves virtual address to physical address, the physical address is checked against cache.
+	![Screenshot 2024-04-02 at 8.46.29 PM.png](Screenshot 2024-04-02 at 8.46.29 PM.png)
 	- The on-disk memory is too slow and having data in RAM is only practical solution, so we combine into $$\text{CPU}\longleftrightarrow\text{MMU}\longleftrightarrow\text{Cache}$$ structure.
 
 ### Translation Lookup Buffer (TLB)
 - For the slow look-uptime, the **Translation Lookahead Buffer** (TLB), it has the same structure as cache, with lowest bits as offset in page, middle bits as index in cache, and highest bits as tag in cache.
-	- For associative cache, there are more than 1 entry per index.![[Screenshot 2024-04-02 at 8.52.11 PM.png]]
+	- For associative cache, there are more than 1 entry per index.
+	![Screenshot 2024-04-02 at 8.52.11 PM.png](Screenshot 2024-04-02 at 8.52.11 PM.png)
 
 ### Multi-Level Page Table
 - For the huge address space, we introduce multi-level page table:
 	- E.g., the 32 bit address space of 4GB with page size 4KB and size of page table entry being 4 bytes, the number of pages is 1M and size of page table is 4MB, if there is one page table per process, most of the address space is not used.
-	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:![[Screenshot 2024-04-02 at 8.54.52 PM.png]]
+	- Here, we introduce the multi-level page table. For 2-level page table, the structure has the level 1 page table as the page directory and level 2 tables as page tables:
+	![Screenshot 2024-04-02 at 8.54.52 PM.png](Screenshot 2024-04-02 at 8.54.52 PM.png)
 		- The virtual address will be separated into more pieces, in 32 bit x86: \\[ \underbrace{\boxed{\begin{matrix}\text{L1}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}}\underbrace{\boxed{\begin{matrix}\text{L2}\\\text{\qquad index \qquad}\end{matrix}}}_{10\text{ bits}} \underbrace{\boxed{\begin{matrix}\text{\qquad offset \qquad}\\\text{ bit }\end{matrix}}}_{12\text{ bits}} \\]
 
 
@@ -800,7 +815,8 @@ for (int i = 0; i < NCOUNT; i++) {
 	- Page faults trigger an exception (hardware),
 	- Exception is handled by software (Linux kernel),
 	- Kernel must determine what to do.
-- The kernel walks through `vm_area_struct` list to resolve page fault.![[Screenshot 2024-04-02 at 9.06.08 PM.png]]
+- The kernel walks through `vm_area_struct` list to resolve page fault.
+![Screenshot 2024-04-02 at 9.06.08 PM.png](Screenshot 2024-04-02 at 9.06.08 PM.png)
 
 ### Memory Mapping
 - Area of virtual memory contains file on disk.
