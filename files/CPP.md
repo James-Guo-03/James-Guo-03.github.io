@@ -41,13 +41,11 @@
 	- The program code.
 	- Contains definitions for *functions* and *methods* of *classes* declared in a `.h` file:
 		- The `.h` file for templated class cannot be included in `.cpp` file.
-	- Use `
-#include` into include corresponded `.h` files.
+	- Use `#include` into include corresponded `.h` files.
 - Header files `<filename>.h`:
 	- Group together declarations.
 	- Declare `struct` and `class` for object oriented programming (*oop*).
-	- Included using `
-#include` in appropriate files.
+	- Included using `#include` in appropriate files.
 	- When having templated `class`, the definition shall go into a `.inc` or `.inl` file.
 	- Header files often has *header guards* when it contains definitions, which prevents definition duplications (giving *compiler errors*) when multiple `.cpp` files include the same `.h` file, as follows:
 
@@ -93,8 +91,7 @@ class Rectangle { // structure
 	- Replacing the complicated recompile code for different files.
 - With the name of `Makefile` or `makefile`, the compiling uses only `make`.
 - `Makefile` uses the `bash` syntax:
-	- Lines in a makefile that begin with `
-#` are comments.
+	- Lines in a makefile that begin with `#` are comments.
 	- `$$` expands the variables being predefined.
 	- First (topmost) target listed is default target to run.
 	- `target_name` is a list of files on which target depends.

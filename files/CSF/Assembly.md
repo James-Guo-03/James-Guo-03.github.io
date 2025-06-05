@@ -91,16 +91,16 @@ val: .space 4                   // Global Variable
 .section .text
 	.globl main                 // Main function
 main:
-	subq $$8, %rsp               // Stack alignment
+	subq $8, %rsp               // Stack alignment
 	/* Code here */
 
 nameOfLabel:
 	/* Code here */
-	movq $$sFmt, %rdi
-	movq $$10, val
+	movq $sFmt, %rdi
+	movq $10, val
 	movq val, %esi
 	call printf                 // Function call
-	addq $$8, %rsp               // Stack alignment 
+	addq $8, %rsp               // Stack alignment 
 	ret
 ```
 
@@ -116,7 +116,7 @@ nameOfLabel:
 	- Used for saving and restoring register values on the stack.
 	- `push` decrement the `%rsp` by operand size, and then copy operand to `(%rsp)`.
 	- `pop` copies `(%rsp)` to operand, and increment `%rsp` by operand size.
-	- In a stack with function calls, as the stack address has to be a multiple of 16, there either needs have `push` adding up to a decrement of multiple of 16 or use `subq $$8 %rsp` to align the stack (others if necessary) to make it a multiple of 16.
+	- In a stack with function calls, as the stack address has to be a multiple of 16, there either needs have `push` adding up to a decrement of multiple of 16 or use `subq $8 %rsp` to align the stack (others if necessary) to make it a multiple of 16.
 
 |Instruction|Note|
 |:--|:--|
@@ -139,8 +139,8 @@ nameOfLabel:
 
 ```asm
 sum_elts_idx:
-    movl $$0, %eax
-    movl $$0, %r10d
+    movl $0, %eax
+    movl $0, %r10d
 
 .LsumLoop:
     cmpl %esi, %r10d
@@ -153,14 +153,14 @@ sum_elts_idx:
     ret
 
 sum_elts_ptr:
-    movl $$0, %eax
+    movl $0, %eax
     leaq (%rdi,%rsi,4), %r10    /* gets array pointer */
 
 .LsumLoop:
     cmpq %r10, %rdi
     jae .LsumLoopDone
     addl (%rdi), %eax
-    addq $$4, %rdi
+    addq $4, %rdi
     jmp .LsumLoop
 
 .LsumLoopDone:
@@ -230,7 +230,7 @@ move_player:
 |Type|Syntax|Example|Note|
 |:-:|:-:|:-:|:-|
 |Memory ref| `Addr`| `count` | Content of memory location specified by absolute memory address|
-|Immediate | `$$N` | `$$8` or `$$arr` |`$$arr` is the address of `arr`. Immediate refers to a constant value, e.g. ​`0x8048d8e`​ or ​`48​`|
+|Immediate | `$N` | `$8` or `$arr` |`$arr` is the address of `arr`. Immediate refers to a constant value, e.g. ​`0x8048d8e`​ or ​`48​`|
 |Register| `R` | `%rax` | Register `%rax` |
 |Memory reg|`(R)`| `(%rax)`| The dereference of an address|
 |Memory reg| `N(R,R,S)`|`8(%rax,%rsi,4)`| Address $$= \texttt{\%rax} + (\texttt{\%rsi} \times 4) + 8$$ |
@@ -243,7 +243,7 @@ move_player:
 
 |Instruction|Note|
 |:-|:-|
-|`movq $$42, %rax`| Store the constant value `42` in `%rax`|
+|`movq $42, %rax`| Store the constant value `42` in `%rax`|
 |`movq %rax, %rdx`| Copy 8 byte value from `%eax` to `%rdi`|
 |`movl %eax, 4(%rdx)`| Copy 4 byte value from `eax` to memory at address `%rdx+4`. Note that storing a value of lower bits clears the upper bits.|
 |`movswl %ax, %edi`| When moving signed values, it must use signed-extension, which is filling the upper bits with the first digit|
@@ -266,8 +266,8 @@ move_player:
 - `add` and `sub` instructions add and subtract integer values:
 	- They take in two operands, the second operand is modified to store result.
 	- Overflow is possible in `add` or `sub`.
-	- The operation `addq $$8, %rsp` is `%rsp = %rsp + 8`.
-	- Likewise, `subq $$8, %rsp` is `%rsp = %rsp - 8`.
+	- The operation `addq $8, %rsp` is `%rsp = %rsp + 8`.
+	- Likewise, `subq $8, %rsp` is `%rsp = %rsp - 8`.
 - `inc` and `dec` are increment or decrement by 1:
 	- It takes one operand and can be either register or memory.
 	- Overflow is possible in `inc` and `dec`.
@@ -279,25 +279,25 @@ move_player:
 	- Shift left/right for $$n$$ position is multiplying/dividing $$2^n$$.
 
 ```asm
-	movl $$0xFFFF0000, %esi
-	shll $$1, %esi              /* set %esi to 0xFFFE0000, overflows */
-	movl $$0xFFFF0000, %esi
-	sarl $$1, %esi              /* set %esi to 0xFFFF8000 */
-	movl $$0xFFFF0000, %esi
-	shrl $$1, %esi              /* set %esi to 0x7FFF8000 */
+	movl $0xFFFF0000, %esi
+	shll $1, %esi              /* set %esi to 0xFFFE0000, overflows */
+	movl $0xFFFF0000, %esi
+	sarl $1, %esi              /* set %esi to 0xFFFF8000 */
+	movl $0xFFFF0000, %esi
+	shrl $1, %esi              /* set %esi to 0x7FFF8000 */
 ```
 - `and`, `or`, `xor`, and `not` for bitwise operator:
 
 ```asm
 	 /* Note: 0x30 = 00110000b,
               0x50 = 01010000b */
-    movb $$0x30, %al; movb $$0x50, %bl
+    movb $0x30, %al; movb $0x50, %bl
     andb %bl, %al      /* set %al=0x10 (00010000b) */
-    movb $$0x30, %al; movb $$0x50, %bl
+    movb $0x30, %al; movb $0x50, %bl
     orb %bl, %al       /* set %al=0x70 (01110000b) */
-    movb $$0x30, %al; movb $$0x50, %bl
+    movb $0x30, %al; movb $0x50, %bl
     xorb %bl, %al      /* set %al=0x60 (01100000b) */
-    movb $$0x30, %al
+    movb $0x30, %al
     notb %al           /* set %al=0xCF (11001111b) */
 ```
 - Multiplication uses `imul` or `mul`:
@@ -333,7 +333,7 @@ move_player:
 	- AT&T syntax puts the operands in the opposite order.
 	- `cmpl %eax, %ebx` computes `%ebx - %eax` and sets condition codes appropriately.
 - `test` instruction is the same as `and`, but doesn’t modify the “result” operand:
-	- `testl $$0x80, %eax` sets `ZF` (zero flag) iff bit 7 of `%eax` is 0.
+	- `testl $0x80, %eax` sets `ZF` (zero flag) iff bit 7 of `%eax` is 0.
 - `setX` instructions set a single byte to 0 or 1 depending on whether a condition code bit is set:
 	- Useful to get the result of a comparison as a data value.
 	- `setz %al` set `%al` (low byte of `%rax`) to 1 iff `ZF` (zero flag) is set.
@@ -373,16 +373,16 @@ move_player:
 
 ```asm
 main:
-	subq $$8, %rsp
+	subq $8, %rsp
 
 	/* code for getting the input */
 	
 	/* check whether month number is in range, if not, jump to
 	 * the default case */
 	movl monthNum, %esi
-	cmpl $$1, %esi
+	cmpl $1, %esi
 	jl .LDefaultCase
-	cmpl $$12, %esi
+	cmpl $12, %esi
 	jg .LDefaultCase
 
 	/* convert to 0-indexed and jump to appropriate case */
@@ -405,7 +405,7 @@ main:
 	/* Handle out of bound cases */
 
 .LSwitchDone:
-	addq $$8, %rsp
+	addq $8, %rsp
 	ret
 
 .LJumpTable:

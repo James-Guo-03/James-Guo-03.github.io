@@ -238,25 +238,25 @@ for (int i = 0; i < size; i++) {
 	- The main concern is on the mapping between cache and main memory, with which data to read / keep / write.
 	- For each entry, we keep a valid bit to record if the value is recorded or not.
 - **Direct mapping** keep mapping from cache to main memory simple, which uses part of the address as index to cache:
-	- **memory position in block** (offset) is \(\log_2(\text{block size bits})\).
-	- **index** is \(\log_2(\text{number of slots})\).
+	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
+	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
+	$$$$\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}$$$$
 	- If blocks with same index are used, older one is overwritten.
 	- Moreover, the block size incurs tradeoffs:
 		- Larger block size implies fewer cache misses, but longer time to transfer and fewer blocks in cache.
 		- In practice, we seek an optimal value somewhere in the middle.
 - **Fully Associative Cache** does not have index but rather place block anywhere in the cache:
-	- **memory position in block** (offset) is \(\log_2(\text{block size bits})\).
+	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
 	- There is no **index**.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[\underbrace{\boxed{\big|\qquad\qquad \text{tag}\qquad\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
+	$$$$\underbrace{\boxed{\big|\qquad\qquad \text{tag}\qquad\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}$$$$
 	- The fully associative cache eliminates the issue with replacing the old tags, however, finding block in cache is expensive.
 - **Set Associative Cache** introduces the intermediate, where we use a part of address to determine a subset of cache, but there are more than one slot for each index part of cache:
-	- **memory position in block** (offset) is \(\log_2(\text{block size bits})\).
-	- **index** is \(\log_2(\text{number of slots})\).
+	- **memory position in block** (offset) is $$\log_2(\text{block size bits})$$.
+	- **index** is $$\log_2(\text{number of slots})$$.
 	- **tag to identify position** in main memory is the remaining of address.
-	\[\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}\]
+	$$$$\underbrace{\boxed{\big|\qquad \text{tag}\qquad}}_{\text{rest of the address}}\underbrace{\boxed{\big|\qquad \text{index}\qquad}}_{{\log_2(\text{number of slots})}}\underbrace{\boxed{\big|\qquad \text{offset}\qquad}}_{\log_2(\text{block size bits})}$$$$
 	- Note that for a $$n$$-way set-associate ($$n$$ has to be an integer power of $$2$$), there will be $$n$$ sets in for each index.
 	- The total capacity of the cache (or total amount of data is) has the following relationship:
 	\[\text{Capacity} = \
