@@ -40,7 +40,7 @@ Print formatted: `System.out.printf();` or `System.out.format();`
 
 ***Output Format***
 
-```
+```java
 System.out.printf("%(flags1)(width1)(.precision1)specifier1...%(flags2)(width2)(.precision2)specifier2", var1, var2);
 ```
 
@@ -60,7 +60,7 @@ In programming, `=` is an assignment of a left-side variable with a right-side v
 
 ***Reserved Keywords***
 
-```
+```java
 abstract assert boolean break byte case catch char class const continue default do double else enum extends final finally float for goto if implements import instanceof int interface long native new package private protected public return short static strictfp super switch synchronized this throw throws transient try void volatile while
 ```
 
@@ -189,7 +189,7 @@ In a program, a branch is a sequence of statements only executed under a certain
 
 ### If-Else If-Else-branch
 
-```
+```java
 	if (expression) {
 		// Statements
 	} else if (expression) {
@@ -204,8 +204,8 @@ A switch statement can more clearly represent multi-branch behavior involving a 
 
 Omitting the break statement for a case will cause the statements within the next case to be executed. 
 
-```
-	switch (expression) {
+```java
+switch (expression) {
    case constantExpr1: 
       // Statements
       break;
@@ -250,7 +250,7 @@ A while loop repeatedly executes a list of sub-statements (loop body) while the 
 
 Once entering the loop body, execution continues to the body's end, even if the expression would become false midway through.
 
-```
+```java
 	while (expression) {
 		// Statements
 }
@@ -260,7 +260,7 @@ Once entering the loop body, execution continues to the body's end, even if the 
 
 Do-While loop works like the while loop but the statement is excuted at least once.
 
-```
+```java
 	do {
 		// Statements
 	} while (expression);
@@ -272,7 +272,7 @@ A for loop is a loop with three parts at the top: a loop variable initialization
 
 A for loop describes iterating a specific number of times more naturally than a while loop.
 
-```
+```java
 	for (initialExpression; conditionExpression; updateExpression) {
 		// Statements
 	}
@@ -297,7 +297,7 @@ A method is a named list of statements.
 - The method's name can be any valid identifier. A block is a list of statements surrounded by braces.
 - A method may return one value using a return statement and takes some parameters.
 
-```
+```java
 	public static returnType methodName(paramType paramName, ...) {
 		// Statements
 	}
@@ -370,7 +370,7 @@ Reading `FileInputStream` involves a `Scanner`, therefore meaning to be imported
 
 A `FileInputStream` is initialized and followed by:
 
-```
+```java
 	FileInputStream fileInputStream = new FileInputStream(filename);
 	Scanner inFS = new Scanner(fileInputStream);
 ```
@@ -379,7 +379,7 @@ Then, the `Scanner` can be read by the `Scanner` class.
 
 Afterwards, the `Scanner` and `FileInputStream` can be closed by:
 
-```
+```java
 	inFS.close();
 	fileInputStream.close();
 ```
@@ -396,7 +396,7 @@ Writing in a file involves `PrintWriter`, therefore meaning to be imported by `i
 
 A `FileOutputStream ` is initialized and followed by:
 
-```
+```java
 	FileOutputStream fileOutputStream = new FileOutputStream(filename);
 	PrintWriter outFS = new PrintWriter(FileOutputStream);
 ```
@@ -405,7 +405,7 @@ Then, the `PrintWriter` can be written by the same approach of `System.out` clas
 
 Afterwards, the `PrintWriter ` and `FileOutputStream ` can be closed by:
 
-```
+```java
 	outFS.close();
 	fileOutputStream.close();
 ```
@@ -418,13 +418,13 @@ An array is a special variable having one name, but storing a list of data items
 
 An array is an ordered list of items of a given data type. Each item in an array is called an element. It can be initialized by:
 
-```
+```java
 	dataType[] arrayName = new dataType[numElements];
 ```
 
 or 
 
-```
+```java
 	dataType[] arrayName = {a, ..., c};
 ```
 
@@ -432,7 +432,7 @@ As a reference type, the array as a parameter of a method is modified in the fun
 
 ***Printing through loop:***
 
-```
+```java
 	public static void print(arrayName.length) {
 		System.out.print("[")
 		for (int i = 0; i < arrayName.length; i++) {
@@ -457,7 +457,7 @@ Since the number of elements used in an oversize array is usually less than the 
 
 The Oversize Array are initialized as:
 
-```
+```java
 	dataType[] arrayName = new dataType[totalNumElements];
 	int arrayNameLength = 0;
 ```
@@ -466,7 +466,7 @@ Oversize arrays are useful when the number of elements stored in the array is no
 
 To assign a new element to the array, the approach is:
 
-```
+```java
 	arrayName[arrayNameLength++] = newElement;
 ```
 
@@ -478,7 +478,7 @@ Or the initialization can be:
 
 {% raw %}
 
-```
+```java
 	dataType[][] arrayName = {{a, ..., b}, ..., {c, ..., d}};
 ```
 
@@ -618,7 +618,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - Bubble sort is a sorting algorithm repeatedly switches the two consecutive elements if they are out of order from left to right.
 - $$O(N^2)$$ Complexity.
 
-```
+```java
 	int temp;
 	for (i = 0; i < numbers.length - 1; ++i) {
 		// Nested loop with less in search each iteration
@@ -638,7 +638,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - Selection sort is a sorting algorithm repeatedly selects the minimum value of the array from a certain index and switches the current index with the minimal value after it.
 - $$O(N^2)$$ Complexity.
 
-```
+```java
 	int temp;
 	int indexSmallest;
 	
@@ -662,7 +662,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - Insertion sort is a sorting algorithm repeatedly inserts the next minimal value from an index into the that index.
 - $$O(N^2)$$ Complexity.
 
-```
+```java
 	for (i = 1; i < numbers.length; ++i) {
 	  j = i;
 	  // Insert numbers[i] into sorted part
@@ -684,7 +684,7 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - The recursive partitioning continues until a list of 1 element is reached, as list of 1 element is already sorted.
 - $$O(N\log N)$$ Complexity.
 
-```
+```java
 public static void merge(int [] numbers, int i, int j, int k) {
   int mergedSize = k - i + 1;       // Size of merged partition
   int mergedNumbers [] = new int[mergedSize];
@@ -747,7 +747,7 @@ public static void mergeSort(int [] numbers, int i, int k) {
 - Linear search is a search algorithm that starts from the beginning of a list, and checks each element until the search key is found or the end of the list is reached.
 - $$O(N)$$ Complexity.
 
-```
+```java
    public static int linearSearch(int [] numbers, int key) {
       int i;
       
@@ -766,7 +766,7 @@ public static void mergeSort(int [] numbers, int i, int k) {
 - If the desired contact comes alphabetically before the middle contact, binary search will then search the first half and otherwise the last half. Each step reduces the contacts that need to be searched by half.
 - $$O(\log N)$$ Complexity.
 
-```
+```java
    private static int search(String[] data, String target,
                              int lo, int hi) {
       // possible target indices in [lo, hi)
