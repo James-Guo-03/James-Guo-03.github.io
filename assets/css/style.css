@@ -180,6 +180,10 @@ tr:nth-child(odd) {
     display: none !important;
   }
 
+  .break {
+    display: none !important;
+  }
+
   .navbar-print {
     background-color: #ffffff !important;
     color: #07132d !important;
