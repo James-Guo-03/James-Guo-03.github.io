@@ -239,13 +239,13 @@ In a program, a branch is a sequence of statements only executed under a certain
 ### If-Else If-Else-branch
 
 ```java
-	if (expression) {
-		// Statements
-	} else if (expression) {
-		// Statements
-	} ... else {
-		// Statements
-	}
+if (expression) {
+	// Statements
+} else if (expression) {
+	// Statements
+} ... else {
+	// Statements
+}
 ```
 
 ### Switch Statement
@@ -300,8 +300,8 @@ A while loop repeatedly executes a list of sub-statements (loop body) while the 
 Once entering the loop body, execution continues to the body's end, even if the expression would become false midway through.
 
 ```java
-	while (expression) {
-		// Statements
+while (expression) {
+	// Statements
 }
 ```
 
@@ -310,9 +310,9 @@ Once entering the loop body, execution continues to the body's end, even if the 
 Do-While loop works like the while loop but the statement is excuted at least once.
 
 ```java
-	do {
-		// Statements
-	} while (expression);
+do {
+	// Statements
+} while (expression);
 ```
 
 ### For Loop
@@ -322,9 +322,9 @@ A for loop is a loop with three parts at the top: a loop variable initialization
 A for loop describes iterating a specific number of times more naturally than a while loop.
 
 ```java
-	for (initialExpression; conditionExpression; updateExpression) {
-		// Statements
-	}
+for (initialExpression; conditionExpression; updateExpression) {
+	// Statements
+}
 ```
 
 ### Nested Loops
@@ -347,9 +347,9 @@ A method is a named list of statements.
 - A method may return one value using a return statement and takes some parameters.
 
 ```java
-	public static returnType methodName(paramType paramName, ...) {
-		// Statements
-	}
+public static returnType methodName(paramType paramName, ...) {
+	// Statements
+}
 ```
 
 Each method call creates a new set of local variables, forming part of what is known as a stack frame. A return causes those local variables to be discarded.
@@ -379,7 +379,7 @@ The test involves:
 
 ### Unit Testing
 
-Each sub-routine should be throughly tested independent from the other sub-routines.
+Each sub-routine should be thoroughly tested independent of the other sub-routines.
 
 Apply Black-box and White-box testing to each unit.
 
@@ -399,19 +399,19 @@ Being comprehensive, meaning to throw as many testing to check if the output is 
 
 Program code known to the testers.
 
-Throw targeted input at the code to throughly test all the excution branch that has been written in the program (i.e., all decisions, repetition between starting and ending values).
+Throw targeted input at the code to thoroughly test all the execution branch that has been written in the program (i.e., all decisions, repetition between starting and ending values).
 
 Test the correctness of the code that has been written thus far.
 
 ## File I/O
 
-InputStream and OutputStream are necessary for information to flow in JAVA.
+`InputStream` and `OutputStream` are necessary for information to flow in JAVA.
 
-### FileInputStream Class
+### `FileInputStream` Class
 
 `FileInputStream` opens a file. The class can be imported by `import java.io.FileInputStream`.
 
-`FileInputStream` could throw IOExceptions. The class can be imported by `import java.io.IOException`.
+`FileInputStream` could throw `IOExceptions`. The class can be imported by `import java.io.IOException`.
 
 When methods includes `FileInputStream`, the method `throws IOException`.
 
@@ -420,8 +420,8 @@ Reading `FileInputStream` involves a `Scanner`, therefore meaning to be imported
 A `FileInputStream` is initialized and followed by:
 
 ```java
-	FileInputStream fileInputStream = new FileInputStream(filename);
-	Scanner inFS = new Scanner(fileInputStream);
+FileInputStream fileInputStream = new FileInputStream(filename);
+Scanner inFS = new Scanner(fileInputStream);
 ```
 
 Then, the `Scanner` can be read by the `Scanner` class.
@@ -429,8 +429,8 @@ Then, the `Scanner` can be read by the `Scanner` class.
 Afterwards, the `Scanner` and `FileInputStream` can be closed by:
 
 ```java
-	inFS.close();
-	fileInputStream.close();
+inFS.close();
+fileInputStream.close();
 ```
 
 ### FileOutputStrean Class
@@ -446,8 +446,8 @@ Writing in a file involves `PrintWriter`, therefore meaning to be imported by `i
 A `FileOutputStream ` is initialized and followed by:
 
 ```java
-	FileOutputStream fileOutputStream = new FileOutputStream(filename);
-	PrintWriter outFS = new PrintWriter(FileOutputStream);
+FileOutputStream fileOutputStream = new FileOutputStream(filename);
+PrintWriter outFS = new PrintWriter(FileOutputStream);
 ```
 
 Then, the `PrintWriter` can be written by the same approach of `System.out` class.
@@ -455,8 +455,8 @@ Then, the `PrintWriter` can be written by the same approach of `System.out` clas
 Afterwards, the `PrintWriter ` and `FileOutputStream ` can be closed by:
 
 ```java
-	outFS.close();
-	fileOutputStream.close();
+outFS.close();
+fileOutputStream.close();
 ```
 
 ## Arrays
@@ -468,13 +468,13 @@ An array is a special variable having one name, but storing a list of data items
 An array is an ordered list of items of a given data type. Each item in an array is called an element. It can be initialized by:
 
 ```java
-	dataType[] arrayName = new dataType[numElements];
+dataType[] arrayName = new dataType[numElements];
 ```
 
 or 
 
 ```java
-	dataType[] arrayName = {a, ..., c};
+dataType[] arrayName = {a, ..., c};
 ```
 
 As a reference type, the array as a parameter of a method is modified in the function.
@@ -482,16 +482,16 @@ As a reference type, the array as a parameter of a method is modified in the fun
 ***Printing through loop:***
 
 ```java
-	public static void print(arrayName.length) {
-		System.out.print("[")
-		for (int i = 0; i < arrayName.length; i++) {
-			System.out.print(arrayName[i]);
-			if (i != arrayName.length - 1) {
-				System.out.print(", ");
-			}
+public static void print(arrayName.length) {
+	System.out.print("[")
+	for (int i = 0; i < arrayName.length; i++) {
+		System.out.print(arrayName[i]);
+		if (i != arrayName.length - 1) {
+			System.out.print(", ");
 		}
-		System.out.println("]");
 	}
+	System.out.println("]");
+}
 ```
 
 ### Perfect Size Array
@@ -507,8 +507,8 @@ Since the number of elements used in an oversize array is usually less than the 
 The Oversize Array are initialized as:
 
 ```java
-	dataType[] arrayName = new dataType[totalNumElements];
-	int arrayNameLength = 0;
+dataType[] arrayName = new dataType[totalNumElements];
+int arrayNameLength = 0;
 ```
 
 Oversize arrays are useful when the number of elements stored in the array is not known in advance, or when the number of elements stored in an array varies over time.
@@ -516,7 +516,7 @@ Oversize arrays are useful when the number of elements stored in the array is no
 To assign a new element to the array, the approach is:
 
 ```java
-	arrayName[arrayNameLength++] = newElement;
+arrayName[arrayNameLength++] = newElement;
 ```
 
 ### 2-D Array
@@ -528,12 +528,12 @@ Or the initialization can be:
 {% raw %}
 
 ```java
-	dataType[][] arrayName = {{a, ..., b}, ..., {c, ..., d}};
+dataType[][] arrayName = {{a, ..., b}, ..., {c, ..., d}};
 ```
 
 {% endraw %}
 
-The definition, access, and intiialization works the same for higher dimensions.
+The definition, access, and initialization works the same for higher dimensions.
 
 When printing for searching values, there should be a nested for loop.
 
@@ -547,7 +547,7 @@ The new operator explicitly allocates an object of the specified class type.
 
 ### Class Components
 
-A class contains fields, constuctors, mutators, accessors, and helper methods.
+A class contains fields, constructors, mutators, accessors, and helper methods.
 
 Field:
 
@@ -558,7 +558,7 @@ Constructor:
 
 - Constructor is called when an object of that class type is created, and which can be used to initialize all fields.
 - The constructor has the same name as the class. The constructor method has no return type, not even void.
-- The default constuctor takes in no input while overloading allows multiple constructors with different parameters as input.
+- The default constructor takes in no input while overloading allows multiple constructors with different parameters as input.
 
 Mutator:
 
@@ -602,9 +602,9 @@ Access specifier specifies the accessibility of the data:
 
 |Specifier	| Description|
 |:-----------|:-----------|
-|private	|Accessible by self.|
-|protected	|Accessible by self, derived classes, and other classes in the same package.|
-|public	|Accessible by self, derived classes, and everyone else.|
+|`private`	|Accessible by self.|
+|`protected`	|Accessible by self, derived classes, and other classes in the same package.|
+|`public`	|Accessible by self, derived classes, and everyone else.|
 |no specifier	|Accessible by self and other classes in the same package.|
 
 ### Polymorphism
@@ -636,7 +636,7 @@ When testing if an `Object` is an instance of a class, use `var.instanceof(class
 
 If an `Object` is an instance of a class, we cast by `(class) var`.
 
-## Alogrithm
+## Algorithm
 
 An algorithm is a sequence of steps for accomplishing a task.
 
@@ -653,7 +653,10 @@ In Big O notation, all functions that have the same growth rate (as determined b
 
 ***Growth rate:***
 
-- $$O(1) < O(N) < O(N\log N) < O(N^2) < O(N^3) < \cdots < O(e^N)$$.
+$$
+O(1) < O(N) < O(N\log N) < O(N^2) < O(N^3) < \cdots < O(e^N).
+$$
+
 - Rules for determining Big O notation of composite functions:
 
 | Composite function | $$C\cdot O(f(x))$$ | $$C+ O(f(x))$$ | $$g(x)\cdot O(f(x))$$ |  $$g(x)+O(f(x))$$ | 
@@ -668,18 +671,18 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - $$O(N^2)$$ Complexity.
 
 ```java
-	int temp;
-	for (i = 0; i < numbers.length - 1; ++i) {
-		// Nested loop with less in search each iteration
-		for (j = 1; j < numbers.length - i; ++j) {
-			if (numbers[j-1] > numbers[j]) {
-				// Swap numbers[j] and numbers[j-1]
-				temp = numbers[j];
-				numbers[j] = numbers[j-1];
-				numbers[j-1] = temp;
-			}
+int temp;
+for (i = 0; i < numbers.length - 1; ++i) {
+	// Nested loop with less in search each iteration
+	for (j = 1; j < numbers.length - i; ++j) {
+		if (numbers[j-1] > numbers[j]) {
+			// Swap numbers[j] and numbers[j-1]
+			temp = numbers[j];
+			numbers[j] = numbers[j-1];
+			numbers[j-1] = temp;
 		}
 	}
+}
 ```
 
 ***Selection Sort***
@@ -688,22 +691,22 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - $$O(N^2)$$ Complexity.
 
 ```java
-	int temp;
-	int indexSmallest;
-	
-	for (i = 0; i < numbers.length - 1; ++i) {
-		   // Find index of smallest remaining element
-	   indexSmallest = i;
-	   for (j = i + 1; j < numbers.length; ++j) {
-	      if (numbers[j] < numbers[indexSmallest]) {
-	         indexSmallest = j;
-	      }
-	   }
-	   // Swap numbers[i] and numbers[indexSmallest]
-	   temp = numbers[i];
-	   numbers[i] = numbers[indexSmallest];
-	   numbers[indexSmallest] = temp;
+int temp;
+int indexSmallest;
+
+for (i = 0; i < numbers.length - 1; ++i) {
+		// Find index of smallest remaining element
+	indexSmallest = i;
+	for (j = i + 1; j < numbers.length; ++j) {
+		if (numbers[j] < numbers[indexSmallest]) {
+			indexSmallest = j;
+		}
 	}
+	// Swap numbers[i] and numbers[indexSmallest]
+	temp = numbers[i];
+	numbers[i] = numbers[indexSmallest];
+	numbers[indexSmallest] = temp;
+}
 ```
 
 ***Insertion Sort***
@@ -712,19 +715,19 @@ In Big O notation, all functions that have the same growth rate (as determined b
 - $$O(N^2)$$ Complexity.
 
 ```java
-	for (i = 1; i < numbers.length; ++i) {
-	  j = i;
-	  // Insert numbers[i] into sorted part
-	  // stopping once numbers[i] in correct position
-	  while (j > 0 && numbers[j] < numbers[j - 1]) {
-	   
-	     // Swap numbers[j] and numbers[j - 1]
-	     temp = numbers[j];
-	     numbers[j] = numbers[j - 1];
-	     numbers[j - 1] = temp;
-	     --j;
-	  }
+for (i = 1; i < numbers.length; ++i) {
+	j = i;
+	// Insert numbers[i] into sorted part
+	// stopping once numbers[i] in correct position
+	while (j > 0 && numbers[j] < numbers[j - 1]) {
+	
+		// Swap numbers[j] and numbers[j - 1]
+		temp = numbers[j];
+		numbers[j] = numbers[j - 1];
+		numbers[j - 1] = temp;
+		--j;
 	}
+}
 ```
 
 ***Merge Sort***
@@ -797,17 +800,17 @@ public static void mergeSort(int [] numbers, int i, int k) {
 - $$O(N)$$ Complexity.
 
 ```java
-   public static int linearSearch(int [] numbers, int key) {
-      int i;
-      
-      for (i = 0; i < numbers.length; ++i) {
-         if (numbers[i] == key) {
-            return i;
-         }
-      }
-      
-      return -1; /* not found */
-   }
+public static int linearSearch(int [] numbers, int key) {
+	int i;
+	
+	for (i = 0; i < numbers.length; ++i) {
+		if (numbers[i] == key) {
+		return i;
+		}
+	}
+	
+	return -1; /* not found */
+}
 ```
 
 ***Binary Search***
@@ -816,23 +819,23 @@ public static void mergeSort(int [] numbers, int i, int k) {
 - $$O(\log N)$$ Complexity.
 
 ```java
-   private static int search(String[] data, String target,
-                             int lo, int hi) {
-      // possible target indices in [lo, hi)
-      int middleIndex = (lo + hi) / 2;
-      if (lo == hi) return -1;
-      String middle = data[middleIndex];
-      if (target.equals(middle)) {
-         return middleIndex;
-      }
-      if (target.compareTo(middle) < 0) {
-         return search(data, target, lo, middleIndex);
-      }
-      if (target.compareTo(middle) > 0) {
-         return search(data, target, middleIndex + 1, hi);
-      }
-      return -1;
-   }
+private static int search(String[] data, String target,
+							int lo, int hi) {
+	// possible target indices in [lo, hi)
+	int middleIndex = (lo + hi) / 2;
+	if (lo == hi) return -1;
+	String middle = data[middleIndex];
+	if (target.equals(middle)) {
+		return middleIndex;
+	}
+	if (target.compareTo(middle) < 0) {
+		return search(data, target, lo, middleIndex);
+	}
+	if (target.compareTo(middle) > 0) {
+		return search(data, target, middleIndex + 1, hi);
+	}
+	return -1;
+}
 ```
 
 ## Exceptions
@@ -845,26 +848,26 @@ Checked Exceptions are the exceptions that are checked at compile time. If some 
 
 ***List of checked exceptions*** 
 
-* ClassNotFoundException,
-* InterruptedException,
-* InstantiationException,
-* IOException,
-* SQLException,
-* IllegalAccessException,
-* FileNotFoundException ...
+	- ClassNotFoundException,
+	- InterruptedException,
+	- InstantiationException,
+	- IOException,
+	- SQLException,
+	- IllegalAccessException,
+	- FileNotFoundException ...
 
 Unchecked exceptions in Java are those exceptions that are checked by JVM, not by java compiler. They occur during the runtime of a program.
 
 ***List of unchecked exceptions***
 
-* ArithmeticException,
-* ClassCastException,
-* NullPointerException,
-* ArrayIndexOutOfBoundsException,
-* NegativeArraySizeException,
-* ArrayStoreException,
-* IllegalThreadStateException,
-* SecurityException ...
+	- ArithmeticException,
+	- ClassCastException,
+	- NullPointerException,
+	- ArrayIndexOutOfBoundsException,
+	- NegativeArraySizeException,
+	- ArrayStoreException,
+	- IllegalThreadStateException,
+	- SecurityException ...
 
 ### Try-Catch Block
 
@@ -872,7 +875,7 @@ To avoid having a program end when an exception occurs, a program can use try an
 
 - A try block surrounds normal code, which is exited immediately if a statement within the try block throws an exception.
 - A catch block catches the thrown exception if its type matches the catch block's parameter type, the code within the catch block executes.
-- A final block that will excute regardless if an exception is caught.
+- A final block that will execute regardless if an exception is caught.
 
 ### Throwable Class
 
@@ -880,7 +883,7 @@ The `Throwable` class is the superclass of all errors and exceptions in the Java
 
 Only this class or one of its subclasses can be the argument type in a catch clause.
 
-- `Throwable` can be constructed using empty parameter or `String` as messsage.
+- `Throwable` can be constructed using empty parameter or `String` as message.
 - `getMessage()`: Returns the detail message string of this throwable.
 - `getStackTrace()`: Provides programmatic access to the stack trace information printed by `printStackTrace()` as `StackTraceElement[]`.
 - `printStackTrace()`: Prints this throwable and its backtrace to the standard error stream.
@@ -892,7 +895,7 @@ Only this class or one of its subclasses can be the argument type in a catch cla
 
 - The class `Exception` and any subclasses that are not also subclasses of `RuntimeException` are checked exceptions.
 - `RuntimeException` are unchecked exceptions that does not need `throws` declaration in methods.
-- `Exception` can be constructed using empty parameter or `String` as messsage.
+- `Exception` can be constructed using empty parameter or `String` as message.
 - Methods of `Exception` class are all inherited from `java.lang.Throwable` or `java.lang.Object`.
 
 ## Style
