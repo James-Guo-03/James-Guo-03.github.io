@@ -10,6 +10,9 @@ While I would endeavor the academics, I would also devote some time in making so
 - [EnDeCript](/EnDeCript/EnDeCript.html)
     - After learning about cryptography and some basic `JavaScript`, I have developed this web-based version to encode and decode English texts.
 
+- [JHU Shuttle Map](/files/JHU-Shuttle-Map-Feb2025.pdf)
+    - This map is a topological map for the JHU shuttles. It could help you to know how to traverse between campuses. (Updated February 2025).
+
 - <a href="https://bear-resort.github.io" target="_blank">Bear Resort</a>
     - An organization in which I developed to experiment on more interesting ideas, such as emoji, the Bear Resort worldview is a virtual society.
 
