@@ -3,6 +3,15 @@ layout: default
 title: "Projects"
 ---
 
+## [Southern Regional Council on Statistics (SRCOS) 2025](https://www.srcos.org/src-2025) Presentation
+
+SRCOS aims to improvement of postsecondary education in statistical science, assist in the development of high quality statistics instruction in elementary and high schools, and promulgate educational activities which improve the quality of statistical practices. 
+
+**Title:** Adaptive Kernel Learning in Interacting Particle Systems and their Simulations.
+
+**Abstract:** We introduce a novel adaptive coefficient learning strategy for the non-parametric estimation of the radial interaction kernels in interacting particle systems (IPS), which can be modeled by stochastic differential equations (SDEs). These systems are fundamental in various physical and biological fields, where we typically don’t know the underlying interactive system. Here, we demonstrate the approach with Lennard-Jones kernel on particle system simulation, and the unknown kernel is projected onto orthogonal basis functions, with coefficients initially estimated using the Least Squares Estimator (LSE). Our adaptive learning procedure refines the basis by strategically eliminating less significant coefficients, optimizing selection for more influential basis functions. We present numerical results from 2D simulations, demonstrating the efficacy of this kernel learning approach and discussing its performance with various basis sets. ([link](https://irp.cdn-website.com/98cf8534/files/uploaded/2025_SRCOS_SRC_Program.pdf#page=43))
+- [Poster](/files/Adaptive-Kernel-Learning-in-IPS.pdf)
+
 ## Stochastic Differential Equations: Applying Stochastic Differential Equation on the Analysis of Stochastic Gradient Descent
 
 This project investigates the connection between Stochastic Gradient Descent (SGD) method in machine learning and deep learning and connects to the Stochastic Differential Equations (SDEs). By reviewing various published paper, this report builds up upon how SGD process can be modeled and justified by SDEs.
@@ -10,9 +19,9 @@ This project investigates the connection between Stochastic Gradient Descent (SG
 
 ## [Johns Hopkins Math Tournament](https://www.johnshopkinsmathtournament.com/jhmt-2025)
 
-JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I will be giving a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
+JHMT is an annual math competition for high school students at Johns Hopkins University. For the year 2025, I am in charge of the proof round for high school division and general review on exam questions. At the same time, I gave a talk on "Reintroduction to Probability," which targets high-schoolers and middle-schooler about probability theory and some applications.
 - Power Round Problem and Solutions: [Problem Set](/files/jhmt-hs-power-25.pdf), [Solutions](/files/jhmt-hs-power-25-soln.pdf)
-- Reintroduction to Probability: [Presentation Deck](/files/Reintro-Prob.pdf), [Notes](/files/Reintro-Prob-Notes.pdf)
+- Reintroduction to Probability: [Slide Deck](/files/Reintro-Prob.pdf), [Notes](/files/Reintro-Prob-Notes.pdf)
 
 ## [JHU Undergraduate Math Club](https://sites.google.com/view/jhu-mathclub/seminar#h.s4zw0qfokek4) Talk
 
@@ -21,9 +30,13 @@ JHMT is an annual math competition for high school students at Johns Hopkins Uni
 **Abstract**: In this talk, we will explore the motivations and step-by-step construction of Hausdorff measure and Hausdorff dimension for the sets that would have been interpreted as a null set in the Lebesgue measure. Examples with some fractal geometry will be discussed. Audiences are expected to know basic calculus and middle school geometry, but it would be helpful if the audiences are exposed to basic measure theory ideas.
 - [Notes](/files/math-club-talk.pdf)
 
-## [MATRX 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
+## [Mid-Atlantic Research Exchange (MATRX) 2025](https://www.ams.jhu.edu/matrx2025/to-present/) Presentation
 
-MATRX (Mid-Atlantic Research Exchange) is an annual celebration of undergraduate research in mathematics, a forum at which students from the greater Baltimore-DC region may share their recent work either via presentation or poster. In this conference, I presented a report about the improvements on QR factorization in terms of fractional representation.
+An annual celebration of undergraduate research in mathematics, a forum at which students from the greater Baltimore-DC region may share their recent work either via presentation or poster.
+
+**Title**: Improvement on the Precision of QR Factorization: An Analysis on the Fractional Implementation
+
+**Abstract**: QR factorization is a fundamental algorithm in the field of computational mathematics, whose applications are among solving linear systems, eigenvalue problems, and linear regression. The current computations using classical and modified Gram-Schmidt algorithms are susceptible to floating-point errors, and could lead to catastrophic cancellation. Our project investigates a Q-based fractional computation model to reduce roundoff errors, explores alternatives around certain issues, and analyzes the trade-off between computational complexity and numerical precision. Results show Fractional QR in applications achieves better and arbitrary numerical precision compared to traditional QR factorization methods.
 - [Presentation Deck](/files/matrx-slide.pdf)
 - [Poster](/files/matrx-poster.pdf)
 
