@@ -2,6 +2,8 @@
 
 This is a place where I put some of my bad math jokes around. Note that some are memes I saw online, but I have been unable to cite them.
 
+## Get exicted!
+
 1. Why is our chat is group, not a ring? - Because we don't have any ideals.
 
 2. What is Linear Algebra?
