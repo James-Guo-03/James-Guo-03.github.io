@@ -10,6 +10,9 @@ While I would endeavor the academics, I would also devote some time in making so
 - [EnDeCript](/EnDeCript/EnDeCript.html)
     - After learning about cryptography and some basic `JavaScript`, I have developed this web-based version to encode and decode English texts.
 
+- [Bad Math Jokes](/files/bad-math-jokes.html)
+    - Here is a compilation of bad math jokes I have collected around.
+
 - [JHU Shuttle Map](/files/JHU-Shuttle-Map-Feb2025.pdf)
     - This map is a topological map for the JHU shuttles. It could help you to know how to traverse between campuses. (Updated February 2025).
 
