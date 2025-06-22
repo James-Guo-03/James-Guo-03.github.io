@@ -1,34 +1,43 @@
 ---
-layout: page
-title: "Feedback Form"
+layout: default
+title: "Feedback"
 ---
 
-<form id="survey-form">
-  <input type="text" name="name" placeholder="Your name" required><br>
-  <input type="email" name="email" placeholder="Your email" required><br>
-  <textarea name="feedback" placeholder="Your feedback" required></textarea><br>
-  <button type="submit">Submit</button>
-</form>
+# Submit Your Feedback
+  <form id="survey-form">
+    Name: <input type="text" name="name" placeholder="Enter your name..."><br><br>
+    Email: <input type="email" name="email" placeholder="Enter your email..."><br><br>
+    <textarea name="feedback" placeholder="Your feedback" required></textarea><br><br>
+    <button type="submit">Submit</button>
+  </form>
 
-<script>
-  const form = document.getElementById('survey-form');
+  <p id="response-msg"></p>
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
+  <script>
+    const form = document.getElementById('survey-form');
+    const responseMsg = document.getElementById('response-msg');
 
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      feedback: form.feedback.value
-    };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbwFHocJT50NbaxhMSqgD9ROURYfRFD2RTFRtRDAo9jhvN0ti980h1XSUWIC3JmP8Mn_GA/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(res => res.text())
-    .then(response => alert("Your feedback is recorded!"))
-    .catch(err => alert("Error: " + err.message));
-  });
-</script>
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        feedback: form.feedback.value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbwFHocJT50NbaxhMSqgD9ROURYfRFD2RTFRtRDAo9jhvN0ti980h1XSUWIC3JmP8Mn_GA/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        responseMsg.textContent = "✅ Submitted successfully!";
+        form.reset();
+      })
+      .catch(err => {
+        responseMsg.textContent = "❌ Submission failed: " + err.message;
+      });
+    });
+  </script>
