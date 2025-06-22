@@ -5,20 +5,24 @@ title: "Feedback"
 
 # Submit Your Feedback
   <form id="survey-form">
+  <div style="width: 75%; margin: 0 auto;">
     Name: <input type="text" name="name" placeholder="Enter your name..."><br><br>
     Email: <input type="email" name="email" placeholder="Enter your email..."><br><br>
-    <textarea id="inputBox" name="feedback" placeholder="Your feedback" required></textarea><br><br>
-    <button type="submit">Submit</button>
+    Your Feedback (Required):
+  </div>
+    <textarea id="inputBox" name="feedback" placeholder="Your feedback" required></textarea><br>
+    <div style="text-align: center;">
+    <button type="submit" id="submitBtn">Submit</button>
+    </div>
   </form>
-
-  <p id="response-msg"></p>
 
   <script>
     const form = document.getElementById('survey-form');
     const responseMsg = document.getElementById('response-msg');
 
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
+        document.getElementById("submitBtn").disabled = true;
+        e.preventDefault();
 
       const formData = {
         name: form.name.value,
@@ -34,11 +38,13 @@ title: "Feedback"
       })
       .then(res => res.text())
       .then(msg => {
-        responseMsg.textContent = "✅ Submitted successfully!";
+        alert("✅ Form submitted successfully!");
         form.reset();
+        document.getElementById("submitBtn").disabled = false;
       })
       .catch(err => {
-        responseMsg.textContent = "❌ Submission failed: " + err.message;
+        alert("❌ Something is wrong, please submit again!");
+        document.getElementById("submitBtn").disabled = false;
       });
     });
   </script>
