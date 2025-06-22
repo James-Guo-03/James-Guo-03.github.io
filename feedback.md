@@ -6,11 +6,17 @@ title: "Feedback"
 # Submit Your Feedback
   <form id="survey-form">
   <div style="width: 75%; margin: 0 auto;">
-    Name: <input type="text" name="name" placeholder="Enter your name..."><br><br>
-    Email: <input type="email" name="email" placeholder="Enter your email..."><br><br>
-    Your Feedback (Required):
+    <p>
+        <span class="label">Name: (<i>Not Required</i>)</span>
+        <input type="text" name="name" placeholder="Enter your name..."> <br>
+    </p>
+    <p>
+        <span class="label">Email: (<i>Not Required</i>)</span>
+        <input type="email" name="email" placeholder="Enter your email..."> <br>
+    </p>
+    Your Feedback:
   </div>
-    <textarea id="inputBox" name="feedback" placeholder="Your feedback" required></textarea><br>
+    <textarea id="inputBox" name="feedback" placeholder="Your feedback" style="font-size: 16px; height: 39px;" required></textarea><br>
     <div style="text-align: center;">
     <button type="submit" id="submitBtn">Submit</button>
     </div>
