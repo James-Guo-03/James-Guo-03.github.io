@@ -7,7 +7,7 @@ title: "Feedback"
   <form id="survey-form">
     Name: <input type="text" name="name" placeholder="Enter your name..."><br><br>
     Email: <input type="email" name="email" placeholder="Enter your email..."><br><br>
-    <textarea name="feedback" placeholder="Your feedback" required></textarea><br><br>
+    <textarea id="inputBox" name="feedback" placeholder="Your feedback" required></textarea><br><br>
     <button type="submit">Submit</button>
   </form>
 
