@@ -18,7 +18,7 @@ title: "Feedback"
     </p>
     Your Feedback:
   </div>
-    <textarea id="inputBox" name="feedback" placeholder="Your feedback" style="font-size: 16px; height: 39px;" required></textarea><br>
+    <textarea id="inputBox" name="feedback" placeholder="Enter your feedback here..." style="font-size: 16px; height: 39px;" required></textarea><br>
     <div style="text-align: center;">
     <button type="submit" id="submitBtn">Submit</button>
     </div>

@@ -143,6 +143,11 @@ textarea {
     overflow: hidden;
 }
 
+input {
+    font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+    font-size: 12px;
+}
+
 table {
     margin-left: auto;
     margin-right: auto;
