@@ -26,7 +26,7 @@ title: "Feedback"
         feedback: form.feedback.value
       };
 
-      fetch("https://script.google.com/macros/s/AKfycbwFHocJT50NbaxhMSqgD9ROURYfRFD2RTFRtRDAo9jhvN0ti980h1XSUWIC3JmP8Mn_GA/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbwoyJ84s40GPgfnNU4fjPryLnLuRZQUHKBwt5C0sZDRY5N01_jeH5bcXLkWnyZCrkSoDg/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
