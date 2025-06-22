@@ -28,6 +28,7 @@ title: "Feedback"
 
       fetch("https://script.google.com/macros/s/AKfycbwoyJ84s40GPgfnNU4fjPryLnLuRZQUHKBwt5C0sZDRY5N01_jeH5bcXLkWnyZCrkSoDg/exec", {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       })
