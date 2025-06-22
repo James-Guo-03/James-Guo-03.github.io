@@ -7,12 +7,14 @@ title: "Feedback"
   <form id="survey-form">
   <div style="width: 75%; margin: 0 auto;">
     <p>
-        <span class="label">Name: (<i>Not Required</i>)</span>
-        <input type="text" name="name" placeholder="Enter your name..."> <br>
+        Name: 
+        <input type="text" name="name" placeholder="Enter your name...">
+        (<i>Not Required</i>) <br>
     </p>
     <p>
-        <span class="label">Email: (<i>Not Required</i>)</span>
-        <input type="email" name="email" placeholder="Enter your email..."> <br>
+        Email:
+        <input type="email" name="email" placeholder="Enter your email..."> 
+        (<i>Not Required</i>) <br>
     </p>
     Your Feedback:
   </div>

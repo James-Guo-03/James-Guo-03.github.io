@@ -197,10 +197,3 @@ tr:nth-child(odd) {
     padding: 8px;
 }
 }
-
-.label {
-    display: inline-block;
-    width: 100px;
-    text-align: right;
-    margin-right: 10px;
-  }
