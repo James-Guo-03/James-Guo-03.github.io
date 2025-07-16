@@ -1,21 +1,21 @@
 let activeLink;
 
-if ("{{ page.title }}" === "Home" || "{{ page.category }}" === "Home") {
+if (pageName === "Home" || pageCate === "Home") {
     activeLink = document.getElementById("home");
 }
-if ("{{ page.title }}" === "CV" || "{{ page.category }}" === "CV") {
+if (pageName === "CV" || pageCate === "CV") {
     activeLink = document.getElementById("cv");
 }
-if ("{{ page.title }}" === "Notes" || "{{ page.category }}" === "Notes") {
+if (pageName === "Notes" || pageCate === "Notes") {
     activeLink = document.getElementById("notes");
 }
-if ("{{ page.title }}" === "Projects" || "{{ page.category }}" === "Projects") {
+if (pageName === "Projects" || pageCate === "Projects") {
     activeLink = document.getElementById("projects");
 }
-if ("{{ page.title }}" === "Teaching"  || "{{ page.category }}" === "Teaching") {
+if (pageName === "Teaching"  || pageCate === "Teaching") {
     activeLink = document.getElementById("teaching");
 }
-if ("{{ page.title }}" === "Contact"  || "{{ page.category }}" === "Contact") {
+if (pageName === "Contact"  || pageCate === "Contact") {
     activeLink = document.getElementById("contact");
 }
 activeLink.classList.add("active");
