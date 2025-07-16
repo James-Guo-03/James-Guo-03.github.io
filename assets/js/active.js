@@ -1,3 +1,5 @@
+let activeLink;
+
 if ("{{ page.title }}" === "Home" || "{{ page.category }}" === "Home") {
     activeLink = document.getElementById("home");
 }

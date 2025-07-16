@@ -1,7 +1,6 @@
 
 # Basic C Notes
 
-
 ##  `Linux` System:
 
 ### Introduction to `Linux` Environment:
