@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Machine Level Structure Notes"
+category: "Notes"
 ---
 
 

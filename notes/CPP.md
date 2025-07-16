@@ -1,6 +1,8 @@
-
-# Basic C++ Notes
-
+---
+layout: default
+title: "Basic C++ Notes"
+category: "Notes"
+---
 
 ## `C++` Structures:
 

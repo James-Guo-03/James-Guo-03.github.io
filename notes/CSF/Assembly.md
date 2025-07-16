@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Assembly Notes"
+category: "Notes"
 ---
 
 

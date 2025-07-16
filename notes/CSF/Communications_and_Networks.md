@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Communications and Networks Notes"
+category: "Notes"
 ---
 
 

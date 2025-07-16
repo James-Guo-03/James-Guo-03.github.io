@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Feedback"
+category: "Contact"
 ---
 
 # Submit Your Feedback

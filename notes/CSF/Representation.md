@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Representation Notes"
+category: "Notes"
 ---
 
 

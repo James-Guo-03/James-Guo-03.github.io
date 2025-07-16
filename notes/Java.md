@@ -1,4 +1,8 @@
-# Basic Java Notes
+---
+layout: default
+title: "Basic Java Notes"
+category: "Notes"
+---
 
 ## Basic Text Output
 

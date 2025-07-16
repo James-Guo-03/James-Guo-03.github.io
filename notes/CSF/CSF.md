@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Computer System Fundamentals Notes"
+category: "Notes"
 ---
 
 Here are some of the notes I took for the `CS229` Computer System Fundamentals Class at the Johns Hopkins University. Certain images were taken from the slides of Prof. Hovemeyer.
